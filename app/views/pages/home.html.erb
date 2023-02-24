@@ -1,2 +1,7 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>CHALLENGES</h1>
+<%= link_to(controller: 'challenges', action: 'index', side: 'light') do %>
+  <h2>LIGHT SIDE</h2>
+<% end %>
+<%= link_to(controller: 'challenges', action: 'index', side: 'dark') do %>
+  <h2>DARK SIDE</h2>
+<% end %>

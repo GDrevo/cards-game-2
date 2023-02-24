@@ -1,0 +1,22 @@
+<div class="challenge-show-container">
+  <div class="cards-selection">
+    <% @players_cards.each do |card| %>
+      <div class="cards-selection-card">
+        <h5><%= card.name %></h5>
+      </div>
+    <% end %>
+  </div>
+  <div class="battle-creation">
+    <div class="battle-creation-comp">
+      <% @bt_computer.each do |card| %>
+      <div class="cards-selection-card">
+        <h5><%= card.name %></h5>
+      </div>
+    <% end %>
+    </div>
+    <div class="battle-creation-play">
+
+      <h2>PLAY</h2>
+    </div>
+  </div>
+</div>

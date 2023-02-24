@@ -1,0 +1,9 @@
+<div class="challenges-list">
+  <% @challenges.each do |challenge| %>
+    <div class="challenge-card">
+      <%= link_to challenge_path(challenge) do %>
+        <h2>Challenge</h2>
+      <% end %>
+    </div>
+  <% end %>
+</div>
