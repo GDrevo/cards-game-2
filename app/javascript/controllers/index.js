@@ -4,5 +4,11 @@
 
 import { application } from "./application"
 
+import ComputerCardsController from "./computer_cards_controller"
+application.register("computer-cards", ComputerCardsController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import UserCardsController from "./user_cards_controller"
+application.register("user-cards", UserCardsController)
