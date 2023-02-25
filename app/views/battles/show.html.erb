@@ -34,7 +34,7 @@
             <% else %>
               <div class="card-hit-points-low" style="width: <%= (card.hit_points.to_f / card.card.hit_points) * 100 %>%;"></div>
             <% end %>
-            <div class="card-counter" style="width: <%= card.counter %>%;"></div>
+            <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
           </div>
         <% end %>
       </div>

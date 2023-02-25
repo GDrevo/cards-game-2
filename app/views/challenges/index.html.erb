@@ -2,8 +2,11 @@
   <% @challenges.each do |challenge| %>
     <div class="challenge-card">
       <%= link_to challenge_path(challenge) do %>
-        <h2>Challenge</h2>
+        <h2>Challenge n°<%= challenge.rank %></h2>
       <% end %>
     </div>
+  <% end %>
+  <% @challenges_locked.each do |challenge| %>
+    <h2>Challenge n°<%= challenge.rank %></h2>
   <% end %>
 </div>
