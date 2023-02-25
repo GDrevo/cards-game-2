@@ -40,7 +40,7 @@ class User < ApplicationRecord
     Card.create(name: "Necromancer", side: "dark", card_type: "healer", hit_points: 100, armor: 15, power: 15, speed: 13, player:, unlocked: false, experience: 0, next_level: 100)
     Card.create(name: "Warlock", side: "dark", card_type: "healer", hit_points: 100, armor: 15, power: 17, speed: 12, player:, unlocked: false, experience: 0, next_level: 100)
     Card.create(name: "Hellhound", side: "dark", card_type: "attacker", hit_points: 100, armor: 20, power: 15, speed: 15, player:, unlocked: false, experience: 0, next_level: 100)
-    Card.create(name: "Archfiend", side: "dark", card_type: "attacker", hit_points: 100, armor: 25, power: 20, speed: 20, player:, unlocked: false, experience: 0, next_level: 100)
+    Card.create(name: "Archfiend", side: "dark", card_type: "attacker", hit_points: 150, armor: 25, power: 20, speed: 20, player:, unlocked: false, experience: 0, next_level: 100)
   end
 
   def create_challenges(player)
