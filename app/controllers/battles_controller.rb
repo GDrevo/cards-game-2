@@ -7,7 +7,19 @@ class BattlesController < ApplicationController
     challenge = Challenge.find(challenge_id_params)
     player = challenge.player
     bt_computer = create_bt(challenge.computer.cards)
+    bt_computer.battle_cards.each do |battle_card|
+      battle_card.card.skills.each do |skill|
+        skill.counter = 0
+        skill.save
+      end
+    end
     bt_player = create_bt(player_cards)
+    bt_player.battle_cards.each do |battle_card|
+      battle_card.card.skills.each do |skill|
+        skill.counter = 0
+        skill.save
+      end
+    end
     battle = Battle.create(player:, challenge:, bt_computer:, bt_player:)
     redirect_to battle_path(battle)
   end
@@ -21,7 +33,8 @@ class BattlesController < ApplicationController
     if !@bcs_player.all?(&:dead) && !@bcs_opponent.all?(&:dead)
       @card_to_play = play_turn(@bcs_player, @bcs_opponent)
       session[:card_to_play_id] = @card_to_play.id
-      @skills = @card_to_play.card.skills
+      @skills = @card_to_play.card.skills.select { |skill| skill.counter >= skill.reload_time }
+      # raise
     end
 
     if @bcs_player.all?(&:dead)
@@ -47,10 +60,11 @@ class BattlesController < ApplicationController
     else
       bc_target = BattleCard.find(target_params[:target].to_i)
       target_card = bc_target.card
-      bc_target.hit_points = target_card.hit_points unless bc_target.hit_points
+      bc_target.hit_points ||= target_card.hit_points
       bc_target.save
     end
     calculate_damage(bc_attacker, bc_target, skill, alive_bcs_player, alive_bcs_computer)
+    manage_skill_countdown(skill)
     card_to_play = BattleCard.find(session[:card_to_play_id])
     card_to_play.counter = 0
     card_to_play.save
@@ -76,6 +90,7 @@ class BattlesController < ApplicationController
     end
     # 3. Calculate damage, lower hit_points and reset counter
     calculate_damage(card_to_play, bc_target, skill, alive_bcs_computer, alive_bcs_player)
+    manage_skill_countdown(skill)
     card_to_play.counter = 0
     card_to_play.save
     session.delete(:card_to_play_id)
@@ -134,7 +149,16 @@ class BattlesController < ApplicationController
     end
     all_cards.sort_by!(&:counter)
     all_cards.reverse!
-    all_cards.find { |battle_card| battle_card.counter >= 100 }
+    card = all_cards.find { |battle_card| battle_card.counter >= 100 }
+    card.card.skills.each do |skill|
+      skill.counter += 1
+      skill.save
+    end
+    card
+  end
+
+  def manage_skill_countdown(skill)
+    skill.counter = 0
   end
 
   def create_bt(cards)
