@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="user-cards"
 export default class extends Controller {
-  static targets = ["card", "selection", "playButton", "cardIds"]
+  static targets = ["card", "selection", "submission", "playButton", "cardIds"]
 
   connect() {
     console.log("Hello")
@@ -16,8 +16,13 @@ export default class extends Controller {
 
     if (selectedCardsCount <= 5 && !this.selectedCards.includes(cardId)) {
       this.selectedCards.push(cardId)
-      this.selectionTarget.insertAdjacentHTML("beforeend", `<input type="hidden" name="card_ids[]" value="${cardId}" />`)
-      this.updatePlayButton(cardId)
+      this.selectionTarget.insertAdjacentHTML("beforeend", `
+        <div class="cards-selection-card">
+          <h5>This is the card with id = ${cardId}</h5>
+        </div>
+      `)
+      this.submissionTarget.insertAdjacentHTML("beforeend", `<input type="hidden" name="card_ids[]" value="${cardId}" />`)
+      this.updatePlayButton()
     }
 
     if (selectedCardsCount > 0 && selectedCardsCount <= 5) {
@@ -33,9 +38,8 @@ export default class extends Controller {
     });
   }
 
-  updatePlayButton(cardId) {
+  updatePlayButton() {
     const selectedCardIds = Array.from(this.selectedCards)
-    console.log(this.selectedCards)
-    this.playButtonTarget.dataset.cardIds = selectedCardIds.join(',')
+    this.submissionTarget.dataset.cardIds = selectedCardIds.join(',')
   }
 }

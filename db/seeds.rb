@@ -19,7 +19,8 @@ Card.create(name: "Imp", side: "dark", card_type: "healer", hit_points: 100, arm
 Card.create(name: "Skeleton", side: "dark", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 10, player: computer, unlocked: true, level: 1)
 Card.create(name: "Cultist", side: "dark", card_type: "healer", hit_points: 100, armor: 10, power: 12, speed: 7, player: computer, unlocked: true, level: 1)
 Card.create(name: "Zombie", side: "dark", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 12, player: computer, unlocked: true, level: 1)
-Card.create(name: "Ghoul", side: "dark", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 13, player: computer, unlocked: true, level: 1)
+card = Card.create(name: "Ghoul", side: "dark", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 13, player: computer, unlocked: true, level: 1)
+p card
 
 computer = Player.create(name: "Computer", code: "light 2")
 # Create the cards
