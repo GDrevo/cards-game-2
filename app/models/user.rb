@@ -46,45 +46,45 @@ class User < ApplicationRecord
   def create_challenges(player)
     # LIGHT challenges
     computer = Player.where(code: "light 1").first
-    Challenge.create(category: "light", unlocked: true, player:, computer:)
+    Challenge.create(category: "light", unlocked: true, player:, computer:, rank: 1)
     computer = Player.where(code: "light 2").first
-    Challenge.create(category: "light", unlocked: false, player:, computer:)
+    Challenge.create(category: "light", unlocked: false, player:, computer:, rank: 2)
     computer = Player.where(code: "light 3").first
-    Challenge.create(category: "light", unlocked: false, player:, computer:)
+    Challenge.create(category: "light", unlocked: false, player:, computer:, rank: 3)
     computer = Player.where(code: "light 4").first
-    Challenge.create(category: "light", unlocked: false, player:, computer:)
+    Challenge.create(category: "light", unlocked: false, player:, computer:, rank: 4)
     computer = Player.where(code: "light 5").first
-    Challenge.create(category: "light", unlocked: false, player:, computer:)
+    Challenge.create(category: "light", unlocked: false, player:, computer:, rank: 5)
     computer = Player.where(code: "light 6").first
-    Challenge.create(category: "light", unlocked: false, player:, computer:)
+    Challenge.create(category: "light", unlocked: false, player:, computer:, rank: 6)
     computer = Player.where(code: "light 7").first
-    Challenge.create(category: "light", unlocked: false, player:, computer:)
+    Challenge.create(category: "light", unlocked: false, player:, computer:, rank: 7)
     computer = Player.where(code: "light 8").first
-    Challenge.create(category: "light", unlocked: false, player:, computer:)
+    Challenge.create(category: "light", unlocked: false, player:, computer:, rank: 8)
     computer = Player.where(code: "light 9").first
-    Challenge.create(category: "light", unlocked: false, player:, computer:)
+    Challenge.create(category: "light", unlocked: false, player:, computer:, rank: 9)
     computer = Player.where(code: "light 10").first
-    Challenge.create(category: "light", unlocked: false, player:, computer:)
+    Challenge.create(category: "light", unlocked: false, player:, computer:, rank: 10)
     # DARK challenges
     computer = Player.where(code: "dark 1").first
-    Challenge.create(category: "dark", unlocked: true, player:, computer:)
+    Challenge.create(category: "dark", unlocked: true, player:, computer:, rank: 1)
     computer = Player.where(code: "dark 2").first
-    Challenge.create(category: "dark", unlocked: false, player:, computer:)
+    Challenge.create(category: "dark", unlocked: false, player:, computer:, rank: 2)
     computer = Player.where(code: "dark 3").first
-    Challenge.create(category: "dark", unlocked: false, player:, computer:)
+    Challenge.create(category: "dark", unlocked: false, player:, computer:, rank: 3)
     computer = Player.where(code: "dark 4").first
-    Challenge.create(category: "dark", unlocked: false, player:, computer:)
+    Challenge.create(category: "dark", unlocked: false, player:, computer:, rank: 4)
     computer = Player.where(code: "dark 5").first
-    Challenge.create(category: "dark", unlocked: false, player:, computer:)
+    Challenge.create(category: "dark", unlocked: false, player:, computer:, rank: 5)
     computer = Player.where(code: "dark 6").first
-    Challenge.create(category: "dark", unlocked: false, player:, computer:)
+    Challenge.create(category: "dark", unlocked: false, player:, computer:, rank: 6)
     computer = Player.where(code: "dark 7").first
-    Challenge.create(category: "dark", unlocked: false, player:, computer:)
+    Challenge.create(category: "dark", unlocked: false, player:, computer:, rank: 7)
     computer = Player.where(code: "dark 8").first
-    Challenge.create(category: "dark", unlocked: false, player:, computer:)
+    Challenge.create(category: "dark", unlocked: false, player:, computer:, rank: 8)
     computer = Player.where(code: "dark 9").first
-    Challenge.create(category: "dark", unlocked: false, player:, computer:)
+    Challenge.create(category: "dark", unlocked: false, player:, computer:, rank: 9)
     computer = Player.where(code: "dark 10").first
-    Challenge.create(category: "dark", unlocked: false, player:, computer:)
+    Challenge.create(category: "dark", unlocked: false, player:, computer:, rank: 10)
   end
 end

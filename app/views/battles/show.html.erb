@@ -5,11 +5,12 @@
       <div class="players-cards">
         <% @bcs_opponent.each do |card| %>
           <div class="player-card">
-            <h5><%= card.card.name %></h5>
+            <h3><%= card.card.name %></h3>
+            <h5>lvl <%= card.card.level %></h5>
             <% if card.hit_points > 30 %>
-              <div class="card-hit-points" style="width: <%= card.hit_points %>%;"></div>
+              <div class="card-hit-points" style="width: <%= (card.hit_points.to_f / card.card.hit_points) * 100 %>%;"></div>
             <% else %>
-              <div class="card-hit-points-low" style="width: <%= card.hit_points %>%;"></div>
+              <div class="card-hit-points-low" style="width: <%= (card.hit_points.to_f / card.card.hit_points) * 100 %>%;"></div>
             <% end %>
             <div class="card-counter" style="width: <%= card.counter %>%;"></div>
           </div>
@@ -25,11 +26,13 @@
       <div class="players-cards">
         <% @bcs_player.each do |card| %>
           <div class="player-card">
-            <h5><%= card.card.name %></h5>
+            <h3><%= card.card.name %></h3>
+            <h5>lvl <%= card.card.level %></h5>
+            <p><%= card.hit_points %>/<%= card.card.hit_points %></p>
             <% if card.hit_points > 30 %>
-              <div class="card-hit-points" style="width: <%= card.hit_points %>%;"></div>
+              <div class="card-hit-points" style="width: <%= (card.hit_points.to_f / card.card.hit_points) * 100 %>%;"></div>
             <% else %>
-              <div class="card-hit-points-low" style="width: <%= card.hit_points %>%;"></div>
+              <div class="card-hit-points-low" style="width: <%= (card.hit_points.to_f / card.card.hit_points) * 100 %>%;"></div>
             <% end %>
             <div class="card-counter" style="width: <%= card.counter %>%;"></div>
           </div>
@@ -72,11 +75,12 @@
       <div class="players-cards">
         <% @bcs_opponent.each do |card| %>
           <div class="player-card">
-            <h5><%= card.card.name %></h5>
+            <h3><%= card.card.name %></h3>
+            <h5>lvl <%= card.card.level %></h5>
             <% if card.hit_points > 30 %>
-              <div class="card-hit-points" style="width: <%= card.hit_points %>%;"></div>
+              <div class="card-hit-points" style="width: <%= (card.hit_points.to_f / card.card.hit_points) * 100 %>%;"></div>
             <% else %>
-              <div class="card-hit-points-low" style="width: <%= card.hit_points %>%;"></div>
+              <div class="card-hit-points-low" style="width: <%= (card.hit_points.to_f / card.card.hit_points) * 100 %>%;"></div>
             <% end %>
             <div class="card-counter" style="width: <%= card.counter %>%;"></div>
           </div>
@@ -104,11 +108,12 @@
 
           <div class="player-card">
 
-            <h5><%= card.card.name %></h5>
+            <h3><%= card.card.name %></h3>
+            <h5>lvl <%= card.card.level %></h5>
             <% if card.hit_points > 40 %>
-              <div class="card-hit-points" style="width: <%= card.hit_points %>%;"></div>
+              <div class="card-hit-points" style="width: <%= (card.hit_points.to_f / card.card.hit_points) * 100 %>%;"></div>
             <% else %>
-              <div class="card-hit-points-low" style="width: <%= card.hit_points %>%;"></div>
+              <div class="card-hit-points-low" style="width: <%= (card.hit_points.to_f / card.card.hit_points) * 100 %>%;"></div>
             <% end %>
             <div class="card-counter" style="width: <%= card.counter %>%;"></div>
           </div>

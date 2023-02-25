@@ -5,6 +5,29 @@ class Card < ApplicationRecord
 
   after_create :create_skills
 
+  def level_up(xp)
+    return if level == 50
+
+    self.experience += xp
+    self.level += 1
+    new_hp = hit_points + ((7.0 / 100) * hit_points).round
+    self.hit_points = new_hp
+    new_armor = armor + ((self.level - 1) / 100.0).round
+    self.armor = new_armor
+    new_power = power + ((8.0 / 100) * power).round
+    self.power = new_power
+    new_speed = speed + ((self.level - 1) / 100.0).round
+    self.speed = new_speed
+    new_next_level = next_level + (next_level / 10.0).round
+    self.next_level = new_next_level
+    new_experience = experience - next_level
+    self.experience = new_experience
+    new_experience_given = experience_given + ((8 / 100.0) * experience_given).round
+    self.experience_given = new_experience_given
+    # CHECK IF ALL STATS UPDATE ACCORDINGLY
+    save
+  end
+
   private
 
   def create_skills
