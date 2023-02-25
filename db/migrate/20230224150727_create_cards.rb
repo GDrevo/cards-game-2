@@ -9,8 +9,9 @@ class CreateCards < ActiveRecord::Migration[7.0]
       t.integer :armor
       t.integer :power
       t.integer :speed
-      t.integer :experience
-      t.integer :next_level
+      t.integer :experience, default: 0
+      t.integer :next_level, default: 50
+      t.integer :experience_given, default: 30
       t.boolean :unlocked
       t.references :player, null: false, foreign_key: true
 

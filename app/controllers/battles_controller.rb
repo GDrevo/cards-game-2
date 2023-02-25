@@ -34,13 +34,12 @@ class BattlesController < ApplicationController
       @card_to_play = play_turn(@bcs_player, @bcs_opponent)
       session[:card_to_play_id] = @card_to_play.id
       @skills = @card_to_play.card.skills.select { |skill| skill.counter >= skill.reload_time }
-      # raise
     end
 
     if @bcs_player.all?(&:dead)
-      redirect_to game_over_path(@battle, winner: @battle.bt_computer.player)
+      set_winner("computer", @battle)
     elsif @bcs_opponent.all?(&:dead)
-      redirect_to game_over_path(@battle, winner: @battle.bt_player.player)
+      set_winner(@battle.player, @battle)
     else
       render :show
     end
@@ -51,7 +50,7 @@ class BattlesController < ApplicationController
     bcs_player = battle.bt_player.battle_cards
     alive_bcs_player = bcs_player.select { |card| card.dead == false }
     bcs_computer = battle.bt_computer.battle_cards
-    alive_bcs_computer = bcs_player.select { |card| card.dead == false }
+    alive_bcs_computer = bcs_computer.select { |card| card.dead == false }
     skill = Skill.find(params[:skill])
     attacker = skill.card
     bc_attacker = (bcs_player.select { |bc| bc.card == attacker }).first
@@ -59,9 +58,6 @@ class BattlesController < ApplicationController
       bc_target = "multi target"
     else
       bc_target = BattleCard.find(target_params[:target].to_i)
-      target_card = bc_target.card
-      bc_target.hit_points ||= target_card.hit_points
-      bc_target.save
     end
     calculate_damage(bc_attacker, bc_target, skill, alive_bcs_player, alive_bcs_computer)
     manage_skill_countdown(skill)
@@ -77,7 +73,7 @@ class BattlesController < ApplicationController
     bcs_player = battle.bt_player.battle_cards
     alive_bcs_player = bcs_player.select { |card| card.dead == false }
     bcs_computer = battle.bt_computer.battle_cards
-    alive_bcs_computer = bcs_player.select { |card| card.dead == false }
+    alive_bcs_computer = bcs_computer.select { |card| card.dead == false }
     # 1. Get the skills the card_to_play can use, compute a simple logic to decide which to use
     card_to_play = BattleCard.find(session[:card_to_play_id])
     skill = decision_skill(card_to_play, bcs_player, bcs_computer)
@@ -99,12 +95,57 @@ class BattlesController < ApplicationController
 
   private
 
+  def set_winner(player, battle)
+    if player == battle.player
+      # Set challenge as done, unlock the next one
+      battle.challenge.done = true
+      battle.challenge.save
+      next_challenge = battle.challenge.next(battle.challenge.category)
+      next_challenge.unlocked = true
+      next_challenge.save
+      case next_challenge.rank
+      when 2
+        next_challenge.category == "light" ? player.unlock("Crusader") : player.unlock("Hellhound")
+      when 4
+        next_challenge.category == "light" ? player.unlock("Cleric") : player.unlock("Warlock")
+      when 6
+        next_challenge.category == "light" ? player.unlock("Captain") : player.unlock("Demon")
+      when 8
+        next_challenge.category == "light" ? player.unlock("Paladin") : player.unlock("Necromancer")
+      when 10
+        next_challenge.category == "light" ? player.unlock("King") : player.unlock("Archfiend")
+      end
+      player_bcs = battle.bt_player.battle_cards.select { |bc| bc.dead == false }
+      computer_bcs = battle.bt_computer.battle_cards
+      # Calculate XP gained and divide it between the cards that aren't dead
+      calculate_experience(player_bcs, computer_bcs)
+    end
+    redirect_to challenges_path(side: battle.challenge.category)
+  end
+
+  def calculate_experience(player_bcs, computer_bcs)
+    total_xp_gained = 0
+    player_bcs_num = player_bcs.size
+    computer_bcs.each do |battle_card|
+      total_xp_gained += battle_card.card.experience_given
+    end
+    player_bcs.each do |battle_card|
+      xp_needed = battle_card.card.next_level - battle_card.card.experience
+      if xp_needed < (total_xp_gained / player_bcs_num)
+        battle_card.card.level_up(total_xp_gained / player_bcs_num)
+      else
+        battle_card.card.experience += (total_xp_gained / player_bcs_num)
+        battle_card.card.save
+      end
+    end
+  end
+
   def calculate_damage(attacker, target, skill, bcs_attacker, bcs_defender)
     damage = attacker.card.power
     if skill.strength.include?("Light")
       damage = (damage * 0.75).round
     elsif skill.strength.include?("Powerful")
-      damage = (damage * 1.25).round
+      damage = (damage * 2).round
     end
     if skill.target_type.include?("Multi")
       if skill.name.include?("Attack")
@@ -116,7 +157,7 @@ class BattlesController < ApplicationController
           target_multi.save
         end
       elsif skill.name.include?("Heal")
-        targets = bcs_defender
+        targets = bcs_attacker
         targets.each do |target_multi|
           target_multi.hit_points += (damage / 1.25).round
           target_multi.hit_points > target_multi.card.hit_points ? target_multi.hit_points = target_multi.card.hit_points : nil
@@ -159,6 +200,7 @@ class BattlesController < ApplicationController
 
   def manage_skill_countdown(skill)
     skill.counter = 0
+    skill.save
   end
 
   def create_bt(cards)
