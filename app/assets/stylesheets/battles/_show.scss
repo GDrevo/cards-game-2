@@ -1,0 +1,45 @@
+.players-cards {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  background-color: white;
+  padding: 40px;
+}
+
+.player-card {
+  background-color: rgb(20, 20, 20);
+  color: rgb(194, 194, 194);
+  padding: 20px;
+  border-radius: 5px;
+  min-width: 200px;
+  height: 200px;
+  text-align: center;
+  h5 {
+    color: white;
+  }
+}
+
+.skill-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.card-hit-points {
+  background-color: rgb(42, 255, 42);
+  height: 5px;
+  border: 1px solid rgb(194, 194, 194);
+}
+
+.card-hit-points-low {
+  background-color: red;
+  height: 5px;
+  border: 1px solid rgb(194, 194, 194);
+}
+
+.card-counter {
+  background-color: yellow;
+  height: 5px;
+  border: 1px solid rgb(194, 194, 194);
+}

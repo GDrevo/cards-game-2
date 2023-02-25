@@ -28,6 +28,10 @@
       </div>
     </div>
       <%= button_to battles_path, disabled: true, data: { user_cards_target: "playButton", card_ids: "" } do %>
+        <input type="hidden" name="challenge_id" value="<%= @challenge.id %>"/>
+
+        <div class="selected-card-ids" data-user-cards-target="submission">
+        </div>
         <h2>PLAY</h2>
       <% end %>
   </div>
