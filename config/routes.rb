@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :challenges, only: %i[index show]
   resources :battles, only: %i[new create show] do
-    # patch :play_card, on: :member
+    patch :play_card, on: :member
     patch :simulate_turn, on: :member
   end
 end
