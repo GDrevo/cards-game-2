@@ -119,11 +119,32 @@ class BattlesController < ApplicationController
       computer_bcs = battle.bt_computer.battle_cards
       # Calculate XP gained and divide it between the cards that aren't dead
       calculate_experience(player_bcs, computer_bcs)
+    else
+      player_bcs = battle.bt_player.battle_cards
+      computer_bcs = battle.bt_computer.battle_cards.select { |bc| bc.dead == true }
+      calculate_experience(player_bcs, computer_bcs)
     end
     redirect_to challenges_path(side: battle.challenge.category)
   end
 
   def calculate_experience(player_bcs, computer_bcs)
+    total_xp_gained = 0
+    player_bcs_num = player_bcs.size
+    computer_bcs.each do |battle_card|
+      total_xp_gained += battle_card.card.experience_given
+    end
+    player_bcs.each do |battle_card|
+      xp_needed = battle_card.card.next_level - battle_card.card.experience
+      if xp_needed < (total_xp_gained / player_bcs_num)
+        battle_card.card.level_up(total_xp_gained / player_bcs_num)
+      else
+        battle_card.card.experience += (total_xp_gained / player_bcs_num)
+        battle_card.card.save
+      end
+    end
+  end
+
+  def calculate_experience_loser(player_bcs, computer_bcs)
     total_xp_gained = 0
     player_bcs_num = player_bcs.size
     computer_bcs.each do |battle_card|
