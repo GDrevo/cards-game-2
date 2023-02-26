@@ -20,7 +20,7 @@ class Card < ApplicationRecord
     self.speed = new_speed
     new_next_level = next_level + (next_level / 10.0).round
     self.next_level = new_next_level
-    new_experience = experience - next_level
+    new_experience = xp - next_level
     self.experience = new_experience
     new_experience_given = experience_given + ((8 / 100.0) * experience_given).round
     self.experience_given = new_experience_given
@@ -31,20 +31,22 @@ class Card < ApplicationRecord
   def prestige_up
     case prestige
     when 0
-      prestige = 1
-      next_prestige = 25
+      self.unlocked = true
+      self.prestige = 1
+      self.next_prestige = 25
     when 1
-      prestige = 2
-      next_prestige = 50
+      self.prestige = 2
+      self.next_prestige = 50
     when 2
-      prestige = 3
-      next_prestige = 75
+      self.prestige = 3
+      self.next_prestige = 75
     when 3
-      prestige = 4
-      next_prestige = 100
+      self.prestige = 4
+      self.next_prestige = 100
     when 4
-      prestige = 5
+      self.prestige = 5
     end
+    save
   end
 
   private

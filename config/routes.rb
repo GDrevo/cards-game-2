@@ -10,4 +10,5 @@ Rails.application.routes.draw do
     patch :play_card, on: :member
     patch :simulate_turn, on: :member
   end
+  resources :cards, only: %i[index show]
 end
