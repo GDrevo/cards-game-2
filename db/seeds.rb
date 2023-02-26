@@ -10,169 +10,183 @@
 # TO DO: adapt the cards stats to level
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-# Create the light challenges computer players
+def card_creator(computer, name, level, hit_points, attributes)
+  if level == 1
+    hp = hit_points
+    armor = attributes[0]
+    power = attributes[1]
+    speed = attributes[2]
+    xp_given = attributes[3]
+  else
+    hp = (level - 1).times do
+      hit_points += ((7.0 / 100) * hit_points).round
+    end
+    armor = attributes[0]
+    armor = (level - 1).times do
+      armor += ((level - 1) / 100.0).round
+    end
+    power = attributes[1]
+    power = (level - 1).times do
+      power += ((8.0 / 100) * power).round
+    end
+    speed = attributes[2]
+    speed = (level - 1).times do
+      speed += ((level - 1) / 100.0).round
+    end
+    xp_given = attributes[3]
+    xp_given = (level - 1).times do
+      xp_given += ((8 / 100.0) * xp_given).round
+    end
+  end
+  card_type = attributes[4]
+  side = attributes[5]
+  prestige = attributes[6]
+  prestige ||= 1
+  Card.create(name:, level:, hit_points: hp, armor:, power:, speed:, experience_given: xp_given, player: computer, unlocked: true, card_type:, side:, prestige:)
+end
+
+# ==============================================================================
+# == LIGHT CHALLENGES =============================================== 1 to 10 ==
+# ==============================================================================
 computer = Player.create(name: "Computer", code: "light 1")
-computer.save
-p computer
-# Create the cards
-Card.create(name: "Imp", side: "dark", card_type: "healer", hit_points: 40, armor: 10, power: 8, speed: 11, player: computer, unlocked: true, level: 1)
-Card.create(name: "Cultist", side: "dark", card_type: "healer", hit_points: 40, armor: 10, power: 9, speed: 10, player: computer, unlocked: true, level: 1)
-Card.create(name: "Skeleton", side: "dark", card_type: "attacker", hit_points: 40, armor: 15, power: 10, speed: 9, player: computer, unlocked: true, level: 1)
-Card.create(name: "Zombie", side: "dark", card_type: "attacker", hit_points: 40, armor: 15, power: 8, speed: 11, player: computer, unlocked: true, level: 1)
-card = Card.create(name: "Ghoul", side: "dark", card_type: "attacker", hit_points: 40, armor: 15, power: 12, speed: 7, player: computer, unlocked: true, level: 1)
-p card
+card_creator(computer, "Skeleton Warrior", 1, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 1, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 1, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 1, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 1, 40, [10, 11, 9, 30, "healer", "dark"])
 
 computer = Player.create(name: "Computer", code: "light 2")
-# Create the cards
-Card.create(name: "Imp", side: "dark", card_type: "healer", hit_points: 66, armor: 10, power: 11, speed: 12, player: computer, unlocked: true, level: 5, experience_given: 41)
-Card.create(name: "Cultist", side: "dark", card_type: "healer", hit_points: 66, armor: 10, power: 12, speed: 11, player: computer, unlocked: true, level: 5, experience_given: 41)
-Card.create(name: "Skeleton", side: "dark", card_type: "attacker", hit_points: 66, armor: 15, power: 14, speed: 10, player: computer, unlocked: true, level: 5, experience_given: 41)
-Card.create(name: "Zombie", side: "dark", card_type: "attacker", hit_points: 66, armor: 15, power: 11, speed: 12, player: computer, unlocked: true, level: 5, experience_given: 41)
-card = Card.create(name: "Ghoul", side: "dark", card_type: "attacker", hit_points: 66, armor: 15, power: 16, speed: 8, player: computer, unlocked: true, level: 5, experience_given: 41)
+card_creator(computer, "Skeleton Warrior", 2, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 2, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 2, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 2, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 2, 40, [10, 11, 9, 30, "healer", "dark"])
 
 computer = Player.create(name: "Computer", code: "light 3")
-# Create the cards
-Card.create(name: "Imp", side: "dark", card_type: "healer", hit_points: 92, armor: 11, power: 16, speed: 13, player: computer, unlocked: true, level: 10, experience_given: 60)
-Card.create(name: "Cultist", side: "dark", card_type: "healer", hit_points: 92, armor: 11, power: 18, speed: 12, player: computer, unlocked: true, level: 10, experience_given: 60)
-Card.create(name: "Skeleton", side: "dark", card_type: "attacker", hit_points: 92, armor: 16, power: 20, speed: 11, player: computer, unlocked: true, level: 10, experience_given: 60)
-Card.create(name: "Zombie", side: "dark", card_type: "attacker", hit_points: 92, armor: 16, power: 16, speed: 13, player: computer, unlocked: true, level: 10, experience_given: 60)
-card = Card.create(name: "Ghoul", side: "dark", card_type: "attacker", hit_points: 92, armor: 16, power: 24, speed: 9, player: computer, unlocked: true, level: 10, experience_given: 60)
+card_creator(computer, "Skeleton Warrior", 3, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 3, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 3, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 3, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 3, 40, [10, 11, 9, 30, "healer", "dark"])
 
 computer = Player.create(name: "Computer", code: "light 4")
-# Create the cards
-Card.create(name: "Imp", side: "dark", card_type: "healer", hit_points: 129, armor: 11, power: 23, speed: 13, player: computer, unlocked: true, level: 15, experience_given: 88)
-Card.create(name: "Cultist", side: "dark", card_type: "healer", hit_points: 129, armor: 11, power: 26, speed: 12, player: computer, unlocked: true, level: 15, experience_given: 88)
-Card.create(name: "Skeleton", side: "dark", card_type: "attacker", hit_points: 129, armor: 16, power: 29, speed: 11, player: computer, unlocked: true, level: 15, experience_given: 88)
-Card.create(name: "Zombie", side: "dark", card_type: "attacker", hit_points: 129, armor: 16, power: 23, speed: 13, player: computer, unlocked: true, level: 15, experience_given: 88)
-card = Card.create(name: "Ghoul", side: "dark", card_type: "attacker", hit_points: 129, armor: 16, power: 35, speed: 9, player: computer, unlocked: true, level: 15, experience_given: 88)
+card_creator(computer, "Skeleton Warrior", 4, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 4, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 4, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 4, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 4, 40, [10, 11, 9, 30, "healer", "dark"])
 
 computer = Player.create(name: "Computer", code: "light 5")
-# Create the cards
-Card.create(name: "Imp", side: "dark", card_type: "healer", hit_points: 50, armor: 10, power: 8, speed: 12, player: computer, unlocked: true, level: 1)
-Card.create(name: "Cultist", side: "dark", card_type: "healer", hit_points: 50, armor: 10, power: 9, speed: 11, player: computer, unlocked: true, level: 1)
-Card.create(name: "Skeleton", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 10, speed: 10, player: computer, unlocked: true, level: 1)
-Card.create(name: "Zombie", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 8, speed: 12, player: computer, unlocked: true, level: 1)
-card = Card.create(name: "Ghoul", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 12, speed: 8, player: computer, unlocked: true, level: 1)
+card_creator(computer, "Skeleton Warrior", 5, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 5, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 5, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 5, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 5, 40, [10, 11, 9, 30, "healer", "dark"])
 
 computer = Player.create(name: "Computer", code: "light 6")
-# Create the cards
-Card.create(name: "Imp", side: "dark", card_type: "healer", hit_points: 50, armor: 10, power: 8, speed: 12, player: computer, unlocked: true, level: 1)
-Card.create(name: "Cultist", side: "dark", card_type: "healer", hit_points: 50, armor: 10, power: 9, speed: 11, player: computer, unlocked: true, level: 1)
-Card.create(name: "Skeleton", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 10, speed: 10, player: computer, unlocked: true, level: 1)
-Card.create(name: "Zombie", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 8, speed: 12, player: computer, unlocked: true, level: 1)
-card = Card.create(name: "Ghoul", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 12, speed: 8, player: computer, unlocked: true, level: 1)
+card_creator(computer, "Skeleton Warrior", 6, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 6, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 6, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 6, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 6, 40, [10, 11, 9, 30, "healer", "dark"])
 
 computer = Player.create(name: "Computer", code: "light 7")
-# Create the cards
-Card.create(name: "Imp", side: "dark", card_type: "healer", hit_points: 50, armor: 10, power: 8, speed: 12, player: computer, unlocked: true, level: 1)
-Card.create(name: "Cultist", side: "dark", card_type: "healer", hit_points: 50, armor: 10, power: 9, speed: 11, player: computer, unlocked: true, level: 1)
-Card.create(name: "Skeleton", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 10, speed: 10, player: computer, unlocked: true, level: 1)
-Card.create(name: "Zombie", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 8, speed: 12, player: computer, unlocked: true, level: 1)
-card = Card.create(name: "Ghoul", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 12, speed: 8, player: computer, unlocked: true, level: 1)
+card_creator(computer, "Skeleton Warrior", 7, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 7, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 7, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 7, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 7, 40, [10, 11, 9, 30, "healer", "dark"])
 
 computer = Player.create(name: "Computer", code: "light 8")
-# Create the cards
-Card.create(name: "Imp", side: "dark", card_type: "healer", hit_points: 50, armor: 10, power: 8, speed: 12, player: computer, unlocked: true, level: 1)
-Card.create(name: "Cultist", side: "dark", card_type: "healer", hit_points: 50, armor: 10, power: 9, speed: 11, player: computer, unlocked: true, level: 1)
-Card.create(name: "Skeleton", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 10, speed: 10, player: computer, unlocked: true, level: 1)
-Card.create(name: "Zombie", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 8, speed: 12, player: computer, unlocked: true, level: 1)
-card = Card.create(name: "Ghoul", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 12, speed: 8, player: computer, unlocked: true, level: 1)
+card_creator(computer, "Skeleton Warrior", 8, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 8, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 8, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 8, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 8, 40, [10, 11, 9, 30, "healer", "dark"])
 
 computer = Player.create(name: "Computer", code: "light 9")
-# Create the cards
-Card.create(name: "Imp", side: "dark", card_type: "healer", hit_points: 50, armor: 10, power: 8, speed: 12, player: computer, unlocked: true, level: 1)
-Card.create(name: "Cultist", side: "dark", card_type: "healer", hit_points: 50, armor: 10, power: 9, speed: 11, player: computer, unlocked: true, level: 1)
-Card.create(name: "Skeleton", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 10, speed: 10, player: computer, unlocked: true, level: 1)
-Card.create(name: "Zombie", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 8, speed: 12, player: computer, unlocked: true, level: 1)
-card = Card.create(name: "Ghoul", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 12, speed: 8, player: computer, unlocked: true, level: 1)
+card_creator(computer, "Skeleton Warrior", 9, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 9, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 9, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 9, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 9, 40, [10, 11, 9, 30, "healer", "dark"])
 
 computer = Player.create(name: "Computer", code: "light 10")
-# Create the cards
-Card.create(name: "Imp", side: "dark", card_type: "healer", hit_points: 50, armor: 10, power: 8, speed: 12, player: computer, unlocked: true, level: 1)
-Card.create(name: "Cultist", side: "dark", card_type: "healer", hit_points: 50, armor: 10, power: 9, speed: 11, player: computer, unlocked: true, level: 1)
-Card.create(name: "Skeleton", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 10, speed: 10, player: computer, unlocked: true, level: 1)
-Card.create(name: "Zombie", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 8, speed: 12, player: computer, unlocked: true, level: 1)
-card = Card.create(name: "Ghoul", side: "dark", card_type: "attacker", hit_points: 50, armor: 15, power: 12, speed: 8, player: computer, unlocked: true, level: 1)
+card_creator(computer, "Skeleton Warrior", 10, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 10, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 10, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 10, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Mummy", 10, 40, [20, 17, 13, 40, "attacker", "dark"])
 
-# ////////////////////////////////////////////////////////////////////////
-# ///////////////////////////////////////////////////////////////////////
-# Create the dark challenges computer players
-computer = Player.create(name: "Computer", code: "dark 1")
-# Create the cards
-Card.create(name: "Peasant", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 10, player: computer, unlocked: true)
-Card.create(name: "Squire", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 10, speed: 8, player: computer, unlocked: true)
-Card.create(name: "Priest", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 12, speed: 7, player: computer, unlocked: true)
-Card.create(name: "Archer", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 13, player: computer, unlocked: true)
-Card.create(name: "Footman", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 12, player: computer, unlocked: true)
+# ==============================================================================
+# == LIGHT CHALLENGES ============================================== 11 to 20 ==
+# ==============================================================================
+computer = Player.create(name: "Computer", code: "light 11")
+card_creator(computer, "Death Knight", 11, 60, [20, 17, 13, 40, "attacker", "dark"])
+card_creator(computer, "Ghoul", 11, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 1, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 11, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 11, 40, [10, 11, 9, 30, "healer", "dark"])
 
-computer = Player.create(name: "Computer", code: "dark 2")
-# Create the cards
-Card.create(name: "Peasant", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 10, player: computer, unlocked: true)
-Card.create(name: "Squire", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 10, speed: 8, player: computer, unlocked: true)
-Card.create(name: "Priest", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 12, speed: 7, player: computer, unlocked: true)
-Card.create(name: "Archer", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 13, player: computer, unlocked: true)
-Card.create(name: "Footman", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 12, player: computer, unlocked: true)
+computer = Player.create(name: "Computer", code: "light 12")
+card_creator(computer, "Skeleton Warrior", 12, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 12, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 12, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Necromancer", 12, 55, [12, 17, 13, 40, "healer", "dark"])
+card_creator(computer, "Bone Mender", 12, 40, [10, 11, 9, 30, "healer", "dark"])
 
-computer = Player.create(name: "Computer", code: "dark 3")
-# Create the cards
-Card.create(name: "Peasant", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 10, player: computer, unlocked: true)
-Card.create(name: "Squire", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 10, speed: 8, player: computer, unlocked: true)
-Card.create(name: "Priest", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 12, speed: 7, player: computer, unlocked: true)
-Card.create(name: "Archer", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 13, player: computer, unlocked: true)
-Card.create(name: "Footman", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 12, player: computer, unlocked: true)
+computer = Player.create(name: "Computer", code: "light 13")
+card_creator(computer, "Skeleton Warrior", 13, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 13, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Vampire", 13, 60, [20, 13, 17, 40, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 13, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 13, 40, [10, 11, 9, 30, "healer", "dark"])
 
-computer = Player.create(name: "Computer", code: "dark 4")
-# Create the cards
-Card.create(name: "Peasant", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 10, player: computer, unlocked: true)
-Card.create(name: "Squire", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 10, speed: 8, player: computer, unlocked: true)
-Card.create(name: "Priest", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 12, speed: 7, player: computer, unlocked: true)
-Card.create(name: "Archer", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 13, player: computer, unlocked: true)
-Card.create(name: "Footman", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 12, player: computer, unlocked: true)
+computer = Player.create(name: "Computer", code: "light 14")
+card_creator(computer, "Skeleton Warrior", 14, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Lich", 14, 60, [20, 15, 15, 40, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 14, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 14, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 14, 40, [10, 11, 9, 30, "healer", "dark"])
 
-computer = Player.create(name: "Computer", code: "dark 5")
-# Create the cards
-Card.create(name: "Peasant", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 10, player: computer, unlocked: true)
-Card.create(name: "Squire", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 10, speed: 8, player: computer, unlocked: true)
-Card.create(name: "Priest", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 12, speed: 7, player: computer, unlocked: true)
-Card.create(name: "Archer", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 13, player: computer, unlocked: true)
-Card.create(name: "Footman", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 12, player: computer, unlocked: true)
+computer = Player.create(name: "Computer", code: "light 15")
+card_creator(computer, "Skeleton Warrior", 15, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 15, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 15, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 15, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 15, 40, [10, 11, 9, 30, "healer", "dark"])
 
-computer = Player.create(name: "Computer", code: "dark 6")
-# Create the cards
-Card.create(name: "Peasant", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 10, player: computer, unlocked: true)
-Card.create(name: "Squire", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 10, speed: 8, player: computer, unlocked: true)
-Card.create(name: "Priest", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 12, speed: 7, player: computer, unlocked: true)
-Card.create(name: "Archer", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 13, player: computer, unlocked: true)
-Card.create(name: "Footman", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 12, player: computer, unlocked: true)
+computer = Player.create(name: "Computer", code: "light 16")
+card_creator(computer, "Skeleton Warrior", 16, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 16, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 16, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 16, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 16, 40, [10, 11, 9, 30, "healer", "dark"])
 
-computer = Player.create(name: "Computer", code: "dark 7")
-# Create the cards
-Card.create(name: "Peasant", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 10, player: computer, unlocked: true)
-Card.create(name: "Squire", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 10, speed: 8, player: computer, unlocked: true)
-Card.create(name: "Priest", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 12, speed: 7, player: computer, unlocked: true)
-Card.create(name: "Archer", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 13, player: computer, unlocked: true)
-Card.create(name: "Footman", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 12, player: computer, unlocked: true)
+computer = Player.create(name: "Computer", code: "light 17")
+card_creator(computer, "Skeleton Warrior", 17, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 17, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 17, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 17, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 17, 40, [10, 11, 9, 30, "healer", "dark"])
 
-computer = Player.create(name: "Computer", code: "dark 8")
-# Create the cards
-Card.create(name: "Peasant", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 10, player: computer, unlocked: true)
-Card.create(name: "Squire", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 10, speed: 8, player: computer, unlocked: true)
-Card.create(name: "Priest", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 12, speed: 7, player: computer, unlocked: true)
-Card.create(name: "Archer", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 13, player: computer, unlocked: true)
-Card.create(name: "Footman", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 12, player: computer, unlocked: true)
+computer = Player.create(name: "Computer", code: "light 18")
+card_creator(computer, "Skeleton Warrior", 18, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 18, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 18, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 18, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 18, 40, [10, 11, 9, 30, "healer", "dark"])
 
-computer = Player.create(name: "Computer", code: "dark 9")
-# Create the cards
-Card.create(name: "Peasant", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 10, player: computer, unlocked: true)
-Card.create(name: "Squire", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 10, speed: 8, player: computer, unlocked: true)
-Card.create(name: "Priest", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 12, speed: 7, player: computer, unlocked: true)
-Card.create(name: "Archer", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 13, player: computer, unlocked: true)
-Card.create(name: "Footman", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 12, player: computer, unlocked: true)
+computer = Player.create(name: "Computer", code: "light 19")
+card_creator(computer, "Skeleton Warrior", 19, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 19, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 19, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 19, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Bone Mender", 19, 40, [10, 11, 9, 30, "healer", "dark"])
 
-computer = Player.create(name: "Computer", code: "dark 10")
-# Create the cards
-Card.create(name: "Peasant", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 10, player: computer, unlocked: true)
-Card.create(name: "Squire", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 10, speed: 8, player: computer, unlocked: true)
-Card.create(name: "Priest", side: "light", card_type: "healer", hit_points: 100, armor: 10, power: 12, speed: 7, player: computer, unlocked: true)
-Card.create(name: "Archer", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 13, player: computer, unlocked: true)
-Card.create(name: "Footman", side: "light", card_type: "attacker", hit_points: 100, armor: 15, power: 10, speed: 12, player: computer, unlocked: true)
+computer = Player.create(name: "Computer", code: "light 20")
+card_creator(computer, "Skeleton Warrior", 20, 40, [15, 12, 8, 30, "attacker", "dark"])
+card_creator(computer, "Ghoul", 20, 40, [15, 8, 12, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 20, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Plaguebearer", 20, 40, [10, 12, 8, 30, "healer", "dark"])
+card_creator(computer, "Mummy", 20, 40, [20, 17, 13, 40, "attacker", "dark"])

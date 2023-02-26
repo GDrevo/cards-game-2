@@ -28,6 +28,25 @@ class Card < ApplicationRecord
     save
   end
 
+  def prestige_up
+    case prestige
+    when 0
+      prestige = 1
+      next_prestige = 25
+    when 1
+      prestige = 2
+      next_prestige = 50
+    when 2
+      prestige = 3
+      next_prestige = 75
+    when 3
+      prestige = 4
+      next_prestige = 100
+    when 4
+      prestige = 5
+    end
+  end
+
   private
 
   def create_skills
