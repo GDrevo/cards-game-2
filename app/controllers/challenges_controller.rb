@@ -1,9 +1,11 @@
 class ChallengesController < ApplicationController
   def index
     user = current_user
-    @challenges = user.player.player_challenges
+    @challenges = user.player.player_challenges.where(unlocked: true)
+    @challenges_locked = user.player.player_challenges.where(unlocked: false)
     if params[:side].present?
       @challenges = @challenges.where(category: params[:side])
+      @challenges_locked = @challenges_locked.where(category: params[:side])
     end
   end
 
