@@ -1,0 +1,20 @@
+<h1>MY CARDS</h1>
+<div class="my-cards-container">
+  <% @cards.each do |card| %>
+    <div class="my-card">
+      <h4><%= card.name %></h4>
+      <p><%= card.card_type %></p>
+      <h5>lvl <%= card.level %></h5>
+      <p><%= card.experience %>/<%= card.next_level %> xp</p>
+      <h5>prestige <%= card.prestige %></h5>
+      <p>shards <%= card.shards %>/<%= card.next_prestige %></p>
+    </div>
+  <% end %>
+  <% @cards_locked.each do |card| %>
+    <div class="my-card card-locked">
+      <h4><%= card.name %></h4>
+      <p><%= card.card_type %></p>
+      <p>shards <%= card.shards %>/<%= card.next_prestige %></p>
+    </div>
+  <% end %>
+</div>
