@@ -103,18 +103,8 @@ class BattlesController < ApplicationController
       next_challenge = battle.challenge.next(battle.challenge.category)
       next_challenge.unlocked = true
       next_challenge.save
-      case next_challenge.rank
-      when 2
-        next_challenge.category == "light" ? player.unlock("Crusader") : player.unlock("Hellhound")
-      when 4
-        next_challenge.category == "light" ? player.unlock("Cleric") : player.unlock("Warlock")
-      when 6
-        next_challenge.category == "light" ? player.unlock("Captain") : player.unlock("Demon")
-      when 8
-        next_challenge.category == "light" ? player.unlock("Paladin") : player.unlock("Necromancer")
-      when 10
-        next_challenge.category == "light" ? player.unlock("King") : player.unlock("Archfiend")
-      end
+      # Give the shards to player_cards and add the coins to player.coins
+      shard_card = give_shards(player, battle.challenge)
       player_bcs = battle.bt_player.battle_cards.select { |bc| bc.dead == false }
       computer_bcs = battle.bt_computer.battle_cards
       # Calculate XP gained and divide it between the cards that aren't dead
@@ -125,6 +115,63 @@ class BattlesController < ApplicationController
       calculate_experience(player_bcs, computer_bcs)
     end
     redirect_to challenges_path(side: battle.challenge.category)
+  end
+
+  def give_shards(player, challenge)
+    case challenge.shards
+    when "weak"
+      if challenge.category == "light"
+        cards = player.cards.where(side: "light")
+        shard_card = cards.where(cat: "weak").sample
+        return if shard_card.prestige == 5
+
+        shard_card.shards += 1
+        shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+      else
+        cards = player.cards.where(side: "dark")
+        shard_card = cards.where(cat: "weak").sample
+        return if shard_card.prestige == 5
+
+        shard_card.shards += 1
+        shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+      end
+      shard_card.save
+    when "normal"
+      if challenge.category == "light"
+        cards = player.cards.where(side: "light")
+        shard_card = cards.where(cat: "normal").sample
+        return if shard_card.prestige == 5
+
+        shard_card.shards += 1
+        shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+      else
+        cards = player.cards.where(side: "dark")
+        shard_card = cards.where(cat: "normal").sample
+        return if shard_card.prestige == 5
+
+        shard_card.shards += 1
+        shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+      end
+      shard_card.save
+    when "strong"
+      if challenge.category == "light"
+        cards = player.cards.where(side: "light")
+        shard_card = cards.where(cat: "strong").sample
+        return if shard_card.prestige == 5
+
+        shard_card.shards += 1
+        shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+      else
+        cards = player.cards.where(side: "dark")
+        shard_card = cards.where(cat: "strong").sample
+        return if shard_card.prestige == 5
+
+        shard_card.shards += 1
+        shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+      end
+      shard_card.save
+    end
+    shard_card
   end
 
   def calculate_experience(player_bcs, computer_bcs)
@@ -144,22 +191,22 @@ class BattlesController < ApplicationController
     end
   end
 
-  def calculate_experience_loser(player_bcs, computer_bcs)
-    total_xp_gained = 0
-    player_bcs_num = player_bcs.size
-    computer_bcs.each do |battle_card|
-      total_xp_gained += battle_card.card.experience_given
-    end
-    player_bcs.each do |battle_card|
-      xp_needed = battle_card.card.next_level - battle_card.card.experience
-      if xp_needed < (total_xp_gained / player_bcs_num)
-        battle_card.card.level_up(total_xp_gained / player_bcs_num)
-      else
-        battle_card.card.experience += (total_xp_gained / player_bcs_num)
-        battle_card.card.save
-      end
-    end
-  end
+  # def calculate_experience_loser(player_bcs, computer_bcs)
+  #   total_xp_gained = 0
+  #   player_bcs_num = player_bcs.size
+  #   computer_bcs.each do |battle_card|
+  #     total_xp_gained += battle_card.card.experience_given
+  #   end
+  #   player_bcs.each do |battle_card|
+  #     xp_needed = battle_card.card.next_level - battle_card.card.experience
+  #     if xp_needed < (total_xp_gained / player_bcs_num)
+  #       battle_card.card.level_up(total_xp_gained / player_bcs_num)
+  #     else
+  #       battle_card.card.experience += (total_xp_gained / player_bcs_num)
+  #       battle_card.card.save
+  #     end
+  #   end
+  # end
 
   def calculate_damage(attacker, target, skill, bcs_attacker, bcs_defender)
     damage = attacker.card.power
@@ -172,7 +219,7 @@ class BattlesController < ApplicationController
       if skill.name.include?("Attack")
         targets = bcs_defender
         targets.each do |target_multi|
-          damage_multi = damage * (100 - target_multi.card.armor) / 100
+          damage_multi = damage * (100 - target_multi.armor) / 100
           target_multi.hit_points -= damage_multi
           target_multi.dead = true if target_multi.hit_points <= 0
           target_multi.save
@@ -181,19 +228,19 @@ class BattlesController < ApplicationController
         targets = bcs_attacker
         targets.each do |target_multi|
           target_multi.hit_points += (damage / 1.25).round
-          target_multi.hit_points > target_multi.card.hit_points ? target_multi.hit_points = target_multi.card.hit_points : nil
+          target_multi.hit_points > target_multi.max_hp ? target_multi.hit_points = target_multi.max_hp : nil
           target_multi.save
         end
       end
     elsif skill.target_type.include?("Single")
       if skill.name.include?("Attack")
-        damage_attack = damage * (100 - target.card.armor) / 100
+        damage_attack = damage * (100 - target.armor) / 100
         target.hit_points -= damage_attack
         target.dead = true if target.hit_points <= 0
         target.save
       elsif skill.name.include?("Heal")
         target.hit_points += (damage / 1.25).round
-        target.hit_points > target.card.hit_points ? target.hit_points = target.card.hit_points : nil
+        target.hit_points > target.max_hp ? target.hit_points = target.max_hp : nil
         target.save
       end
     end
@@ -228,7 +275,35 @@ class BattlesController < ApplicationController
     player = cards.first.player
     battle_team = BattleTeam.create(player:)
     cards.each do |card|
-      BattleCard.create(hit_points: card.hit_points, card:, battle_team:)
+      prestige = card.prestige
+      case prestige
+      when 1
+        hit_points = (card.hit_points * 0.75).round
+        armor = (card.armor * 0.75).round
+        power = (card.power * 0.75).round
+        speed = (card.speed * 0.75).round
+      when 2
+        hit_points = (card.hit_points * 0.9).round
+        armor = (card.armor * 0.9).round
+        power = (card.power * 0.9).round
+        speed = (card.speed * 0.9).round
+      when 3
+        hit_points = card.hit_points
+        armor = card.armor
+        power = card.power
+        speed = card.speed
+      when 4
+        hit_points = (card.hit_points * 1.1).round
+        armor = (card.armor * 1.1).round
+        power = (card.power * 1.1).round
+        speed = (card.speed * 1.1).round
+      when 5
+        hit_points = (card.hit_points * 1.25).round
+        armor = (card.armor * 1.25).round
+        power = (card.power * 1.25).round
+        speed = (card.speed * 1.25).round
+      end
+      BattleCard.create(hit_points:, armor:, power:, speed:, card:, battle_team:, max_hp: hit_points)
     end
     battle_team
   end
@@ -239,7 +314,7 @@ class BattlesController < ApplicationController
     attacks = card.card.skills.select { |skill| skill.name.include?("Attack") }
     allies_alive = bcs_computer.where(dead: false).size
     ennemies_alive = bcs_player.where(dead: false).size
-    allies_injured = (bcs_computer.select { |battle_card| battle_card.hit_points.between?(1, 80 * battle_card.card.hit_points / 100) }).size
+    allies_injured = (bcs_computer.select { |battle_card| battle_card.hit_points.between?(1, 80 * battle_card.max_hp / 100) }).size
     if (allies_alive.to_f / allies_injured) < 2
       if allies_injured.size > 1
         skill = (heals.select { |heal| heal.target_type.include?("Multi") }).first

@@ -18,6 +18,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_151112) do
     t.boolean "dead", default: false
     t.integer "counter", default: 0
     t.integer "hit_points"
+    t.integer "armor"
+    t.integer "power"
+    t.integer "speed"
+    t.integer "max_hp"
     t.bigint "card_id", null: false
     t.bigint "battle_team_id", null: false
     t.datetime "created_at", null: false
@@ -50,8 +54,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_151112) do
   create_table "cards", force: :cascade do |t|
     t.string "name"
     t.integer "level", default: 1
+    t.integer "prestige", default: 0
+    t.integer "next_prestige", default: 10
+    t.integer "shards", default: 0
     t.string "card_type"
     t.string "side"
+    t.string "cat"
     t.integer "hit_points"
     t.integer "armor"
     t.integer "power"
@@ -59,7 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_151112) do
     t.integer "experience", default: 0
     t.integer "next_level", default: 50
     t.integer "experience_given", default: 30
-    t.boolean "unlocked"
+    t.boolean "unlocked", default: false
     t.bigint "player_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -68,9 +76,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_151112) do
 
   create_table "challenges", force: :cascade do |t|
     t.string "category"
-    t.boolean "unlocked"
+    t.boolean "unlocked", default: false
     t.boolean "done", default: false
     t.integer "rank"
+    t.string "shards"
+    t.integer "reward"
     t.bigint "player_id", null: false
     t.bigint "computer_id", null: false
     t.datetime "created_at", null: false
@@ -83,6 +93,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_151112) do
     t.string "name"
     t.bigint "user_id"
     t.string "code"
+    t.integer "coins", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_players_on_user_id"
