@@ -103,8 +103,8 @@ class User < ApplicationRecord
         { name: "Alchemist", side: "light", cat: "normal" }.merge(normal_heal_q),
         { name: "Druid", side: "light", cat: "normal" }.merge(normal_heal_q),
         # STRONG
-        { name: "Cleric", side: "light", cat: "elite" }.merge(strong_heal_s),
-        { name: "Alchemist", side: "light", cat: "elite" }.merge(strong_heal_q),
+        { name: "Cleric", side: "light", cat: "strong" }.merge(strong_heal_s),
+        { name: "Alchemist", side: "light", cat: "strong" }.merge(strong_heal_q),
 
         # UNDEAD ATTACKER CARDS
         # WEAK
@@ -169,11 +169,11 @@ class User < ApplicationRecord
         { computer: Player.where(code: "light 7").first, rank: 7 }.merge(attr_light_one),
         { computer: Player.where(code: "light 8").first, rank: 8 }.merge(attr_light_one),
         { computer: Player.where(code: "light 9").first, rank: 9 }.merge(attr_light_one),
-        { computer: Player.where(code: "light 10").first, rank: 10 }.merge(attr_light_one),
-        { computer: Player.where(code: "light 11").first, rank: 11 }.merge(attr_light_two),
-        { computer: Player.where(code: "light 12").first, rank: 12 }.merge(attr_light_two),
-        { computer: Player.where(code: "light 13").first, rank: 13 }.merge(attr_light_two),
-        { computer: Player.where(code: "light 14").first, rank: 14 }.merge(attr_light_two),
+        { computer: Player.where(code: "light 10").first, rank: 10 }.merge(attr_light_two),
+        { computer: Player.where(code: "light 11").first, rank: 11 }.merge(attr_light_one),
+        { computer: Player.where(code: "light 12").first, rank: 12 }.merge(attr_light_one),
+        { computer: Player.where(code: "light 13").first, rank: 13 }.merge(attr_light_one),
+        { computer: Player.where(code: "light 14").first, rank: 14 }.merge(attr_light_one),
         { computer: Player.where(code: "light 15").first, rank: 15 }.merge(attr_light_two),
         { computer: Player.where(code: "light 16").first, rank: 16 }.merge(attr_light_two),
         { computer: Player.where(code: "light 17").first, rank: 17 }.merge(attr_light_two),

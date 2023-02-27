@@ -13,14 +13,30 @@
   text-align: center;
   background-color: rgb(32, 32, 32);
   color: rgb(238, 238, 238);
+  border: 3px solid rgb(221, 219, 92);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.2);
+  p {
+    margin: 0;
+  }
 }
 
 .card-locked {
   background-color: rgb(90, 90, 90);
   color: rgb(161, 161, 161);
+}
+
+.normal-card {
+  border: 3px solid rgb(68, 160, 68);
+}
+
+.strong-card {
+  border: 4px solid rgb(68, 134, 160);
+}
+
+.elite-card {
+  border: 5px solid rgb(111, 68, 160);
 }

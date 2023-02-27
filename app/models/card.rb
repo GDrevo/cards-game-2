@@ -4,6 +4,7 @@ class Card < ApplicationRecord
   has_many :battle_cards
 
   after_create :create_skills
+  before_save :calculate_war_power
 
   def level_up(xp)
     return if level == 50
@@ -25,7 +26,7 @@ class Card < ApplicationRecord
     self.experience = new_experience
     new_experience_given = experience_given + ((8 / 100.0) * experience_given).round
     self.experience_given = new_experience_given
-    # CHECK IF ALL STATS UPDATE ACCORDINGLY
+    self.war_power = new_power * new_speed
     save
   end
 
@@ -47,10 +48,28 @@ class Card < ApplicationRecord
     when 4
       self.prestige = 5
     end
+    self.shards = 0
     save
   end
 
   private
+
+  def calculate_war_power
+    wp = power * speed
+    case prestige
+    when 1
+      wp = (wp * 0.75).round
+    when 2
+      wp = (wp * 0.9).round
+    when 3
+      nil
+    when 4
+      wp = (wp * 1.1).round
+    when 5
+      wp = (wp * 1.25).round
+    end
+    self.war_power = wp
+  end
 
   def create_skills
     best_cards = ["King", "Archfiend"]
