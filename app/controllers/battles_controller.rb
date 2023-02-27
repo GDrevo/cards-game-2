@@ -191,23 +191,6 @@ class BattlesController < ApplicationController
     end
   end
 
-  # def calculate_experience_loser(player_bcs, computer_bcs)
-  #   total_xp_gained = 0
-  #   player_bcs_num = player_bcs.size
-  #   computer_bcs.each do |battle_card|
-  #     total_xp_gained += battle_card.card.experience_given
-  #   end
-  #   player_bcs.each do |battle_card|
-  #     xp_needed = battle_card.card.next_level - battle_card.card.experience
-  #     if xp_needed < (total_xp_gained / player_bcs_num)
-  #       battle_card.card.level_up(total_xp_gained / player_bcs_num)
-  #     else
-  #       battle_card.card.experience += (total_xp_gained / player_bcs_num)
-  #       battle_card.card.save
-  #     end
-  #   end
-  # end
-
   def calculate_damage(attacker, target, skill, bcs_attacker, bcs_defender)
     damage = attacker.card.power
     if skill.strength.include?("Light")
@@ -252,7 +235,7 @@ class BattlesController < ApplicationController
 
     while all_cards.all? { |battle_card| battle_card.counter < 100 }
       all_cards.each do |battle_card|
-        battle_card.counter += (battle_card.card.speed / 5.0).round
+        battle_card.counter += battle_card.speed
         battle_card.save
       end
     end
