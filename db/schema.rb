@@ -64,6 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_151112) do
     t.integer "armor"
     t.integer "power"
     t.integer "speed"
+    t.integer "war_power", default: 0
     t.integer "experience", default: 0
     t.integer "next_level", default: 50
     t.integer "experience_given", default: 30

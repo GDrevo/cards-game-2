@@ -133,7 +133,7 @@ card_creator(computer, "Mummy", 10, 40, [20, 17, 13, 40, "attacker", "dark"])
 computer = Player.create(name: "Computer", code: "light 11")
 card_creator(computer, "Death Knight", 11, 60, [20, 17, 13, 40, "attacker", "dark"])
 card_creator(computer, "Ghoul", 11, 40, [15, 8, 12, 30, "attacker", "dark"])
-card_creator(computer, "Rotting Corpse", 1, 40, [15, 10, 10, 30, "attacker", "dark"])
+card_creator(computer, "Rotting Corpse", 11, 40, [15, 10, 10, 30, "attacker", "dark"])
 card_creator(computer, "Plaguebearer", 11, 40, [10, 12, 8, 30, "healer", "dark"])
 card_creator(computer, "Bone Mender", 11, 40, [10, 11, 9, 30, "healer", "dark"])
 

@@ -4,10 +4,12 @@ class Card < ApplicationRecord
   has_many :battle_cards
 
   after_create :create_skills
+  before_save :calculate_war_power
 
   def level_up(xp)
     return if level == 50
 
+    current_xp = self.experience
     self.experience += xp
     self.level += 1
     new_hp = hit_points + ((7.0 / 100) * hit_points).round
@@ -15,7 +17,7 @@ class Card < ApplicationRecord
     new_power = power + ((8.0 / 100) * power).round
     new_speed = speed + ((self.level - 1) / 100.0).round
     new_next_level = next_level + (next_level / 10.0).round
-    new_experience = xp - next_level
+    new_experience = xp - next_level + current_xp
     self.hit_points = new_hp
     self.armor = new_armor
     self.power = new_power
@@ -24,7 +26,7 @@ class Card < ApplicationRecord
     self.experience = new_experience
     new_experience_given = experience_given + ((8 / 100.0) * experience_given).round
     self.experience_given = new_experience_given
-    # CHECK IF ALL STATS UPDATE ACCORDINGLY
+    self.war_power = new_power * new_speed
     save
   end
 
@@ -46,19 +48,28 @@ class Card < ApplicationRecord
     when 4
       self.prestige = 5
     end
+    self.shards = 0
     save
   end
 
-  def calculate_hp(level, hp_base)
-    if level == 1
-      hp_base
-    else
-      previous_hp = calculate_hp(level - 1, hp_base)
-      previous_hp + (previous_hp * 0.07).round
-    end
-  end
-
   private
+
+  def calculate_war_power
+    wp = power * speed
+    case prestige
+    when 1
+      wp = (wp * 0.75).round
+    when 2
+      wp = (wp * 0.9).round
+    when 3
+      nil
+    when 4
+      wp = (wp * 1.1).round
+    when 5
+      wp = (wp * 1.25).round
+    end
+    self.war_power = wp
+  end
 
   def create_skills
     best_cards = ["King", "Archfiend"]
@@ -91,22 +102,5 @@ class Card < ApplicationRecord
         Skill.create(name: "Multi Heal", target_type: "Multi", strength: "Light", reload_time: 3, card: self)
       end
     end
-  end
-
-
-  def calculate_hp(level, hp_base)
-
-  end
-
-  def calculate_hp(level, hp_base)
-
-  end
-
-  def calculate_hp(level, hp_base)
-
-  end
-
-  def calculate_hp(level, hp_base)
-
   end
 end

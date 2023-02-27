@@ -97,14 +97,17 @@ class BattlesController < ApplicationController
 
   def set_winner(player, battle)
     if player == battle.player
+      # Give shards before changing challenge status in order to check if first time challenge accomplished and give a bonus shard
+      shard_card = give_shards(player, battle.challenge)
+      player.coins += battle.challenge.reward
+      player.save
       # Set challenge as done, unlock the next one
       battle.challenge.done = true
       battle.challenge.save
       next_challenge = battle.challenge.next(battle.challenge.category)
-      next_challenge.unlocked = true
-      next_challenge.save
+      next_challenge.unlocked = true if next_challenge
+      next_challenge.save if next_challenge
       # Give the shards to player_cards and add the coins to player.coins
-      shard_card = give_shards(player, battle.challenge)
       player_bcs = battle.bt_player.battle_cards.select { |bc| bc.dead == false }
       computer_bcs = battle.bt_computer.battle_cards
       # Calculate XP gained and divide it between the cards that aren't dead
@@ -125,51 +128,73 @@ class BattlesController < ApplicationController
         shard_card = cards.where(cat: "weak").sample
         return if shard_card.prestige == 5
 
-        shard_card.shards += 1
+        challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
         shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
       else
         cards = player.cards.where(side: "dark")
         shard_card = cards.where(cat: "weak").sample
         return if shard_card.prestige == 5
 
-        shard_card.shards += 1
+        challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
         shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
       end
       shard_card.save
     when "normal"
       if challenge.category == "light"
         cards = player.cards.where(side: "light")
+        weak_shard_card = cards.where(cat: "weak").sample
         shard_card = cards.where(cat: "normal").sample
         return if shard_card.prestige == 5
 
-        shard_card.shards += 1
+        challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
         shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+        return if weak_shard_card.prestige == 5
+
+        challenge.done ? weak_shard_card.shards += 1 : weak_shard_card.shards += 2
+        weak_shard_card.prestige_up if weak_shard_card.shards == weak_shard_card.next_prestige
       else
         cards = player.cards.where(side: "dark")
+        weak_shard_card = cards.where(cat: "weak").sample
         shard_card = cards.where(cat: "normal").sample
         return if shard_card.prestige == 5
 
-        shard_card.shards += 1
+        challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
         shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+        return if weak_shard_card.prestige == 5
+
+        challenge.done ? weak_shard_card.shards += 1 : weak_shard_card.shards += 2
+        weak_shard_card.prestige_up if weak_shard_card.shards == weak_shard_card.next_prestige
       end
       shard_card.save
+      weak_shard_card.save
     when "strong"
       if challenge.category == "light"
         cards = player.cards.where(side: "light")
+        weak_shard_card = cards.where(cat: "normal").sample
         shard_card = cards.where(cat: "strong").sample
         return if shard_card.prestige == 5
 
-        shard_card.shards += 1
+        challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
         shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+        return if weak_shard_card.prestige == 5
+
+        challenge.done ? weak_shard_card.shards += 1 : weak_shard_card.shards += 2
+        weak_shard_card.prestige_up if weak_shard_card.shards == weak_shard_card.next_prestige
       else
         cards = player.cards.where(side: "dark")
+        weak_shard_card = cards.where(cat: "normal").sample
         shard_card = cards.where(cat: "strong").sample
         return if shard_card.prestige == 5
 
-        shard_card.shards += 1
+        challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
         shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+        return if weak_shard_card.prestige == 5
+
+        challenge.done ? weak_shard_card.shards += 1 : weak_shard_card.shards += 2
+        weak_shard_card.prestige_up if weak_shard_card.shards == weak_shard_card.next_prestige
       end
       shard_card.save
+      weak_shard_card.save
     end
     shard_card
   end
@@ -182,7 +207,7 @@ class BattlesController < ApplicationController
     end
     player_bcs.each do |battle_card|
       xp_needed = battle_card.card.next_level - battle_card.card.experience
-      if xp_needed < (total_xp_gained / player_bcs_num)
+      if xp_needed <= (total_xp_gained / player_bcs_num)
         battle_card.card.level_up(total_xp_gained / player_bcs_num)
       else
         battle_card.card.experience += (total_xp_gained / player_bcs_num)
@@ -313,6 +338,9 @@ class BattlesController < ApplicationController
   end
 
   def decision_target(bcs_player, bcs_computer, skill)
+    bcs_computer = bcs_computer.sample(2)
+    bcs_player = bcs_player.sample(2)
+
     if skill.name.include?("Heal")
       bcs_computer.min_by(&:hit_points)
     elsif skill.name.include?("Attack")

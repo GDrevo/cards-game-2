@@ -13,6 +13,7 @@ class CreateCards < ActiveRecord::Migration[7.0]
       t.integer :armor
       t.integer :power
       t.integer :speed
+      t.integer :war_power, default: 0
       t.integer :experience, default: 0
       t.integer :next_level, default: 50
       t.integer :experience_given, default: 30
