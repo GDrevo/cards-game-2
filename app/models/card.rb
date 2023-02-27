@@ -8,6 +8,7 @@ class Card < ApplicationRecord
   def level_up(xp)
     return if level == 50
 
+    current_xp = self.experience
     self.experience += xp
     self.level += 1
     new_hp = hit_points + ((7.0 / 100) * hit_points).round
@@ -15,7 +16,7 @@ class Card < ApplicationRecord
     new_power = power + ((8.0 / 100) * power).round
     new_speed = speed + ((self.level - 1) / 100.0).round
     new_next_level = next_level + (next_level / 10.0).round
-    new_experience = xp - next_level
+    new_experience = xp - next_level + current_xp
     self.hit_points = new_hp
     self.armor = new_armor
     self.power = new_power
@@ -47,15 +48,6 @@ class Card < ApplicationRecord
       self.prestige = 5
     end
     save
-  end
-
-  def calculate_hp(level, hp_base)
-    if level == 1
-      hp_base
-    else
-      previous_hp = calculate_hp(level - 1, hp_base)
-      previous_hp + (previous_hp * 0.07).round
-    end
   end
 
   private
@@ -91,22 +83,5 @@ class Card < ApplicationRecord
         Skill.create(name: "Multi Heal", target_type: "Multi", strength: "Light", reload_time: 3, card: self)
       end
     end
-  end
-
-
-  def calculate_hp(level, hp_base)
-
-  end
-
-  def calculate_hp(level, hp_base)
-
-  end
-
-  def calculate_hp(level, hp_base)
-
-  end
-
-  def calculate_hp(level, hp_base)
-
   end
 end
