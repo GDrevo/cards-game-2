@@ -13,36 +13,38 @@
 def card_creator(computer, name, level, hit_points, attributes)
   if level == 1
     hp = hit_points
-    armor = attributes[0]
-    power = attributes[1]
-    speed = attributes[2]
-    xp_given = attributes[3]
+    new_armor = attributes[0]
+    new_power = attributes[1]
+    new_speed = attributes[2]
+    new_xp_given = attributes[3]
   else
-    hp = (level - 1).times do
-      hit_points += ((7.0 / 100) * hit_points).round
+    repetitions = level - 1
+    hp = hit_points
+    repetitions.times do
+      hp = (hp + (hp * 0.07).round)
     end
-    armor = attributes[0]
-    armor = (level - 1).times do
-      armor += ((level - 1) / 100.0).round
+    new_armor = attributes[0]
+    repetitions.times do
+      new_armor = (new_armor + (new_armor * 0.05).round)
     end
-    power = attributes[1]
-    power = (level - 1).times do
-      power += ((8.0 / 100) * power).round
+    new_power = attributes[1]
+    repetitions.times do
+      new_power = (new_power + (new_power * 0.08).round)
     end
-    speed = attributes[2]
-    speed = (level - 1).times do
-      speed += ((level - 1) / 100.0).round
+    new_speed = attributes[2]
+    repetitions.times do
+      new_speed = (new_speed + (new_speed * 0.05).round)
     end
-    xp_given = attributes[3]
-    xp_given = (level - 1).times do
-      xp_given += ((8 / 100.0) * xp_given).round
+    new_xp_given = attributes[3]
+    repetitions.times do
+      new_xp_given = (new_xp_given + (new_xp_given * 0.08).round)
     end
   end
   card_type = attributes[4]
   side = attributes[5]
   prestige = attributes[6]
   prestige ||= 1
-  Card.create(name:, level:, hit_points: hp, armor:, power:, speed:, experience_given: xp_given, player: computer, unlocked: true, card_type:, side:, prestige:)
+  Card.create(name:, level:, hit_points: hp, armor: new_armor, power: new_power, speed: new_speed, experience_given: new_xp_given, player: computer, unlocked: true, card_type:, side:, prestige:)
 end
 
 # ==============================================================================
@@ -53,49 +55,56 @@ card_creator(computer, "Skeleton Warrior", 1, 40, [15, 12, 8, 30, "attacker", "d
 card_creator(computer, "Ghoul", 1, 40, [15, 8, 12, 30, "attacker", "dark"])
 card_creator(computer, "Rotting Corpse", 1, 40, [15, 10, 10, 30, "attacker", "dark"])
 card_creator(computer, "Plaguebearer", 1, 40, [10, 12, 8, 30, "healer", "dark"])
-card_creator(computer, "Bone Mender", 1, 40, [10, 11, 9, 30, "healer", "dark"])
+card = card_creator(computer, "Bone Mender", 1, 40, [10, 11, 9, 30, "healer", "dark"])
+p card
 
 computer = Player.create(name: "Computer", code: "light 2")
 card_creator(computer, "Skeleton Warrior", 2, 40, [15, 12, 8, 30, "attacker", "dark"])
 card_creator(computer, "Ghoul", 2, 40, [15, 8, 12, 30, "attacker", "dark"])
 card_creator(computer, "Rotting Corpse", 2, 40, [15, 10, 10, 30, "attacker", "dark"])
 card_creator(computer, "Plaguebearer", 2, 40, [10, 12, 8, 30, "healer", "dark"])
-card_creator(computer, "Bone Mender", 2, 40, [10, 11, 9, 30, "healer", "dark"])
+card = card_creator(computer, "Bone Mender", 2, 40, [10, 11, 9, 30, "healer", "dark"])
+p card
 
 computer = Player.create(name: "Computer", code: "light 3")
 card_creator(computer, "Skeleton Warrior", 3, 40, [15, 12, 8, 30, "attacker", "dark"])
 card_creator(computer, "Ghoul", 3, 40, [15, 8, 12, 30, "attacker", "dark"])
 card_creator(computer, "Rotting Corpse", 3, 40, [15, 10, 10, 30, "attacker", "dark"])
 card_creator(computer, "Plaguebearer", 3, 40, [10, 12, 8, 30, "healer", "dark"])
-card_creator(computer, "Bone Mender", 3, 40, [10, 11, 9, 30, "healer", "dark"])
+card = card_creator(computer, "Bone Mender", 3, 40, [10, 11, 9, 30, "healer", "dark"])
+p card
 
 computer = Player.create(name: "Computer", code: "light 4")
 card_creator(computer, "Skeleton Warrior", 4, 40, [15, 12, 8, 30, "attacker", "dark"])
 card_creator(computer, "Ghoul", 4, 40, [15, 8, 12, 30, "attacker", "dark"])
 card_creator(computer, "Rotting Corpse", 4, 40, [15, 10, 10, 30, "attacker", "dark"])
 card_creator(computer, "Plaguebearer", 4, 40, [10, 12, 8, 30, "healer", "dark"])
-card_creator(computer, "Bone Mender", 4, 40, [10, 11, 9, 30, "healer", "dark"])
+card = card_creator(computer, "Bone Mender", 4, 40, [10, 11, 9, 30, "healer", "dark"])
+p card
 
 computer = Player.create(name: "Computer", code: "light 5")
 card_creator(computer, "Skeleton Warrior", 5, 40, [15, 12, 8, 30, "attacker", "dark"])
 card_creator(computer, "Ghoul", 5, 40, [15, 8, 12, 30, "attacker", "dark"])
 card_creator(computer, "Rotting Corpse", 5, 40, [15, 10, 10, 30, "attacker", "dark"])
 card_creator(computer, "Plaguebearer", 5, 40, [10, 12, 8, 30, "healer", "dark"])
-card_creator(computer, "Bone Mender", 5, 40, [10, 11, 9, 30, "healer", "dark"])
+card = card_creator(computer, "Bone Mender", 5, 40, [10, 11, 9, 30, "healer", "dark"])
+p card
 
 computer = Player.create(name: "Computer", code: "light 6")
 card_creator(computer, "Skeleton Warrior", 6, 40, [15, 12, 8, 30, "attacker", "dark"])
 card_creator(computer, "Ghoul", 6, 40, [15, 8, 12, 30, "attacker", "dark"])
 card_creator(computer, "Rotting Corpse", 6, 40, [15, 10, 10, 30, "attacker", "dark"])
 card_creator(computer, "Plaguebearer", 6, 40, [10, 12, 8, 30, "healer", "dark"])
-card_creator(computer, "Bone Mender", 6, 40, [10, 11, 9, 30, "healer", "dark"])
+card = card_creator(computer, "Bone Mender", 6, 40, [10, 11, 9, 30, "healer", "dark"])
+p card
 
 computer = Player.create(name: "Computer", code: "light 7")
 card_creator(computer, "Skeleton Warrior", 7, 40, [15, 12, 8, 30, "attacker", "dark"])
 card_creator(computer, "Ghoul", 7, 40, [15, 8, 12, 30, "attacker", "dark"])
 card_creator(computer, "Rotting Corpse", 7, 40, [15, 10, 10, 30, "attacker", "dark"])
 card_creator(computer, "Plaguebearer", 7, 40, [10, 12, 8, 30, "healer", "dark"])
-card_creator(computer, "Bone Mender", 7, 40, [10, 11, 9, 30, "healer", "dark"])
+card = card_creator(computer, "Bone Mender", 7, 40, [10, 11, 9, 30, "healer", "dark"])
+p card
 
 computer = Player.create(name: "Computer", code: "light 8")
 card_creator(computer, "Skeleton Warrior", 8, 40, [15, 12, 8, 30, "attacker", "dark"])
