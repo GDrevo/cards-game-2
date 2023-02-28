@@ -1,0 +1,24 @@
+.my-offers-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.my-offer-card {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  height: 200px;
+  width: 200px;
+  text-align: center;
+}
+
+.price {
+  color: rgb(68, 194, 68);
+  font-weight: bold;
+}
+
+.too-high {
+  color: rgb(223, 72, 72);
+}

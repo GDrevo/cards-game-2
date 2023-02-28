@@ -1,0 +1,27 @@
+<h1>Coins : <%= @offers.last.player.coins %></h1>
+<div class="my-offers-container">
+  <% @offers.each do |offer| %>
+    <% if offer.bought %>
+      <div class="my-offer-card bought-offer">
+        Bought
+        <%= offer.shard_card %>
+        <%= offer.shard_number %>
+      </div>
+    <% else %>
+      <div class="my-offer-card">
+        <% if offer.player.coins < offer.price %>
+          <h5 class="price too-high"><%= offer.price %> coins</h5>
+        <% else %>
+          <h5 class="price"><%= offer.price %> coins</h5>
+        <% end %>
+        <h5><%= offer.shard_card %></h5>
+        <h5><%= offer.shard_number %></h5>
+        <% if offer.player.coins >= offer.price %>
+          <%= form_with(url: buy_offer_path(offer.id), method: :patch) do |f| %>
+            <%= f.submit "BUY" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

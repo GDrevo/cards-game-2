@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_24_151112) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_27_172008) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,6 +90,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_151112) do
     t.index ["player_id"], name: "index_challenges_on_player_id"
   end
 
+  create_table "offers", force: :cascade do |t|
+    t.boolean "bought", default: false
+    t.integer "price"
+    t.string "shard_card"
+    t.integer "shard_number"
+    t.bigint "player_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_offers_on_player_id"
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id"
@@ -134,6 +145,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_151112) do
   add_foreign_key "cards", "players"
   add_foreign_key "challenges", "players"
   add_foreign_key "challenges", "players", column: "computer_id"
+  add_foreign_key "offers", "players"
   add_foreign_key "players", "users"
   add_foreign_key "skills", "cards"
 end

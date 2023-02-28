@@ -11,4 +11,7 @@ Rails.application.routes.draw do
     patch :simulate_turn, on: :member
   end
   resources :cards, only: %i[index show]
+  resources :offers, only: %i[index] do
+    patch :buy, on: :member
+  end
 end

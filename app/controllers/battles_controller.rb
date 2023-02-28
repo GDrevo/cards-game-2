@@ -129,14 +129,14 @@ class BattlesController < ApplicationController
         return if shard_card.prestige == 5
 
         challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
-        shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+        shard_card.prestige_up if shard_card.shards >= shard_card.next_prestige
       else
         cards = player.cards.where(side: "dark")
         shard_card = cards.where(cat: "weak").sample
         return if shard_card.prestige == 5
 
         challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
-        shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+        shard_card.prestige_up if shard_card.shards >= shard_card.next_prestige
       end
       shard_card.save
     when "normal"
@@ -147,11 +147,11 @@ class BattlesController < ApplicationController
         return if shard_card.prestige == 5
 
         challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
-        shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+        shard_card.prestige_up if shard_card.shards >= shard_card.next_prestige
         return if weak_shard_card.prestige == 5
 
         challenge.done ? weak_shard_card.shards += 1 : weak_shard_card.shards += 2
-        weak_shard_card.prestige_up if weak_shard_card.shards == weak_shard_card.next_prestige
+        weak_shard_card.prestige_up if weak_shard_card.shards >= weak_shard_card.next_prestige
       else
         cards = player.cards.where(side: "dark")
         weak_shard_card = cards.where(cat: "weak").sample
@@ -159,11 +159,11 @@ class BattlesController < ApplicationController
         return if shard_card.prestige == 5
 
         challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
-        shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+        shard_card.prestige_up if shard_card.shards >= shard_card.next_prestige
         return if weak_shard_card.prestige == 5
 
         challenge.done ? weak_shard_card.shards += 1 : weak_shard_card.shards += 2
-        weak_shard_card.prestige_up if weak_shard_card.shards == weak_shard_card.next_prestige
+        weak_shard_card.prestige_up if weak_shard_card.shards >= weak_shard_card.next_prestige
       end
       shard_card.save
       weak_shard_card.save
@@ -175,11 +175,11 @@ class BattlesController < ApplicationController
         return if shard_card.prestige == 5
 
         challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
-        shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+        shard_card.prestige_up if shard_card.shards >= shard_card.next_prestige
         return if weak_shard_card.prestige == 5
 
         challenge.done ? weak_shard_card.shards += 1 : weak_shard_card.shards += 2
-        weak_shard_card.prestige_up if weak_shard_card.shards == weak_shard_card.next_prestige
+        weak_shard_card.prestige_up if weak_shard_card.shards >= weak_shard_card.next_prestige
       else
         cards = player.cards.where(side: "dark")
         weak_shard_card = cards.where(cat: "normal").sample
@@ -187,11 +187,11 @@ class BattlesController < ApplicationController
         return if shard_card.prestige == 5
 
         challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
-        shard_card.prestige_up if shard_card.shards == shard_card.next_prestige
+        shard_card.prestige_up if shard_card.shards >= shard_card.next_prestige
         return if weak_shard_card.prestige == 5
 
         challenge.done ? weak_shard_card.shards += 1 : weak_shard_card.shards += 2
-        weak_shard_card.prestige_up if weak_shard_card.shards == weak_shard_card.next_prestige
+        weak_shard_card.prestige_up if weak_shard_card.shards >= weak_shard_card.next_prestige
       end
       shard_card.save
       weak_shard_card.save
