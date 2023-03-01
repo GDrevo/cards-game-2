@@ -9,14 +9,14 @@ class BattlesController < ApplicationController
     bt_computer = create_bt(challenge.computer.cards)
     bt_computer.battle_cards.each do |battle_card|
       battle_card.card.skills.each do |skill|
-        skill.counter = 0
+        skill.counter = skill.reload_time
         skill.save
       end
     end
     bt_player = create_bt(player_cards)
     bt_player.battle_cards.each do |battle_card|
       battle_card.card.skills.each do |skill|
-        skill.counter = 0
+        skill.counter = skill.reload_time
         skill.save
       end
     end
@@ -27,9 +27,17 @@ class BattlesController < ApplicationController
   def show
     @battle = Battle.find(params[:id].to_i)
     bcs_player = @battle.bt_player.battle_cards.select { |card| card.dead == false }
-    @bcs_player = bcs_player.sort_by { |obj| obj.card.name }
     bcs_opponent = @battle.bt_computer.battle_cards.select { |card| card.dead == false }
+    apply_effects([bcs_player, bcs_opponent])
+    @bcs_player = bcs_player.sort_by { |obj| obj.card.name }
     @bcs_opponent = bcs_opponent.sort_by { |obj| obj.card.name }
+    if bcs_opponent.any? { |bc| bc.effects.any? { |effect| effect.effect_type == "taunt" } }
+      @targetable_bcs_opponent = @bcs_opponent.select do |bc|
+        bc.effects.any? { |effect| effect.effect_type == "taunt" }
+      end
+    else
+      @targetable_bcs_opponent = @bcs_opponent
+    end
     if !@bcs_player.all?(&:dead) && !@bcs_opponent.all?(&:dead)
       @card_to_play = play_turn(@bcs_player, @bcs_opponent)
       session[:card_to_play_id] = @card_to_play.id
@@ -61,6 +69,10 @@ class BattlesController < ApplicationController
       bc_target = BattleCard.find(target_params[:target].to_i)
     end
     calculate_damage(bc_attacker, bc_target, skill, alive_bcs_player, alive_bcs_computer)
+    manage_effects(bc_attacker) unless bc_attacker.effects.empty?
+
+    set_effect(skill, bcs_player, bcs_computer, bc_attacker, bc_target) if skill.effect
+
     manage_skill_countdown(skill)
     card_to_play = BattleCard.find(session[:card_to_play_id])
     card_to_play.counter = 0
@@ -76,17 +88,27 @@ class BattlesController < ApplicationController
     bcs_computer = battle.bt_computer.battle_cards
     alive_bcs_computer = bcs_computer.select { |card| card.dead == false }
     # 1. Get the skills the card_to_play can use, compute a simple logic to decide which to use
+
     card_to_play = BattleCard.find(session[:card_to_play_id])
     skill = decision_skill(card_to_play, bcs_player, bcs_computer)
     # 2. Do the same for the opponent's card to target
     if skill.target_type.include?("Multi")
       bc_target = bcs_player if skill.name.include?("Attack")
       bc_target = bcs_computer if skill.name.include?("Heal")
+    elsif bcs_player.any? { |bc| bc.effects.any? { |effect| effect.effect_type == "taunt" } }
+      taunt_bcs = bcs_player.select do |bc|
+        bc.effects.any? { |effect| effect.effect_type == "taunt" }
+      end
+      bc_target = decision_target(taunt_bcs, alive_bcs_computer, skill)
     else
       bc_target = decision_target(alive_bcs_player, alive_bcs_computer, skill)
     end
     # 3. Calculate damage, lower hit_points and reset counter
     calculate_damage(card_to_play, bc_target, skill, alive_bcs_computer, alive_bcs_player)
+    manage_effects(card_to_play) unless card_to_play.effects.empty?
+
+    set_effect(skill, bcs_computer, bcs_player, bc_attacker, bc_target) if skill.effect
+
     manage_skill_countdown(skill)
     card_to_play.counter = 0
     card_to_play.save
@@ -94,12 +116,116 @@ class BattlesController < ApplicationController
     redirect_to battle_path(battle)
   end
 
+  def rewards
+    @xp_gained = params[:experience_gained]
+    @shard_card_id = params[:shard_card].to_i
+    @shard_card = Card.find(@shard_card_id)
+  end
+
   private
+
+  def set_effect(skill, bcs_attacker, bcs_defender, bc_attacker, bc_target)
+    if skill.effect_type == "dispell"
+      case skill.effect_target_type
+      when "same"
+        bc_target.effects.where(curse: false).destroy_all unless bc_target.effects.where(curse: false).empty?
+      when "ennemies"
+        bcs_target.each do |target|
+          target.effects.where(curse: false).destroy_all unless target.effects.where(curse: false).empty?
+        end
+      end
+    else
+      case skill.effect_target_type
+      when "allies"
+        targets = bcs_attacker
+      when "ennemies"
+        targets = bcs_defender
+        curse = true
+      when "self"
+        targets = [bc_attacker]
+      when "same"
+        targets = [bc_target]
+        curse = true
+      end
+      duration = skill.effect_duration
+      intensity = skill.intensity
+      effect_type = skill.effect_type
+      curse ||= false
+
+      targets.each do |battle_card|
+        Effect.create(
+          effect_type:,
+          duration:,
+          intensity:,
+          battle_card:,
+          curse:
+        )
+      end
+    end
+  end
+
+  def manage_effects(bc_attacker)
+    effects = bc_attacker.effects
+    effects.each do |effect|
+      effect.counter += 1
+      # raise
+      effect.destroy if effect.counter == effect.duration
+    end
+  end
+
+  def dispell(target)
+    target.effects.destroy_all unless target.effects.empty?
+  end
+
+  def apply_effects(bts)
+    bts.each do |bcs|
+      bcs.each do |bc|
+        bc.effects.empty? ? next : apply_bc_effect(bc)
+      end
+    end
+  end
+
+  def apply_bc_effect(bc)
+    effects = bc.effects
+    effects.each do |effect|
+      if effect.curse
+        case effect.effect_type
+        when "armor"
+          bc.armor = bc.armor - effect.intensity
+        when "power"
+          bc.power = bc.power - effect.intensity
+        when "speed"
+          bc.speed = bc.speed - effect.intensity
+        when "armor speed"
+          bc.armor = bc.armor - effect.intensity
+          bc.speed = bc.speed - effect.intensity
+        when "armor power"
+          bc.armor = bc.armor - effect.intensity
+          bc.power = bc.power - effect.intensity
+        end
+      elsif effect.curse == false
+        case effect.effect_type
+        when "armor"
+          bc.armor = bc.armor + effect.intensity
+        when "power"
+          bc.power = bc.power + effect.intensity
+        when "speed"
+          bc.speed = bc.speed + effect.intensity
+        when "armor speed"
+          bc.armor = bc.armor + effect.intensity
+          bc.speed = bc.speed + effect.intensity
+        when "armor power"
+          bc.armor = bc.armor + effect.intensity
+          bc.power = bc.power + effect.intensity
+        end
+      end
+    end
+  end
 
   def set_winner(player, battle)
     if player == battle.player
       # Give shards before changing challenge status in order to check if first time challenge accomplished and give a bonus shard
-      shard_card = give_shards(player, battle.challenge)
+      @shard_card = give_shards(player, battle.challenge)
       player.coins += battle.challenge.reward
       player.save
       # Set challenge as done, unlock the next one
@@ -112,13 +238,14 @@ class BattlesController < ApplicationController
       player_bcs = battle.bt_player.battle_cards.select { |bc| bc.dead == false }
       computer_bcs = battle.bt_computer.battle_cards
       # Calculate XP gained and divide it between the cards that aren't dead
-      calculate_experience(player_bcs, computer_bcs)
+      @experience = calculate_experience(player_bcs, computer_bcs)
     else
       player_bcs = battle.bt_player.battle_cards
       computer_bcs = battle.bt_computer.battle_cards.select { |bc| bc.dead == true }
       calculate_experience(player_bcs, computer_bcs)
     end
-    redirect_to challenges_path(side: battle.challenge.category)
+    redirect_to rewards_battle_path(battle_id: battle.id, experience_gained: @experience, shard_card: @shard_card.id)
+    # redirect_to challenges_path(side: battle.challenge.category)
   end
 
   def give_shards(player, challenge)
@@ -215,9 +342,12 @@ class BattlesController < ApplicationController
         battle_card.card.save
       end
     end
+    total_xp_gained
   end
 
   def calculate_damage(attacker, target, skill, bcs_attacker, bcs_defender)
+    return if skill.strength.nil?
+
     damage = attacker.card.power
     if skill.strength.include?("Light")
       damage = (damage * 0.75).round

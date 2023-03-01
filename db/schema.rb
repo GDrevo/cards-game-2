@@ -97,6 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_155832) do
     t.integer "counter", default: 0
     t.string "effect_type"
     t.integer "intensity", default: 0
+    t.boolean "curse", default: false
     t.bigint "battle_card_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

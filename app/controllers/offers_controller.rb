@@ -26,7 +26,7 @@ class OffersController < ApplicationController
   private
 
   def create_new_offers(player)
-    current_user.player.coins += 500
+    current_user.player.coins += 1000
     current_user.player.save
     player.offers.empty? ? nil : player.offers.destroy_all
     10.times do

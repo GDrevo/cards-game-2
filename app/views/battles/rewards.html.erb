@@ -1,0 +1,9 @@
+<div class="rewards-container">
+  <h1>REWARDS</h1>
+  <h5>Total XP Gained: <%= @xp_gained %></h5>
+  <h5>Shard Gained: <%= @shard_card.name %></h5>
+  <br>
+  <%= link_to challenges_path(side: @shard_card.side) do %>
+    <h2>NEXT</h2>
+  <% end %>
+</div>
