@@ -2,6 +2,11 @@ class Effect < ApplicationRecord
   belongs_to :battle_card
 
   after_create :define_name
+  after_create :apply_effect
+
+  after_save :check_if_done
+
+  before_destroy :remove_effect
 
   private
 
@@ -48,5 +53,83 @@ class Effect < ApplicationRecord
     end
     self.name = name
     save
+  end
+
+  def apply_effect
+    bc = battle_card
+    if curse
+      case effect_type
+      when "armor"
+        bc.armor = bc.armor - intensity
+      when "power"
+        bc.power = bc.power - intensity
+      when "speed"
+        bc.speed = bc.speed - intensity
+      when "armor speed"
+        bc.armor = bc.armor - intensity
+        bc.speed = bc.speed - intensity
+      when "armor power"
+        bc.armor = bc.armor - intensity
+        bc.power = bc.power - intensity
+      end
+    elsif curse == false
+      case effect_type
+      when "armor"
+        bc.armor = bc.armor + intensity
+      when "power"
+        bc.power = bc.power + intensity
+      when "speed"
+        bc.speed = bc.speed + intensity
+      when "armor speed"
+        bc.armor = bc.armor + intensity
+        bc.speed = bc.speed + intensity
+      when "armor power"
+        bc.armor = bc.armor + intensity
+        bc.power = bc.power + intensity
+      end
+    end
+    bc.save
+  end
+
+  def check_if_done
+    return unless counter == duration
+
+    destroy
+  end
+
+  def remove_effect
+    bc = battle_card
+    if curse
+      case effect_type
+      when "armor"
+        bc.armor = bc.armor + intensity
+      when "power"
+        bc.power = bc.power + intensity
+      when "speed"
+        bc.speed = bc.speed + intensity
+      when "armor speed"
+        bc.armor = bc.armor + intensity
+        bc.speed = bc.speed + intensity
+      when "armor power"
+        bc.armor = bc.armor + intensity
+        bc.power = bc.power + intensity
+      end
+    elsif curse == false
+      case effect_type
+      when "armor"
+        bc.armor = bc.armor - intensity
+      when "power"
+        bc.power = bc.power - intensity
+      when "speed"
+        bc.speed = bc.speed - intensity
+      when "armor speed"
+        bc.armor = bc.armor - intensity
+        bc.speed = bc.speed - intensity
+      when "armor power"
+        bc.armor = bc.armor - intensity
+        bc.power = bc.power - intensity
+      end
+    end
+    bc.save
   end
 end

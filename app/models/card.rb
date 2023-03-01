@@ -562,7 +562,7 @@ class Card < ApplicationRecord
         card:,
         reload_time: 1,
         effect: true,
-        effect_target_type: self,
+        effect_target_type: "self",
         effect_type: "armor",
         effect_duration: 2,
         intensity: 10 # +10 armor

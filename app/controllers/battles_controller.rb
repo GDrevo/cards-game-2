@@ -28,7 +28,6 @@ class BattlesController < ApplicationController
     @battle = Battle.find(params[:id].to_i)
     bcs_player = @battle.bt_player.battle_cards.select { |card| card.dead == false }
     bcs_opponent = @battle.bt_computer.battle_cards.select { |card| card.dead == false }
-    apply_effects([bcs_player, bcs_opponent])
     @bcs_player = bcs_player.sort_by { |obj| obj.card.name }
     @bcs_opponent = bcs_opponent.sort_by { |obj| obj.card.name }
     if bcs_opponent.any? { |bc| bc.effects.any? { |effect| effect.effect_type == "taunt" } }
@@ -168,57 +167,8 @@ class BattlesController < ApplicationController
     effects = bc_attacker.effects
     effects.each do |effect|
       effect.counter += 1
-      # raise
-      effect.destroy if effect.counter == effect.duration
-    end
-  end
-
-  def dispell(target)
-    target.effects.destroy_all unless target.effects.empty?
-  end
-
-  def apply_effects(bts)
-    bts.each do |bcs|
-      bcs.each do |bc|
-        bc.effects.empty? ? next : apply_bc_effect(bc)
-      end
-    end
-  end
-
-  def apply_bc_effect(bc)
-    effects = bc.effects
-    effects.each do |effect|
-      if effect.curse
-        case effect.effect_type
-        when "armor"
-          bc.armor = bc.armor - effect.intensity
-        when "power"
-          bc.power = bc.power - effect.intensity
-        when "speed"
-          bc.speed = bc.speed - effect.intensity
-        when "armor speed"
-          bc.armor = bc.armor - effect.intensity
-          bc.speed = bc.speed - effect.intensity
-        when "armor power"
-          bc.armor = bc.armor - effect.intensity
-          bc.power = bc.power - effect.intensity
-        end
-      elsif effect.curse == false
-        case effect.effect_type
-        when "armor"
-          bc.armor = bc.armor + effect.intensity
-        when "power"
-          bc.power = bc.power + effect.intensity
-        when "speed"
-          bc.speed = bc.speed + effect.intensity
-        when "armor speed"
-          bc.armor = bc.armor + effect.intensity
-          bc.speed = bc.speed + effect.intensity
-        when "armor power"
-          bc.armor = bc.armor + effect.intensity
-          bc.power = bc.power + effect.intensity
-        end
-      end
+      effect.save
+      # #check_if_done in Effect model
     end
   end
 
@@ -239,13 +189,13 @@ class BattlesController < ApplicationController
       computer_bcs = battle.bt_computer.battle_cards
       # Calculate XP gained and divide it between the cards that aren't dead
       @experience = calculate_experience(player_bcs, computer_bcs)
+      redirect_to rewards_battle_path(battle_id: battle.id, experience_gained: @experience, shard_card: @shard_card.id)
     else
       player_bcs = battle.bt_player.battle_cards
       computer_bcs = battle.bt_computer.battle_cards.select { |bc| bc.dead == true }
       calculate_experience(player_bcs, computer_bcs)
+      redirect_to challenges_path(side: battle.challenge.category)
     end
-    redirect_to rewards_battle_path(battle_id: battle.id, experience_gained: @experience, shard_card: @shard_card.id)
-    # redirect_to challenges_path(side: battle.challenge.category)
   end
 
   def give_shards(player, challenge)
