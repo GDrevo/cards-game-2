@@ -41,6 +41,7 @@ class BattlesController < ApplicationController
     elsif @bcs_opponent.all?(&:dead)
       set_winner(@battle.player, @battle)
     else
+      # raise
       render :show
     end
   end

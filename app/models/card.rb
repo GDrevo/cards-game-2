@@ -72,34 +72,666 @@ class Card < ApplicationRecord
   end
 
   def create_skills
-    best_cards = ["King", "Archfiend"]
-    good_cards = ["Paladin", "Crusader", "Cleric", "Captain", "Demon", "Necromancer", "Warlock", "Hellhound"]
+    card = self
 
-    if best_cards.include?(name)
-      Skill.create(name: "Strong Attack", target_type: "Single", strength: "Strong", reload_time: 1, card: self)
-      Skill.create(name: "Multi Attack", target_type: "Multi", strength: "Normal", reload_time: 2, card: self)
-      Skill.create(name: "Special Attack", target_type: "Multi", strength: "Strong", reload_time: 3, card: self)
-    elsif good_cards.include?(name)
-      case card_type
-      when "attacker"
-        Skill.create(name: "Basic Attack", target_type: "Single", strength: "Normal", reload_time: 1, card: self)
-        Skill.create(name: "Multi Attack", target_type: "Multi", strength: "Normal", reload_time: 2, card: self)
-        Skill.create(name: "Special Attack", target_type: "Single", strength: "Strong", reload_time: 3, card: self)
-      when "healer"
-        Skill.create(name: "Basic Attack", target_type: "Single", strength: "Light", reload_time: 1, card: self)
-        Skill.create(name: "Strong Heal", target_type: "Single", strength: "Strong", reload_time: 2, card: self)
-        Skill.create(name: "Multi Heal", target_type: "Multi", strength: "Normal", reload_time: 3, card: self)
+    skillset_1 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "light",
+        card:,
+        reload_time: 1
+      },
+      {
+        name: "Strong Attack",
+        target_type: "Single",
+        strength: "normal",
+        card:,
+        reload_time: 2
+      }
+    ]
+    skillset_2 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "light",
+        card:,
+        reload_time: 1
+      },
+      {
+        name: "Multi Attack",
+        target_type: "Multi",
+        strength: "light",
+        card:,
+        reload_time: 3
+      }
+    ]
+    skillset_3 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "light",
+        card:,
+        reload_time: 1
+      },
+      {
+        name: "Multi Attack",
+        target_type: "Multi",
+        strength: "light",
+        card:,
+        reload_time: 2
+      }
+    ]
+    skillset_4 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "normal",
+        card:,
+        reload_time: 1,
+        effect: true,
+        effect_target_type: "allies",
+        effect_type: "armor",
+        effect_duration: 2,
+        intensity: 5
+      },
+      {
+        name: "Multi Attack",
+        target_type: "Multi",
+        strength: "normal",
+        card:,
+        reload_time: 2
+      },
+      {
+        name: "Special Attack",
+        target_type: "Single",
+        strength: "strong",
+        card:,
+        reload_time: 3,
+        effect: true,
+        effect_target_type: "ennemies",
+        effect_type: "damage",
+        curse: true,
+        effect_duration: 2,
+        intensity: -10 # 10%
+      }
+    ]
+    skillset_5 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "normal",
+        card:,
+        reload_time: 1
+      },
+      {
+        name: "Strong Attack",
+        target_type: "Single",
+        strength: "strong",
+        card:,
+        reload_time: 2,
+        effect: true,
+        effect_target_type: "same",
+        effect_type: "speed",
+        curse: true,
+        effect_duration: 2,
+        intensity: -10
+      },
+      {
+        name: "Special Attack",
+        target_type: "Multi",
+        strength: "normal",
+        card:,
+        reload_time: 3,
+        effect: true,
+        effect_target_type: "ennemies",
+        effect_type: "power",
+        curse: true,
+        effect_duration: 2,
+        intensity: -10 # 10%
+      }
+    ]
+    skillset_6 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "normal",
+        card:,
+        reload_time: 1,
+        effect: true,
+        effect_target_type: "same",
+        effect_type: "dispell"
+      },
+      {
+        name: "Multi Attack",
+        target_type: "Multi",
+        strength: "normal",
+        card:,
+        reload_time: 2
+      },
+      {
+        name: "Special Attack",
+        target_type: "Single",
+        strength: "strong",
+        card:,
+        reload_time: 3,
+        effect: true,
+        effect_target_type: "self",
+        effect_type: "damage",
+        effect_duration: 2,
+        intensity: 10 # 10%
+      }
+    ]
+    skillset_7 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "normal",
+        card:,
+        reload_time: 1
+      },
+      {
+        name: "Strong Attack",
+        target_type: "Single",
+        strength: "strong",
+        card:,
+        reload_time: 2,
+        effect: true,
+        effect_target_type: "allies",
+        effect_type: "speed",
+        intensity: 5
+      },
+      {
+        name: "Special Attack",
+        target_type: "Multi",
+        strength: "normal",
+        card:,
+        reload_time: 3,
+        effect: true,
+        effect_target_type: "self",
+        effect_type: "power",
+        effect_duration: 2,
+        intensity: 10 # 10%
+      }
+    ]
+    skillset_8 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "normal",
+        card:,
+        reload_time: 1,
+        effect: true,
+        effect_target_type: "ennemies",
+        effect_type: "damage",
+        curse: true,
+        intensity: -10 # 10%
+      },
+      {
+        name: "Multi Attack",
+        target_type: "Multi",
+        strength: "normal",
+        card:,
+        reload_time: 2
+      },
+      {
+        name: "Special Attack",
+        target_type: "Single",
+        strength: "strong",
+        card:,
+        reload_time: 3,
+        effect: true,
+        effect_target_type: "same",
+        effect_type: "damage",
+        effect_duration: 2,
+        intensity: -20 # 20%
+      }
+    ]
+    skillset_9 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "normal",
+        card:,
+        reload_time: 1
+      },
+      {
+        name: "Strong Attack",
+        target_type: "Single",
+        strength: "strong",
+        card:,
+        reload_time: 2,
+        effect: true,
+        effect_target_type: "ennemies",
+        effect_type: "armor",
+        curse: true,
+        effect_duration: 2,
+        intensity: -5 # 5%
+      },
+      {
+        name: "Special Attack",
+        target_type: "Multi",
+        strength: "normal",
+        card:,
+        reload_time: 3,
+        effect: true,
+        effect_target_type: "same",
+        effect_type: "power",
+        curse: true,
+        effect_duration: 2,
+        intensity: -20 # 20%
+      }
+    ]
+    skillset_10 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "strong",
+        card:,
+        reload_time: 1,
+        effect: true,
+        effect_target_type: "same",
+        effect_type: "dispell"
+      },
+      {
+        name: "Strong Attack",
+        target_type: "Single",
+        strength: "strong",
+        card:,
+        reload_time: 2,
+        effect: true,
+        effect_target_type: "allies",
+        effect_type: "speed",
+        intensity: 20 # +20 speed
+      },
+      {
+        name: "Special Attack",
+        target_type: "Multi",
+        strength: "normal",
+        card:,
+        reload_time: 4,
+        effect: true,
+        effect_target_type: "ennemies",
+        effect_type: "dispell"
+      }
+    ]
+    skillset_11 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "strong",
+        card:,
+        reload_time: 1,
+        effect: true,
+        effect_target_type: "allies",
+        effect_type: "speed",
+        intensity: 20 # +20 speed
+      },
+      {
+        name: "Strong Attack",
+        target_type: "Single",
+        strength: "strong",
+        card:,
+        reload_time: 2,
+        effect: true,
+        effect_target_type: "ennemies",
+        effect_type: "dispell"
+      },
+      {
+        name: "Special Attack",
+        target_type: "Multi",
+        strength: "normal",
+        card:,
+        reload_time: 4,
+        effect: true,
+        effect_target_type: "allies",
+        effect_type: "speed",
+        effect_duration: 2,
+        intensity: 15 # +15 speed
+      }
+    ]
+    skillset_12 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "light",
+        card:,
+        reload_time: 1
+      },
+      {
+        name: "Multi Heal",
+        target_type: "Multi",
+        strength: "light",
+        card:,
+        reload_time: 2
+      }
+    ]
+    skillset_13 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "normal",
+        card:,
+        reload_time: 1
+      },
+      {
+        name: "Multi Heal",
+        target_type: "Multi",
+        strength: "light",
+        card:,
+        reload_time: 2
+      }
+    ]
+    skillset_14 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "normal",
+        card:,
+        reload_time: 1
+      },
+      {
+        name: "Strong Heal",
+        target_type: "Single",
+        strength: "strong",
+        card:,
+        reload_time: 2
+      },
+      {
+        name: "Special Heal",
+        target_type: "Multi",
+        strength: "normal",
+        card:,
+        reload_time: 3,
+        effect: true,
+        effect_target_type: "allies",
+        effect_type: "damage",
+        effect_duration: 2,
+        intensity: 15 # 15%
+      }
+    ]
+    skillset_15 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "normal",
+        card:,
+        reload_time: 1
+      },
+      {
+        name: "Strong Heal",
+        target_type: "Single",
+        strength: "strong",
+        card:,
+        reload_time: 2,
+        effect: true,
+        effect_target_type: "allies",
+        effect_type: "damage",
+        effect_duration: 2,
+        intensity: 10 # 10%
+      },
+      {
+        name: "Special Heal",
+        target_type: "Multi",
+        strength: "normal",
+        card:,
+        reload_time: 3
+      }
+    ]
+    skillset_16 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "normal",
+        card:,
+        reload_time: 1
+      },
+      {
+        name: "Strong Heal",
+        target_type: "Single",
+        strength: "strong",
+        card:,
+        reload_time: 2
+      },
+      {
+        name: "Special Heal",
+        target_type: "Multi",
+        strength: "normal",
+        card:,
+        reload_time: 3,
+        effect: true,
+        effect_target_type: "allies",
+        effect_type: "speed",
+        effect_duration: 2,
+        intensity: 10 # +10 speed
+      }
+    ]
+    skillset_17 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "normal",
+        card:,
+        reload_time: 1
+      },
+      {
+        name: "Strong Heal",
+        target_type: "Single",
+        strength: "strong",
+        card:,
+        reload_time: 2,
+        effect: true,
+        effect_target_type: "allies",
+        effect_type: "speed",
+        effect_duration: 2,
+        intensity: 5 # +5 speed
+      },
+      {
+        name: "Special Heal",
+        target_type: "Multi",
+        strength: "normal",
+        card:,
+        reload_time: 3
+      }
+    ]
+    skillset_18 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "light",
+        card:,
+        reload_time: 1
+      },
+      {
+        name: "Taunt Attack",
+        target_type: "Single",
+        strength: "light",
+        card:,
+        reload_time: 3,
+        effect: true,
+        effect_target_type: "self",
+        effect_type: "taunt",
+        effect_duration: 2
+      }
+    ]
+    skillset_19 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "light",
+        card:,
+        reload_time: 1,
+        effect: true,
+        effect_target_type: self,
+        effect_type: "armor",
+        effect_duration: 2,
+        intensity: 10 # +10 armor
+      },
+      {
+        name: "Taunt Attack",
+        target_type: "Single",
+        strength: "light",
+        card:,
+        reload_time: 3,
+        effect: true,
+        effect_target_type: "self",
+        effect_type: "taunt",
+        effect_duration: 2
+      }
+    ]
+    skillset_20 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "light",
+        card:,
+        reload_time: 1,
+        effect: true,
+        effect_target_type: "allies",
+        effect_type: "armor",
+        effect_duration: 2,
+        intensity: 10 # +10 armor
+      },
+      {
+        name: "Taunt Attack",
+        target_type: "Single",
+        strength: "light",
+        card:,
+        reload_time: 2,
+        effect: true,
+        effect_target_type: "self",
+        effect_type: "taunt",
+        effect_duration: 2
+      },
+      {
+        name: "Special Effect",
+        card:,
+        reload_time: 3,
+        effect: true,
+        effect_target_type: "allies",
+        effect_type: "armor speed",
+        effect_duration: 2,
+        intensity: 15 # +15 armor and +15 speed
+      }
+    ]
+    skillset_21 = [
+      {
+        name: "Basic Attack",
+        target_type: "Single",
+        strength: "light",
+        card:,
+        reload_time: 1,
+        effect: true,
+        effect_target_type: "same",
+        effect_type: "dispell"
+      },
+      {
+        name: "Taunt Attack",
+        target_type: "Single",
+        strength: "light",
+        card:,
+        reload_time: 2,
+        effect: true,
+        effect_target_type: "self",
+        effect_type: "taunt",
+        effect_duration: 2
+      },
+      {
+        name: "Special Effect",
+        card:,
+        reload_time: 3,
+        effect: true,
+        effect_target_type: "allies",
+        effect_type: "armor power",
+        effect_duration: 2,
+        intensity: 15 # +15 armor and +15% power
+      }
+    ]
+
+    case skillset
+    when 1
+      skillset_1.each do |skill|
+        Skill.create(skill)
       end
-    else
-      case card_type
-      when "attacker"
-        Skill.create(name: "Basic Attack", target_type: "Single", strength: "Light", reload_time: 1, card: self)
-        Skill.create(name: "Stronger Attack", target_type: "Single", strength: "Normal", reload_time: 2, card: self)
-        Skill.create(name: "Special Attack", target_type: "Single", strength: "Normal", reload_time: 3, card: self)
-      when "healer"
-        Skill.create(name: "Basic Attack", target_type: "Single", strength: "Light", reload_time: 1, card: self)
-        Skill.create(name: "Basic Heal", target_type: "Single", strength: "Normal", reload_time: 2, card: self)
-        Skill.create(name: "Multi Heal", target_type: "Multi", strength: "Light", reload_time: 3, card: self)
+    when 2
+      skillset_2.each do |skill|
+        Skill.create(skill)
+      end
+    when 3
+      skillset_3.each do |skill|
+        Skill.create(skill)
+      end
+    when 4
+      skillset_4.each do |skill|
+        Skill.create(skill)
+      end
+    when 5
+      skillset_5.each do |skill|
+        Skill.create(skill)
+      end
+    when 6
+      skillset_6.each do |skill|
+        Skill.create(skill)
+      end
+    when 7
+      skillset_7.each do |skill|
+        Skill.create(skill)
+      end
+    when 8
+      skillset_8.each do |skill|
+        Skill.create(skill)
+      end
+    when 9
+      skillset_9.each do |skill|
+        Skill.create(skill)
+      end
+    when 10
+      skillset_10.each do |skill|
+        Skill.create(skill)
+      end
+    when 11
+      skillset_11.each do |skill|
+        Skill.create(skill)
+      end
+    when 12
+      skillset_12.each do |skill|
+        Skill.create(skill)
+      end
+    when 13
+      skillset_13.each do |skill|
+        Skill.create(skill)
+      end
+    when 14
+      skillset_14.each do |skill|
+        Skill.create(skill)
+      end
+    when 15
+      skillset_15.each do |skill|
+        Skill.create(skill)
+      end
+    when 16
+      skillset_16.each do |skill|
+        Skill.create(skill)
+      end
+    when 17
+      skillset_17.each do |skill|
+        Skill.create(skill)
+      end
+    when 18
+      skillset_18.each do |skill|
+        Skill.create(skill)
+      end
+    when 19
+      skillset_19.each do |skill|
+        Skill.create(skill)
+      end
+    when 20
+      skillset_20.each do |skill|
+        Skill.create(skill)
+      end
+    when 21
+      skillset_21.each do |skill|
+        Skill.create(skill)
       end
     end
   end

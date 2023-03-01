@@ -18,6 +18,7 @@ class CreateCards < ActiveRecord::Migration[7.0]
       t.integer :next_level, default: 50
       t.integer :experience_given, default: 30
       t.boolean :unlocked, default: false
+      t.integer :skillset
       t.references :player, null: false, foreign_key: true
 
       t.timestamps

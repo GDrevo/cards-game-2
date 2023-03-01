@@ -3,9 +3,10 @@
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  background-color: white;
   padding: 20px;
   gap: 10px;
+  height: 300px;
+  width: 100%;
 }
 
 .player-card {
@@ -19,6 +20,7 @@
   width: 300px;
   height: 200px;
   text-align: center;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.384);
   h5 {
     color: white;
   }
@@ -28,8 +30,23 @@
   }
 }
 
+.card-playing {
+  animation: grow-shrink 2s ease-in-out infinite;
+}
+
+@keyframes grow-shrink {
+  0% {
+    box-shadow: 0px 0px 15px 0px rgba(255, 249, 222, 0.384);
+  }
+  50% {
+    box-shadow: 0px 0px 30px 0px rgba(255, 249, 222, 0.384);
+  }
+  100% {
+    box-shadow: 0px 0px 15px 0px rgba(255, 249, 222, 0.384);
+  }
+}
+
 .skill-card {
-  background-color: white;
   padding: 20px;
   border-radius: 5px;
 }

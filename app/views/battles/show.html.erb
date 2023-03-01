@@ -25,7 +25,7 @@
     <h2>This is the player's part</h2>
     <div class="players-cards">
       <% @bcs_player.each do |card| %>
-        <div class="player-card">
+        <div class="player-card <%= @card_to_play == card ? "card-playing" : nil %>">
           <%= image_tag card.card.side %>
           <h3><%= card.card.name %></h3>
           <h5>lvl <%= card.card.level %></h5>
@@ -73,7 +73,7 @@
     <h2>This is the opponent's part</h2>
     <div class="players-cards">
       <% @bcs_opponent.each do |card| %>
-        <div class="player-card">
+        <div class="player-card <%= @card_to_play == card ? "card-playing" : nil %>">
           <%= image_tag card.card.side %>
           <h3><%= card.card.name %></h3>
           <h5>lvl <%= card.card.level %></h5>
