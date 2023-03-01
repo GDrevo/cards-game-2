@@ -179,7 +179,7 @@ class User < ApplicationRecord
     weak_tank_q = {
       hit_points: 60,
       card_type: "tank",
-      armor: 50,
+      armor: 20,
       power: 4,
       speed: 9,
       player:
@@ -187,7 +187,7 @@ class User < ApplicationRecord
     normal_tank_s = {
       hit_points: 70,
       card_type: "tank",
-      armor: 25,
+      armor: 22,
       power: 8,
       speed: 10,
       player:,
@@ -196,27 +196,27 @@ class User < ApplicationRecord
     normal_tank_q = {
       hit_points: 70,
       card_type: "tank",
-      armor: 25,
+      armor: 22,
       power: 7,
       speed: 11,
       player:,
       experience_given: 40
     }
     strong_tank_s = {
-      hit_points: 65,
+      hit_points: 78,
       card_type: "tank",
-      armor: 15,
-      power: 20,
-      speed: 16,
+      armor: 25,
+      power: 12,
+      speed: 13,
       player:,
       experience_given: 50
     }
     strong_tank_q = {
-      hit_points: 65,
+      hit_points: 78,
       card_type: "tank",
-      armor: 15,
-      power: 16,
-      speed: 20,
+      armor: 25,
+      power: 11,
+      speed: 14,
       player:,
       experience_given: 50
     }
@@ -260,8 +260,8 @@ class User < ApplicationRecord
         { name: "Alchemist", side: "light", cat: "normal", skillset: 13 }.merge(normal_heal_q),
         { name: "Druid", side: "light", cat: "normal", skillset: 13 }.merge(normal_heal_q),
         # STRONG
-        { name: "Cleric", side: "light", cat: "strong", skillset: 15 }.merge(strong_heal_s),
-        { name: "Alchemist", side: "light", cat: "strong", skillset: 17 }.merge(strong_heal_q),
+        { name: "High Priest", side: "light", cat: "strong", skillset: 15 }.merge(strong_heal_s),
+        { name: "Battle Medic", side: "light", cat: "strong", skillset: 17 }.merge(strong_heal_q),
         # HUMAN TANK CARDS
         # WEAK
         { name: "Shieldbearer", side: "light", cat: "weak", skillset: 18 }.merge(weak_tank_s),

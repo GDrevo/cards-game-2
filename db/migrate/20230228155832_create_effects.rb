@@ -6,6 +6,7 @@ class CreateEffects < ActiveRecord::Migration[7.0]
       t.integer :counter, default: 0
       t.string :effect_type # taunt, armor, power, speed, damage
       t.integer :intensity, default: 0 # -20>reduced armor, 5>increased speed
+      t.boolean :curse, default: false
       t.references :battle_card, null: false, foreign_key: true
 
       t.timestamps

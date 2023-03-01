@@ -605,6 +605,7 @@ class Card < ApplicationRecord
       },
       {
         name: "Special Effect",
+        target_type: "Multi",
         card:,
         reload_time: 3,
         effect: true,
@@ -638,6 +639,7 @@ class Card < ApplicationRecord
       },
       {
         name: "Special Effect",
+        target_type: "Multi",
         card:,
         reload_time: 3,
         effect: true,

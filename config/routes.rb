@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :challenges, only: %i[index show]
+  get 'battles/:battle_id/rewards', to: 'battles#rewards', as: 'rewards_battle'
   resources :battles, only: %i[new create show] do
     patch :play_card, on: :member
     patch :simulate_turn, on: :member

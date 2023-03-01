@@ -4,6 +4,15 @@
     <div class="players-cards">
       <% @bcs_opponent.each do |card| %>
         <div class="player-card">
+          <div class="effects">
+            <% unless card.effects.empty? %>
+              <% card.effects.each do |effect| %>
+                <div class="effect <%= effect.curse ? "curse" : "boost" %>">
+                  <p></p>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
           <%= image_tag card.card.side %>
           <h3><%= card.card.name %></h3>
           <h5>lvl <%= card.card.level %></h5>
@@ -26,6 +35,15 @@
     <div class="players-cards">
       <% @bcs_player.each do |card| %>
         <div class="player-card <%= @card_to_play == card ? "card-playing" : nil %>">
+          <div class="effects">
+            <% unless card.effects.empty? %>
+              <% card.effects.each do |effect| %>
+                <div class="effect <%= effect.curse ? "curse" : "boost" %>">
+                  <p></p>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
           <%= image_tag card.card.side %>
           <h3><%= card.card.name %></h3>
           <h5>lvl <%= card.card.level %></h5>
@@ -74,6 +92,15 @@
     <div class="players-cards">
       <% @bcs_opponent.each do |card| %>
         <div class="player-card <%= @card_to_play == card ? "card-playing" : nil %>">
+          <div class="effects">
+            <% unless card.effects.empty? %>
+              <% card.effects.each do |effect| %>
+                <div class="effect <%= effect.curse ? "curse" : "boost" %>">
+                  <p></p>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
           <%= image_tag card.card.side %>
           <h3><%= card.card.name %></h3>
           <h5>lvl <%= card.card.level %></h5>
@@ -107,6 +134,15 @@
       <% @bcs_player.each do |card| %>
 
         <div class="player-card">
+          <div class="effects">
+            <% unless card.effects.empty? %>
+              <% card.effects.each do |effect| %>
+                <div class="effect <%= effect.curse ? "curse" : "boost" %>">
+                  <p></p>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
           <%= image_tag card.card.side %>
 
           <h3><%= card.card.name %></h3>
