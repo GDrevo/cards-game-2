@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_27_172008) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_28_155832) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_27_172008) do
     t.integer "next_level", default: 50
     t.integer "experience_given", default: 30
     t.boolean "unlocked", default: false
+    t.integer "skillset"
     t.bigint "player_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -88,6 +89,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_27_172008) do
     t.datetime "updated_at", null: false
     t.index ["computer_id"], name: "index_challenges_on_computer_id"
     t.index ["player_id"], name: "index_challenges_on_player_id"
+  end
+
+  create_table "effects", force: :cascade do |t|
+    t.string "name"
+    t.integer "duration", default: 1
+    t.integer "counter", default: 0
+    t.string "effect_type"
+    t.integer "intensity", default: 0
+    t.bigint "battle_card_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["battle_card_id"], name: "index_effects_on_battle_card_id"
   end
 
   create_table "offers", force: :cascade do |t|
@@ -113,10 +126,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_27_172008) do
 
   create_table "skills", force: :cascade do |t|
     t.string "name"
+    t.integer "level", default: 1
     t.string "target_type"
     t.string "strength"
     t.integer "reload_time"
     t.integer "counter", default: 0
+    t.boolean "effect", default: false
+    t.string "effect_target_type"
+    t.string "effect_type"
+    t.boolean "curse", default: false
+    t.integer "effect_duration", default: 1
+    t.integer "intensity"
     t.bigint "card_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -145,6 +165,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_27_172008) do
   add_foreign_key "cards", "players"
   add_foreign_key "challenges", "players"
   add_foreign_key "challenges", "players", column: "computer_id"
+  add_foreign_key "effects", "battle_cards"
   add_foreign_key "offers", "players"
   add_foreign_key "players", "users"
   add_foreign_key "skills", "cards"
