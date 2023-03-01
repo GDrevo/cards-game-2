@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   gap: 20px;
 }
@@ -43,4 +44,11 @@
 
 .elite-card {
   border: 10px solid rgb(111, 68, 160);
+}
+
+.my-cards-navbar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
 }

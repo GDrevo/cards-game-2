@@ -1,5 +1,8 @@
-<h1>MY CARDS</h1>
 <div class="my-cards-container">
+  <div class="my-cards-navbar">
+    <h1>MY CARDS</h1>
+    <h3>Army Power : <%= @total_power %></h3>
+  </div>
   <% @cards.each do |card| %>
     <% case card.cat %>
     <% when "weak" %>

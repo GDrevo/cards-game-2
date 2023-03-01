@@ -4,5 +4,6 @@ class CardsController < ApplicationController
     @cards = player.cards.where(unlocked: true).sort_by(&:war_power).reverse
     @cards_locked = player.cards.select { |card| card.unlocked == false }
     @cards_locked = @cards_locked.sort_by(&:shards).reverse
+    @total_power = @cards.sum(&:war_power)
   end
 end
