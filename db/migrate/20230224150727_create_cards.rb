@@ -8,7 +8,7 @@ class CreateCards < ActiveRecord::Migration[7.0]
       t.integer :shards, default: 0
       t.string :card_type
       t.string :side
-      t.string :cat
+      t.string :cat, default: "normal weak"
       t.integer :hit_points
       t.integer :armor
       t.integer :power
