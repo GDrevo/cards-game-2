@@ -12,6 +12,7 @@ class ChallengesController < ApplicationController
   def show
     @challenge = Challenge.find(params[:id])
     @bt_computer = @challenge.computer.cards
-    @players_cards = @challenge.player.cards.where.not(side: @bt_computer.first.side).and(@challenge.player.cards.where(unlocked: true))
+    players_cards = @challenge.player.cards.where.not(side: @bt_computer.first.side).and(@challenge.player.cards.where(unlocked: true))
+    @players_cards = players_cards.sort_by(&:war_power).reverse
   end
 end

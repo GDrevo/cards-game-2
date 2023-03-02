@@ -1,7 +1,24 @@
 .navbar-lewagon {
+  z-index: 1;
   justify-content: space-between;
   position: sticky;
   top: 0;
+  background-color: $dark-blue;
+  a {
+    color: white;
+  }
+  a:hover {
+    color: $light-blue;
+  }
+}
+
+.nav-item {
+  p {
+    margin: 0;
+    color: $light-blue;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }
 
 .navbar-lewagon .navbar-collapse {
