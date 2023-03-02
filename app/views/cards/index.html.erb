@@ -3,92 +3,202 @@
     <h1>MY CARDS</h1>
     <h3>Army Power : <%= @total_power %></h3>
   </div>
-  <% @cards.each do |card| %>
-    <% case card.cat %>
-    <% when "weak" %>
-      <div class="my-card">
-        <%# Change to image_tag card.faction when DB migration done %>
-        <%= image_tag card.side %>
-        <h4><%= card.name %></h4>
-        <p><%= card.card_type %></p>
-        <h5>lvl <%= card.level %></h5>
-        <p><%= card.experience %>/<%= card.next_level %> xp</p>
-        <h5>prestige <%= card.prestige %></h5>
-        <p>power: <%= card.war_power %></p>
-        <p>shards <%= card.shards %>/<%= card.next_prestige %></p>
-      </div>
-    <% when "normal" %>
-      <div class="my-card normal-card">
-        <%# Change to image_tag card.faction when DB migration done %>
-        <%= image_tag card.side %>
-        <h4><%= card.name %></h4>
-        <p><%= card.card_type %></p>
-        <h5>lvl <%= card.level %></h5>
-        <p><%= card.experience %>/<%= card.next_level %> xp</p>
-        <h5>prestige <%= card.prestige %></h5>
-        <p>power: <%= card.war_power %></p>
-        <p>shards <%= card.shards %>/<%= card.next_prestige %></p>
-      </div>
-    <% when "strong" %>
-      <div class="my-card strong-card">
-        <%# Change to image_tag card.faction when DB migration done %>
-        <%= image_tag card.side %>
-        <h4><%= card.name %></h4>
-        <p><%= card.card_type %></p>
-        <h5>lvl <%= card.level %></h5>
-        <p><%= card.experience %>/<%= card.next_level %> xp</p>
-        <h5>prestige <%= card.prestige %></h5>
-        <p>power: <%= card.war_power %></p>
-        <p>shards <%= card.shards %>/<%= card.next_prestige %></p>
-      </div>
-    <% when "elite" %>
-      <div class="my-card elite-card">
-        <%# Change to image_tag card.faction when DB migration done %>
-        <%= image_tag card.side %>
-        <h4><%= card.name %></h4>
-        <p><%= card.card_type %></p>
-        <h5>lvl <%= card.level %></h5>
-        <p><%= card.experience %>/<%= card.next_level %> xp</p>
-        <h5>prestige <%= card.prestige %></h5>
-        <p>power: <%= card.war_power %></p>
-        <p>shards <%= card.shards %>/<%= card.next_prestige %></p>
-      </div>
+  <div class="my-cards-list">
+    <% @cards.each do |card| %>
+      <% case card.cat %>
+      <% when "weak" %>
+        <div class="my-card">
+          <%# Change to image_tag card.faction when DB migration done %>
+          <%= image_tag card.side %>
+          <h4><%= card.name %></h4>
+          <% case card.prestige %>
+          <% when 1 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+            </div>
+          <% when 2 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% when 3 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% when 4 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% when 5 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% end %>
+          <p><%= card.shards %>/<%= card.next_prestige %></p>
+          <h5 class="my-card-level"><%= card.level %></h5>
+        </div>
+      <% when "normal" %>
+        <div class="my-card normal-card">
+          <%# Change to image_tag card.faction when DB migration done %>
+          <%= image_tag card.side %>
+          <h4><%= card.name %></h4>
+          <% case card.prestige %>
+          <% when 1 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+            </div>
+          <% when 2 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% when 3 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% when 4 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% when 5 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% end %>
+          <p><%= card.shards %>/<%= card.next_prestige %></p>
+          <h5 class="my-card-level"><%= card.level %></h5>
+        </div>
+      <% when "strong" %>
+        <div class="my-card strong-card">
+          <%# Change to image_tag card.faction when DB migration done %>
+          <%= image_tag card.side %>
+          <h4><%= card.name %></h4>
+          <% case card.prestige %>
+          <% when 1 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+            </div>
+          <% when 2 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% when 3 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% when 4 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% when 5 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% end %>
+          <p><%= card.shards %>/<%= card.next_prestige %></p>
+          <h5 class="my-card-level"><%= card.level %></h5>
+        </div>
+      <% when "elite" %>
+        <div class="my-card elite-card">
+          <%# Change to image_tag card.faction when DB migration done %>
+          <%= image_tag card.side %>
+          <h4><%= card.name %></h4>
+          <% case card.prestige %>
+          <% when 1 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+            </div>
+          <% when 2 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% when 3 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% when 4 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% when 5 %>
+            <div class="card-stars">
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+              <%= image_tag "star" %>
+            </div>
+          <% end %>
+          <p><%= card.shards %>/<%= card.next_prestige %></p>
+          <h5 class="my-card-level"><%= card.level %></h5>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-  <% @cards_locked.each do |card| %>
-    <% case card.cat %>
-    <% when "weak" %>
-      <div class="my-card card-locked">
-        <%# Change to image_tag card.faction when DB migration done %>
-        <%= image_tag card.side %>
-        <h4><%= card.name %></h4>
-        <p><%= card.card_type %></p>
-        <p>shards <%= card.shards %>/<%= card.next_prestige %></p>
-      </div>
-    <% when "normal" %>
-      <div class="my-card normal-card card-locked">
-        <%# Change to image_tag card.faction when DB migration done %>
-        <%= image_tag card.side %>
-        <h4><%= card.name %></h4>
-        <p><%= card.card_type %></p>
-        <p>shards <%= card.shards %>/<%= card.next_prestige %></p>
-      </div>
-    <% when "strong" %>
-      <div class="my-card strong-card card-locked">
-        <%# Change to image_tag card.faction when DB migration done %>
-        <%= image_tag card.side %>
-        <h4><%= card.name %></h4>
-        <p><%= card.card_type %></p>
-        <p>shards <%= card.shards %>/<%= card.next_prestige %></p>
-      </div>
-    <% when "elite" %>
-      <div class="my-card elite-card card-locked">
-        <%# Change to image_tag card.faction when DB migration done %>
-        <%= image_tag card.side %>
-        <h4><%= card.name %></h4>
-        <p><%= card.card_type %></p>
-        <p>shards <%= card.shards %>/<%= card.next_prestige %></p>
-      </div>
+    <% @cards_locked.each do |card| %>
+      <% case card.cat %>
+      <% when "weak" %>
+        <div class="my-card card-locked">
+          <%# Change to image_tag card.faction when DB migration done %>
+          <%= image_tag card.side %>
+          <h4><%= card.name %></h4>
+          <p><%= card.shards %>/<%= card.next_prestige %></p>
+        </div>
+      <% when "normal" %>
+        <div class="my-card normal-card card-locked">
+          <%# Change to image_tag card.faction when DB migration done %>
+          <%= image_tag card.side %>
+          <h4><%= card.name %></h4>
+          <p><%= card.shards %>/<%= card.next_prestige %></p>
+        </div>
+      <% when "strong" %>
+        <div class="my-card strong-card card-locked">
+          <%# Change to image_tag card.faction when DB migration done %>
+          <%= image_tag card.side %>
+          <h4><%= card.name %></h4>
+          <p><%= card.shards %>/<%= card.next_prestige %></p>
+        </div>
+      <% when "elite" %>
+        <div class="my-card elite-card card-locked">
+          <%# Change to image_tag card.faction when DB migration done %>
+          <%= image_tag card.side %>
+          <h4><%= card.name %></h4>
+          <p><%= card.shards %>/<%= card.next_prestige %></p>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>

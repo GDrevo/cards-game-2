@@ -1,15 +1,20 @@
 .my-cards-container {
+
+}
+
+.my-cards-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   width: 100%;
   gap: 20px;
+  height: 80vh;
+  overflow: auto;
 }
 
 .my-card {
   width: 250px;
-  height: 300px;
+  height: 200px;
   padding: 20px;
   text-align: center;
   background-color: rgb(32, 32, 32);
@@ -19,6 +24,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   box-shadow: 0px 0px 10px 0px rgba(255, 249, 222, 0.685);
   p {
     margin: 0;
@@ -26,6 +32,20 @@
   img {
     width: 40px;
     margin: 0 auto;
+    margin-bottom: 4px;
+  }
+  .my-card-level {
+    position: relative;
+    right: -105px;
+    top: 26px;
+    width: 40px;
+    height: 40px;
+    background-color: $dark-black;
+    padding: 10px;
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 5px;
+    border-top: 1px solid $light-black;
+    color: white;
   }
 }
 

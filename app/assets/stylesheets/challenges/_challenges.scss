@@ -1,0 +1,40 @@
+.cards-selection {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: auto;
+  height: 45vh;
+}
+
+.cards-selection-card {
+  width: 150px;
+  height: 100px;
+  padding: 10px;
+  background-color: $dark-black;
+  margin: 10px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.384);
+}
+
+.selected {
+  box-shadow: 0px 0px 15px 0px rgba(255, 249, 222, 0.384)
+}
+
+.card-stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 10px;
+    margin: 0;
+  }
+}
+
+.battle-creation-comp {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: auto;
+  height: 15vh;
+}
