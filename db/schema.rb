@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_155832) do
     t.integer "shards", default: 0
     t.string "card_type"
     t.string "side"
-    t.string "cat"
+    t.string "cat", default: "normal weak"
     t.integer "hit_points"
     t.integer "armor"
     t.integer "power"

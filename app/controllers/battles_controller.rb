@@ -203,14 +203,14 @@ class BattlesController < ApplicationController
     when "normal weak"
       if challenge.category == "light"
         cards = player.cards.where(side: "light")
-        shard_card = cards.where(cat: "weak").sample
+        shard_card = cards.where(cat: "normal weak").sample
         return if shard_card.prestige == 5
 
         challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
         shard_card.prestige_up if shard_card.shards >= shard_card.next_prestige
       else
         cards = player.cards.where(side: "dark")
-        shard_card = cards.where(cat: "weak").sample
+        shard_card = cards.where(cat: "normal weak").sample
         return if shard_card.prestige == 5
 
         challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
@@ -220,8 +220,8 @@ class BattlesController < ApplicationController
     when "normal normal"
       if challenge.category == "light"
         cards = player.cards.where(side: "light")
-        weak_shard_card = cards.where(cat: "weak").sample
-        shard_card = cards.where(cat: "normal").sample
+        weak_shard_card = cards.where(cat: "normal weak").sample
+        shard_card = cards.where(cat: "normal normal").sample
         return if shard_card.prestige == 5
 
         challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
@@ -232,8 +232,8 @@ class BattlesController < ApplicationController
         weak_shard_card.prestige_up if weak_shard_card.shards >= weak_shard_card.next_prestige
       else
         cards = player.cards.where(side: "dark")
-        weak_shard_card = cards.where(cat: "weak").sample
-        shard_card = cards.where(cat: "normal").sample
+        weak_shard_card = cards.where(cat: "normal weak").sample
+        shard_card = cards.where(cat: "normal normal").sample
         return if shard_card.prestige == 5
 
         challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
