@@ -1,6 +1,5 @@
 <% if @card_to_play.battle_team.player == current_user.player %>
   <div class="players-container">
-    <h2>This is the opponent's part</h2>
     <div class="players-cards">
       <% @bcs_opponent.each do |card| %>
         <div class="player-card">
@@ -13,26 +12,21 @@
               <% end %>
             <% end %>
           </div>
-          <%= image_tag card.card.side %>
-          <h3><%= card.card.name %></h3>
-          <h5>lvl <%= card.card.level %></h5>
-          <p><%= card.hit_points %>/<%= card.max_hp %></p>
           <% if (card.hit_points / card.max_hp.to_f) > 0.3 %>
             <div class="card-hit-points" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
           <% else %>
             <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
           <% end %>
           <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
+          <%= image_tag card.card.side == "dark" ? "undead" : "human" %>
+          <h3><%= card.card.name %></h3>
+          <h5>lvl <%= card.card.level %></h5>
         </div>
       <% end %>
     </div>
   </div>
 
-  <br>
-  <br>
-
   <div class="players-container">
-    <h2>This is the player's part</h2>
     <div class="players-cards">
       <% @bcs_player.each do |card| %>
         <div class="player-card <%= @card_to_play == card ? "card-playing" : nil %>">
@@ -45,16 +39,15 @@
               <% end %>
             <% end %>
           </div>
-          <%= image_tag card.card.side %>
-          <h3><%= card.card.name %></h3>
-          <h5>lvl <%= card.card.level %></h5>
-          <p><%= card.hit_points %>/<%= card.max_hp %></p>
           <% if (card.hit_points / card.max_hp.to_f) > 0.3 %>
             <div class="card-hit-points" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
           <% else %>
             <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
           <% end %>
           <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
+          <%= image_tag card.card.side == "dark" ? "undead" : "human" %>
+          <h3><%= card.card.name %></h3>
+          <h5>lvl <%= card.card.level %></h5>
         </div>
       <% end %>
     </div>
@@ -63,33 +56,39 @@
 
   <h3>Card playing: <%= @card_to_play.card.name %></h3>
 
-  <% @skills.each do |skill| %>
-    <div class="skill-card">
-      <h3><span><%= "Single" if skill.target_type.include?("Single") %> <%= "Multi" if skill.target_type.include?("Multi") %></span> <%= skill.name %></h3>
-      <%= form_with(url: play_card_battle_path, method: :patch) do |f| %>
-        <% if skill.target_type.include?("Single") %>
-          <% if skill.name.include?("Attack") %>
-            <% @bcs_opponent.each do |card| %>
-              <%= f.radio_button :target, card.id %>
-              <%= f.label card.card.name %>
-            <% end %>
-          <% elsif skill.name.include?("Heal") %>
-            <% @bcs_player.each do |card| %>
-              <%= f.radio_button :target, card.id %>
-              <%= f.label card.card.name %>
-            <% end %>
-          <% end %>
-        <% end %>
-        <%= f.hidden_field :skill, value: skill.id %>
-        <%= f.submit skill.id, value: skill.name %>
+  <div class="skills">
+    <% @skills.each do |skill| %>
+      <% if skill.name.include?("Effect") %>
+        <div class="skill-card <%= skill.card.side == "dark" ? "red-skill" : "blue-skill" %>">
+          <%= image_tag "effect" %>
+        </div>
+      <% elsif skill.name.include?("Taunt") %>
+        <div class="skill-card <%= skill.card.side == "dark" ? "red-skill" : "blue-skill" %>">
+        <%= image_tag "taunt" %>
+        </div>
+      <% elsif skill.name.include?("Heal") && skill.target_type == "Single" %>
+        <div class="skill-card <%= skill.card.side == "dark" ? "red-skill" : "blue-skill" %>">
+        <%= image_tag "heal" %>
+        </div>
+      <% elsif skill.name.include?("Heal") && skill.target_type == "Multi" %>
+        <div class="skill-card <%= skill.card.side == "dark" ? "red-skill" : "blue-skill" %>">
+        <%= image_tag "multi-heal" %>
+        </div>
+      <% elsif skill.name.include?("Attack") && skill.target_type == "Single" %>
+        <div class="skill-card <%= skill.card.side == "dark" ? "red-skill" : "blue-skill" %>">
+        <%= image_tag "attack" %>
+        </div>
+      <% elsif skill.name.include?("Attack") && skill.target_type == "Multi" %>
+        <div class="skill-card <%= skill.card.side == "dark" ? "red-skill" : "blue-skill" %>">
+        <%= image_tag "multi-attack" %>
+        </div>
       <% end %>
-    </div>
 
-  <% end %>
+    <% end %>
+  </div>
 
 <% else %>
   <div class="players-container">
-    <h2>This is the opponent's part</h2>
     <div class="players-cards">
       <% @bcs_opponent.each do |card| %>
         <div class="player-card <%= @card_to_play == card ? "card-playing" : nil %>">
@@ -102,16 +101,15 @@
               <% end %>
             <% end %>
           </div>
-          <%= image_tag card.card.side %>
-          <h3><%= card.card.name %></h3>
-          <h5>lvl <%= card.card.level %></h5>
-          <p><%= card.hit_points %>/<%= card.max_hp %></p>
           <% if (card.hit_points / card.max_hp.to_f) > 0.3 %>
             <div class="card-hit-points" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
           <% else %>
             <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
           <% end %>
           <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
+          <%= image_tag card.card.side == "dark" ? "undead" : "human" %>
+          <h3><%= card.card.name %></h3>
+          <h5>lvl <%= card.card.level %></h5>
         </div>
       <% end %>
     </div>
@@ -130,7 +128,6 @@
 
   <div class="players-container">
 
-    <h2>This is the player's part</h2>
     <div class="players-cards">
 
       <% @bcs_player.each do |card| %>
@@ -145,17 +142,15 @@
               <% end %>
             <% end %>
           </div>
-          <%= image_tag card.card.side %>
-
-          <h3><%= card.card.name %></h3>
-          <h5>lvl <%= card.card.level %></h5>
-          <p><%= card.hit_points %>/<%= card.max_hp %></p>
           <% if (card.hit_points / card.max_hp.to_f) > 0.3 %>
             <div class="card-hit-points" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
           <% else %>
             <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
           <% end %>
           <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
+          <%= image_tag card.card.side == "dark" ? "undead" : "human" %>
+          <h3><%= card.card.name %></h3>
+          <h5>lvl <%= card.card.level %></h5>
         </div>
       <% end %>
     </div>

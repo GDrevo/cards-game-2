@@ -40,7 +40,8 @@ class BattlesController < ApplicationController
     if !@bcs_player.all?(&:dead) && !@bcs_opponent.all?(&:dead)
       @card_to_play = play_turn(@bcs_player, @bcs_opponent)
       session[:card_to_play_id] = @card_to_play.id
-      @skills = @card_to_play.card.skills.select { |skill| skill.counter >= skill.reload_time }
+      skills = @card_to_play.card.skills.select { |skill| skill.counter >= skill.reload_time }
+      @skills = skills.sort_by(&:id)
     end
 
     if @bcs_player.all?(&:dead)
