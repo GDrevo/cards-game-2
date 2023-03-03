@@ -48,7 +48,6 @@ class BattlesController < ApplicationController
     elsif @bcs_opponent.all?(&:dead)
       set_winner(@battle.player, @battle)
     else
-      # raise
       render :show
     end
   end
@@ -106,7 +105,7 @@ class BattlesController < ApplicationController
     calculate_damage(card_to_play, bc_target, skill, alive_bcs_computer, alive_bcs_player)
     manage_effects(card_to_play) unless card_to_play.effects.empty?
 
-    set_effect(skill, bcs_computer, bcs_player, bc_attacker, bc_target) if skill.effect
+    set_effect(skill, bcs_computer, bcs_player, card_to_play, bc_target) if skill.effect && skill.effect_type != "dispell"
 
     manage_skill_countdown(skill)
     card_to_play.counter = 0
@@ -119,6 +118,8 @@ class BattlesController < ApplicationController
     @xp_gained = params[:experience_gained]
     @shard_card_id = params[:shard_card].to_i
     @shard_card = Card.find(@shard_card_id)
+    challenge_id = params[:challenge].to_i
+    @challenge = Challenge.find(challenge_id)
   end
 
   private
@@ -175,6 +176,7 @@ class BattlesController < ApplicationController
   def set_winner(player, battle)
     if player == battle.player
       # Give shards before changing challenge status in order to check if first time challenge accomplished and give a bonus shard
+      challenge = battle.challenge
       @shard_card = give_shards(player, battle.challenge)
       player.coins += battle.challenge.reward
       player.save
@@ -189,7 +191,7 @@ class BattlesController < ApplicationController
       computer_bcs = battle.bt_computer.battle_cards
       # Calculate XP gained and divide it between the cards that aren't dead
       @experience = calculate_experience(player_bcs, computer_bcs)
-      redirect_to rewards_battle_path(battle_id: battle.id, experience_gained: @experience, shard_card: @shard_card.id)
+      redirect_to rewards_battle_path(battle_id: battle.id, experience_gained: @experience, shard_card: @shard_card.id, challenge:)
     else
       player_bcs = battle.bt_player.battle_cards
       computer_bcs = battle.bt_computer.battle_cards.select { |bc| bc.dead == true }
@@ -247,12 +249,12 @@ class BattlesController < ApplicationController
       weak_shard_card.save
     when "daily weak"
       cards = player.cards.where(cat: "daily weak")
-      card = cards.sample
-      challenge.done ? card.shards += 1 : card.shards += 2
+      shard_card = cards.sample
+      challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
     when "daily normal"
       cards = player.cards.where(cat: "daily normal")
-      card = cards.sample
-      challenge.done ? card.shards += 1 : card.shards += 2
+      shard_card = cards.sample
+      challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
     end
     shard_card
   end
@@ -288,6 +290,7 @@ class BattlesController < ApplicationController
       if skill.name.include?("Attack")
         targets = bcs_defender
         targets.each do |target_multi|
+          target_multi.armor > 95 ? target_multi.armor = 95 : nil
           damage_multi = damage * (100 - target_multi.armor) / 100
           target_multi.hit_points -= damage_multi
           target_multi.dead = true if target_multi.hit_points <= 0
@@ -303,6 +306,7 @@ class BattlesController < ApplicationController
       end
     elsif skill.target_type.include?("Single")
       if skill.name.include?("Attack")
+        target.armor > 95 ? target.armor = 95 : nil
         damage_attack = damage * (100 - target.armor) / 100
         target.hit_points -= damage_attack
         target.dead = true if target.hit_points <= 0
