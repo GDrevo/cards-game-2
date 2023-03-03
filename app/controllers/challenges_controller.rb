@@ -3,6 +3,7 @@ class ChallengesController < ApplicationController
     user = current_user
     player = user.player
     daily_challenges = player.player_challenges.where(category: "daily")
+    # raise
     if daily_challenges.empty?
       create_daily_challenges(daily_challenges, player)
     end
@@ -13,7 +14,9 @@ class ChallengesController < ApplicationController
     @challenges_locked = player.player_challenges.where(unlocked: false)
     if params[:side].present?
       @challenges = @challenges.where(category: params[:side])
+      @challenges = @challenges.sort_by(&:rank)
       @challenges_locked = @challenges_locked.where(category: params[:side])
+      @challenges_locked = @challenges_locked.sort_by(&:rank)
     end
   end
 
@@ -87,7 +90,7 @@ class ChallengesController < ApplicationController
     challenges.destroy_all unless challenges.empty?
 
     code = (1..20).to_a
-    lvl = (30..50).to_a
+    lvl = (25..45).to_a
     attacker_names = ["Paladin", "Berserker", "Knight", "Mage", "Captain", "Commander"]
     healer_names = ["High Priest", "Battle Medic"]
     tank_names = ["Juggernaut", "Warden"]
@@ -96,21 +99,21 @@ class ChallengesController < ApplicationController
     hit_points_healer = (35..75).to_a
     hit_points_tank = (50..90).to_a
 
-    skillset_attacker = (1..9).to_a
-    skillset_healer = (12..17).to_a
-    skillset_tank = (18..21).to_a
+    skillset_attacker = (1..3).to_a
+    skillset_healer = (12..13).to_a
+    skillset_tank = (18..19).to_a
 
     armor_attacker = (15..23).to_a
     armor_healer = (10..15).to_a
     armor_tank = (20..25).to_a
 
-    power_attacker = (10..20).to_a
-    power_healer = (11..20).to_a
+    power_attacker = (10..18).to_a
+    power_healer = (11..18).to_a
     power_tank = (4..12).to_a
 
-    speed_attacker = (10..18).to_a
-    speed_healer = (12..17).to_a
-    speed_tank = (8..14).to_a
+    speed_attacker = (8..14).to_a
+    speed_healer = (9..13).to_a
+    speed_tank = (7..10).to_a
 
     code.each do |code_nb|
       computer = Player.create(name: "Computer", code: "daily #{code_nb}")

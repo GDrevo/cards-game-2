@@ -1,4 +1,4 @@
-<h1>Coins : <%= @offers.last.player.coins %></h1>
+<h1>Coins : <%= @offers.last.player.coins unless @offers.empty? %></h1>
 <div class="my-offers-container">
   <% @offers.each do |offer| %>
     <% if offer.bought %>
