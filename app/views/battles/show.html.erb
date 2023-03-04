@@ -1,163 +1,189 @@
-<% if @card_to_play.battle_team.player == current_user.player %>
-  <div class="players-container">
-    <h2>This is the opponent's part</h2>
-    <div class="players-cards">
-      <% @bcs_opponent.each do |card| %>
-        <div class="player-card">
-          <div class="effects">
-            <% unless card.effects.empty? %>
-              <% card.effects.each do |effect| %>
-                <div class="effect <%= effect.curse ? "curse" : "boost" %>">
-                  <p></p>
-                </div>
+<div class="battle-container" data-controller="play-attack">
+  <% if @card_to_play.battle_team.player == current_user.player %>
+    <div class="players-container">
+      <h2 id="title-ennemy-target">Select a Target</h2>
+      <div class="players-cards">
+        <% @bcs_opponent.each do |card| %>
+          <div class="player-card ennemy-card" data-target-id="<%= card.id %>" data-play-attack-target="ennemy">
+            <div class="effects">
+              <% unless card.effects.empty? %>
+                <% card.effects.each do |effect| %>
+                  <div class="effect <%= effect.curse ? "curse" : "boost" %>">
+                    <p></p>
+                  </div>
+                <% end %>
               <% end %>
+            </div>
+            <% if (card.hit_points / card.max_hp.to_f) > 0.3 %>
+              <div class="card-hit-points" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
+            <% else %>
+              <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
             <% end %>
+            <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
+            <%= image_tag card.card.side == "dark" ? "undead" : "human" %>
+            <h3><%= card.card.name %></h3>
+            <h5>lvl <%= card.card.level %></h5>
+            <input type="hidden" class="target-input" value="<%= card.id %>">
           </div>
-          <%= image_tag card.card.side %>
-          <h3><%= card.card.name %></h3>
-          <h5>lvl <%= card.card.level %></h5>
-          <p><%= card.hit_points %>/<%= card.max_hp %></p>
-          <% if (card.hit_points / card.max_hp.to_f) > 0.3 %>
-            <div class="card-hit-points" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
-          <% else %>
-            <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
-          <% end %>
-          <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-  <br>
-  <br>
-
-  <div class="players-container">
-    <h2>This is the player's part</h2>
-    <div class="players-cards">
-      <% @bcs_player.each do |card| %>
-        <div class="player-card <%= @card_to_play == card ? "card-playing" : nil %>">
-          <div class="effects">
-            <% unless card.effects.empty? %>
-              <% card.effects.each do |effect| %>
-                <div class="effect <%= effect.curse ? "curse" : "boost" %>">
-                  <p></p>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
-          <%= image_tag card.card.side %>
-          <h3><%= card.card.name %></h3>
-          <h5>lvl <%= card.card.level %></h5>
-          <p><%= card.hit_points %>/<%= card.max_hp %></p>
-          <% if (card.hit_points / card.max_hp.to_f) > 0.3 %>
-            <div class="card-hit-points" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
-          <% else %>
-            <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
-          <% end %>
-          <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-
-  <h3>Card playing: <%= @card_to_play.card.name %></h3>
-
-  <% @skills.each do |skill| %>
-    <div class="skill-card">
-      <h3><span><%= "Single" if skill.target_type.include?("Single") %> <%= "Multi" if skill.target_type.include?("Multi") %></span> <%= skill.name %></h3>
-      <%= form_with(url: play_card_battle_path, method: :patch) do |f| %>
-        <% if skill.target_type.include?("Single") %>
-          <% if skill.name.include?("Attack") %>
-            <% @bcs_opponent.each do |card| %>
-              <%= f.radio_button :target, card.id %>
-              <%= f.label card.card.name %>
-            <% end %>
-          <% elsif skill.name.include?("Heal") %>
-            <% @bcs_player.each do |card| %>
-              <%= f.radio_button :target, card.id %>
-              <%= f.label card.card.name %>
-            <% end %>
-          <% end %>
         <% end %>
-        <%= f.hidden_field :skill, value: skill.id %>
-        <%= f.submit skill.id, value: skill.name %>
-      <% end %>
+      </div>
     </div>
 
-  <% end %>
-
-<% else %>
-  <div class="players-container">
-    <h2>This is the opponent's part</h2>
-    <div class="players-cards">
-      <% @bcs_opponent.each do |card| %>
-        <div class="player-card <%= @card_to_play == card ? "card-playing" : nil %>">
-          <div class="effects">
-            <% unless card.effects.empty? %>
-              <% card.effects.each do |effect| %>
-                <div class="effect <%= effect.curse ? "curse" : "boost" %>">
-                  <p></p>
-                </div>
+    <div class="players-container">
+      <h2 class="<%= @skills.any? { |skill| skill.target_type == "Single" && skill.name.include?("Heal") } ? '' : 'hidden' %>" id="title-ally-target">Select a Target</h2>
+      <div class="players-cards">
+        <% @bcs_player.each do |card| %>
+          <div class="player-card ally-card <%= @card_to_play == card ? "card-playing" : nil %>" data-target-id="<%= card.id %>" data-play-attack-target="ally">
+            <div class="effects">
+              <% unless card.effects.empty? %>
+                <% card.effects.each do |effect| %>
+                  <div class="effect <%= effect.curse ? "curse" : "boost" %>">
+                    <p></p>
+                  </div>
+                <% end %>
               <% end %>
+            </div>
+            <% if (card.hit_points / card.max_hp.to_f) > 0.3 %>
+              <div class="card-hit-points" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
+            <% else %>
+              <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
             <% end %>
+            <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
+            <%= image_tag card.card.side == "dark" ? "undead" : "human" %>
+            <h3><%= card.card.name %></h3>
+            <h5>lvl <%= card.card.level %></h5>
           </div>
-          <%= image_tag card.card.side %>
-          <h3><%= card.card.name %></h3>
-          <h5>lvl <%= card.card.level %></h5>
-          <p><%= card.hit_points %>/<%= card.max_hp %></p>
-          <% if (card.hit_points / card.max_hp.to_f) > 0.3 %>
-            <div class="card-hit-points" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
-          <% else %>
-            <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="skills">
+      <% @skills.each do |skill| %>
+        <% if skill.name.include?("Effect") %>
+          <div class="skill-card <%= skill.card.side == "dark" ? "red-skill" : "blue-skill" %>">
+            <%= image_tag "effect" %>
+            <%= form_with(url: play_card_battle_path, method: :patch, class: "skill-form") do |f| %>
+            <%= f.hidden_field :target, value: "multi" %>
+            <%= f.hidden_field :skill, value: skill.id %>
+            <%= f.submit skill.id, value: "" %>
           <% end %>
-          <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
-        </div>
+          </div>
+        <% elsif skill.name.include?("Taunt") %>
+          <div id="skill-ennemy-target" class="skill-card blocked skill-ennemy-target <%= skill.card.side == "dark" ? "red-skill" : "blue-skill" %>">
+          <%= image_tag "taunt" %>
+          <%= form_with(url: play_card_battle_path, method: :patch, class: "skill-form") do |f| %>
+            <%= f.hidden_field :target, value: "", data: { play_attack_target: "attackInput" } %>
+            <%= f.hidden_field :skill, value: skill.id %>
+            <%= f.submit skill.id, value: "", data: { play_attack_target: "submit" } %>
+          <% end %>
+          </div>
+        <% elsif skill.name.include?("Heal") && skill.target_type == "Single" %>
+          <div id="skill-ally-target" class="skill-card blocked <%= skill.card.side == "dark" ? "red-skill" : "blue-skill" %>">
+          <%= image_tag "heal" %>
+          <%= form_with(url: play_card_battle_path, method: :patch, class: "skill-form") do |f| %>
+            <%= f.hidden_field :target, value: "", data: { play_attack_target: "healInput" } %>
+            <%= f.hidden_field :skill, value: skill.id %>
+            <%= f.submit skill.id, value: "", data: { play_attack_target: "submit" } %>
+          <% end %>
+          </div>
+        <% elsif skill.name.include?("Heal") && skill.target_type == "Multi" %>
+          <div class="skill-card <%= skill.card.side == "dark" ? "red-skill" : "blue-skill" %>">
+          <%= image_tag "multi-heal" %>
+          <%= form_with(url: play_card_battle_path, method: :patch, class: "skill-form") do |f| %>
+            <%= f.hidden_field :target, value: "multi" %>
+            <%= f.hidden_field :skill, value: skill.id %>
+            <%= f.submit skill.id, value: "" %>
+          <% end %>
+          </div>
+        <% elsif skill.name.include?("Attack") && skill.target_type == "Single" %>
+          <div id="skill-ennemy-target" class="skill-card blocked skill-ennemy-target <%= skill.card.side == "dark" ? "red-skill" : "blue-skill" %>">
+          <%= image_tag "attack" %>
+          <%= form_with(url: play_card_battle_path, method: :patch, class: "skill-form") do |f| %>
+            <%= f.hidden_field :target, value: "", data: { play_attack_target: "attackInput" } %>
+            <%= f.hidden_field :skill, value: skill.id %>
+            <%= f.submit skill.id, value: "", data: { play_attack_target: "submit" } %>
+          <% end %>
+          </div>
+        <% elsif skill.name.include?("Attack") && skill.target_type == "Multi" %>
+          <div class="skill-card <%= skill.card.side == "dark" ? "red-skill" : "blue-skill" %>">
+          <%= image_tag "multi-attack" %>
+          <%= form_with(url: play_card_battle_path, method: :patch, class: "skill-form") do |f| %>
+            <%= f.hidden_field :target, value: "multi" %>
+            <%= f.hidden_field :skill, value: skill.id %>
+            <%= f.submit skill.id, value: "" %>
+          <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
-  </div>
-  <br>
-  <br>
 
-  <h2>Card playing: <%= @card_to_play.card.name %></h2>
-
-  <%= form_with(url: simulate_turn_battle_path, method: :patch) do |f| %>
-    <%= f.submit "Next" %>
-  <% end %>
-
-  <br>
-  <br>
-
-  <div class="players-container">
-
-    <h2>This is the player's part</h2>
-    <div class="players-cards">
-
-      <% @bcs_player.each do |card| %>
-
-        <div class="player-card">
-          <div class="effects">
-            <% unless card.effects.empty? %>
-              <% card.effects.each do |effect| %>
-                <div class="effect <%= effect.curse ? "curse" : "boost" %>">
-                  <p></p>
-                </div>
+  <% else %>
+    <div class="players-container">
+      <div class="players-cards">
+        <% @bcs_opponent.each do |card| %>
+          <div class="player-card <%= @card_to_play == card ? "card-playing" : nil %>">
+            <div class="effects">
+              <% unless card.effects.empty? %>
+                <% card.effects.each do |effect| %>
+                  <div class="effect <%= effect.curse ? "curse" : "boost" %>">
+                    <p></p>
+                  </div>
+                <% end %>
               <% end %>
+            </div>
+            <% if (card.hit_points / card.max_hp.to_f) > 0.3 %>
+              <div class="card-hit-points" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
+            <% else %>
+              <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
             <% end %>
+            <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
+            <%= image_tag card.card.side == "dark" ? "undead" : "human" %>
+            <h3><%= card.card.name %></h3>
+            <h5>lvl <%= card.card.level %></h5>
           </div>
-          <%= image_tag card.card.side %>
-
-          <h3><%= card.card.name %></h3>
-          <h5>lvl <%= card.card.level %></h5>
-          <p><%= card.hit_points %>/<%= card.max_hp %></p>
-          <% if (card.hit_points / card.max_hp.to_f) > 0.3 %>
-            <div class="card-hit-points" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
-          <% else %>
-            <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
-          <% end %>
-          <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
-  </div>
-<% end %>
+    <br>
+    <br>
+
+    <h2><%= @card_to_play.card.name %>'s TURN</h2>
+
+    <%= form_with(url: simulate_turn_battle_path, method: :patch) do |f| %>
+      <%= f.submit "Next" %>
+    <% end %>
+
+    <br>
+    <br>
+
+    <div class="players-container">
+
+      <div class="players-cards">
+
+        <% @bcs_player.each do |card| %>
+
+          <div class="player-card">
+            <div class="effects">
+              <% unless card.effects.empty? %>
+                <% card.effects.each do |effect| %>
+                  <div class="effect <%= effect.curse ? "curse" : "boost" %>">
+                    <p></p>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+            <% if (card.hit_points / card.max_hp.to_f) > 0.3 %>
+              <div class="card-hit-points" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
+            <% else %>
+              <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
+            <% end %>
+            <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
+            <%= image_tag card.card.side == "dark" ? "undead" : "human" %>
+            <h3><%= card.card.name %></h3>
+            <h5>lvl <%= card.card.level %></h5>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

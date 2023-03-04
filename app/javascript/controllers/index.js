@@ -10,5 +10,8 @@ application.register("computer-cards", ComputerCardsController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import PlayAttackController from "./play_attack_controller"
+application.register("play-attack", PlayAttackController)
+
 import UserCardsController from "./user_cards_controller"
 application.register("user-cards", UserCardsController)
