@@ -9,8 +9,38 @@
   flex-wrap: wrap;
   padding: 20px;
   gap: 10px;
-  height: 300px;
+  height: 30vh;
   width: 100%;
+}
+
+.battle-mid-part {
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.battle-top-part {
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.next-battle-button {
+  margin-left: 50px;
+  input {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-weight: bold;
+    border: 0;
+    box-shadow: 0px 0px 15px 0px $light-blue;
+  }
+  input:hover {
+    background-color: $light-blue;
+    box-shadow: 0px 0px 30px 0px $light-blue;
+  }
 }
 
 .player-card {
@@ -34,7 +64,7 @@
     font-weight: bold;
   }
   img {
-    width: 100px;
+    width: 120px;
     margin: 0 auto;
     margin-top: 10px;
   }
@@ -83,6 +113,7 @@
   gap: 10px;
   align-items: center;
   justify-content: center;
+  height: 10vh;
 }
 
 .skill-card {
