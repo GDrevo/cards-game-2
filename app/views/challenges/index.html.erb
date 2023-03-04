@@ -1,12 +1,17 @@
-<div class="challenges-list">
-  <% @challenges.each do |challenge| %>
-    <div class="challenge-card">
+<div class="challenges-container">
+  <h2>CHALLENGES</h2>
+  <div class="challenges-list">
+    <% @challenges.each do |challenge| %>
       <%= link_to challenge_path(challenge) do %>
-        <h2>Challenge n°<%= challenge.rank %></h2>
+        <div class="challenge-card">
+          <h2><%= challenge.rank %></h2>
+        </div>
       <% end %>
-    </div>
-  <% end %>
-  <% @challenges_locked.each do |challenge| %>
-    <h2>Challenge n°<%= challenge.rank %></h2>
-  <% end %>
+    <% end %>
+    <% @challenges_locked.each do |challenge| %>
+      <div class="locked-challenge-card">
+        <h2><%= challenge.rank %></h2>
+      </div>
+    <% end %>
+  </div>
 </div>

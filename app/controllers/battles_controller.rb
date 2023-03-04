@@ -138,6 +138,7 @@ class BattlesController < ApplicationController
         end
       end
     else
+      # raise
       case skill.effect_target_type
       when "allies"
         targets = bcs_attacker

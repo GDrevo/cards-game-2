@@ -1,7 +1,10 @@
 <div class="battle-container" data-controller="play-attack">
   <% if @card_to_play.battle_team.player == current_user.player %>
-    <div class="players-container">
+    <div class="battle-top-part">
       <h2 id="title-ennemy-target">Select a Target</h2>
+    </div>
+
+    <div class="players-container">
       <div class="players-cards">
         <% @bcs_opponent.each do |card| %>
           <div class="player-card ennemy-card" data-target-id="<%= card.id %>" data-play-attack-target="ennemy">
@@ -20,7 +23,7 @@
               <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
             <% end %>
             <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
-            <%= image_tag card.card.side == "dark" ? "undead" : "human" %>
+            <%= image_tag card.card.side == "dark" ? "death priest" : "knight" %>
             <h3><%= card.card.name %></h3>
             <h5>lvl <%= card.card.level %></h5>
             <input type="hidden" class="target-input" value="<%= card.id %>">
@@ -29,8 +32,11 @@
       </div>
     </div>
 
-    <div class="players-container">
+    <div class="battle-mid-part">
       <h2 class="<%= @skills.any? { |skill| skill.target_type == "Single" && skill.name.include?("Heal") } ? '' : 'hidden' %>" id="title-ally-target">Select a Target</h2>
+    </div>
+
+    <div class="players-container">
       <div class="players-cards">
         <% @bcs_player.each do |card| %>
           <div class="player-card ally-card <%= @card_to_play == card ? "card-playing" : nil %>" data-target-id="<%= card.id %>" data-play-attack-target="ally">
@@ -49,7 +55,7 @@
               <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
             <% end %>
             <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
-            <%= image_tag card.card.side == "dark" ? "undead" : "human" %>
+            <%= image_tag card.card.side == "dark" ? "death priest" : "knight" %>
             <h3><%= card.card.name %></h3>
             <h5>lvl <%= card.card.level %></h5>
           </div>
@@ -118,6 +124,10 @@
     </div>
 
   <% else %>
+    <div class="battle-top-part">
+      <h2 id="title-ennemy-target">Select a Target</h2>
+    </div>
+
     <div class="players-container">
       <div class="players-cards">
         <% @bcs_opponent.each do |card| %>
@@ -137,24 +147,20 @@
               <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
             <% end %>
             <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
-            <%= image_tag card.card.side == "dark" ? "undead" : "human" %>
+            <%= image_tag card.card.side == "dark" ? "death priest" : "knight" %>
             <h3><%= card.card.name %></h3>
             <h5>lvl <%= card.card.level %></h5>
           </div>
         <% end %>
       </div>
     </div>
-    <br>
-    <br>
 
-    <h2><%= @card_to_play.card.name %>'s TURN</h2>
-
-    <%= form_with(url: simulate_turn_battle_path, method: :patch) do |f| %>
-      <%= f.submit "Next" %>
-    <% end %>
-
-    <br>
-    <br>
+    <div class="battle-mid-part">
+      <h2>It's your opponent's turn</h2>
+      <%= form_with(url: simulate_turn_battle_path, method: :patch, class: "next-battle-button") do |f| %>
+        <%= f.submit "Next" %>
+      <% end %>
+    </div>
 
     <div class="players-container">
 
@@ -178,7 +184,7 @@
               <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
             <% end %>
             <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
-            <%= image_tag card.card.side == "dark" ? "undead" : "human" %>
+            <%= image_tag card.card.side == "dark" ? "death priest" : "knight" %>
             <h3><%= card.card.name %></h3>
             <h5>lvl <%= card.card.level %></h5>
           </div>

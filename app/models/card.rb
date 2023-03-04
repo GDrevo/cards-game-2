@@ -315,7 +315,7 @@ class Card < ApplicationRecord
         card:,
         reload_time: 3,
         effect: true,
-        effect_target_type: "same",
+        effect_target_type: "ennemies",
         effect_type: "power",
         curse: true,
         effect_duration: 2,
