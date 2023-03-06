@@ -7,11 +7,25 @@
     <div class="players-container">
       <div class="players-cards">
         <% @bcs_opponent.each do |card| %>
-          <div class="player-card ennemy-card" data-target-id="<%= card.id %>" data-play-attack-target="ennemy">
+        <% if @taunt_present && !card.effect?("taunt") %>
+          <div class="player-card ennemy-card unclickable" data-target-id="<%= card.id %>" data-play-attack-target="ennemy">
+              <div class="damage-taken">
+                <% if card.damage_taken < 0 %>
+                  <p class="dmg-taken">
+                    <%= card.damage_taken %>
+                  </p>
+                <% elsif card.damage_taken > 0 %>
+                  <p class="heal-taken">
+                    +<%= card.damage_taken %>
+                  </p>
+                <% else %>
+                  <p></p>
+                <% end %>
+              </div>
             <div class="effects">
               <% unless card.effects.empty? %>
                 <% card.effects.each do |effect| %>
-                  <div class="effect <%= effect.curse ? "curse" : "boost" %>">
+                  <div class="effect <%= effect.curse ? "curse" : "boost" %>" data-title="<%= effect.name %> <%= effect.curse ? "" : "+" %> <%= effect.intensity %>">
                     <p></p>
                   </div>
                 <% end %>
@@ -28,6 +42,42 @@
             <h5>lvl <%= card.card.level %></h5>
             <input type="hidden" class="target-input" value="<%= card.id %>">
           </div>
+        <% else %>
+          <div class="player-card ennemy-card" data-target-id="<%= card.id %>" data-play-attack-target="ennemy">
+            <div class="damage-taken">
+              <% if card.damage_taken < 0 %>
+                <p class="dmg-taken">
+                  <%= card.damage_taken %>
+                </p>
+              <% elsif card.damage_taken > 0 %>
+                <p class="heal-taken">
+                  +<%= card.damage_taken %>
+                </p>
+              <% else %>
+                <p></p>
+              <% end %>
+            </div>
+          <div class="effects">
+            <% unless card.effects.empty? %>
+              <% card.effects.each do |effect| %>
+                <div class="effect <%= effect.curse ? "curse" : "boost" %>" data-title="<%= effect.name %> <%= effect.curse ? "" : "+" %> <%= effect.intensity %>">
+                  <p></p>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <% if (card.hit_points / card.max_hp.to_f) > 0.3 %>
+            <div class="card-hit-points" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
+          <% else %>
+            <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
+          <% end %>
+          <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
+          <%= image_tag card.card.side == "dark" ? "death priest" : "knight" %>
+          <h3><%= card.card.name %></h3>
+          <h5>lvl <%= card.card.level %></h5>
+          <input type="hidden" class="target-input" value="<%= card.id %>">
+        </div>
+        <% end %>
         <% end %>
       </div>
     </div>
@@ -40,10 +90,23 @@
       <div class="players-cards">
         <% @bcs_player.each do |card| %>
           <div class="player-card ally-card <%= @card_to_play == card ? "card-playing" : nil %>" data-target-id="<%= card.id %>" data-play-attack-target="ally">
+            <div class="damage-taken">
+              <% if card.damage_taken < 0 %>
+                <p class="dmg-taken">
+                  <%= card.damage_taken %>
+                </p>
+              <% elsif card.damage_taken > 0 %>
+                <p class="heal-taken">
+                  +<%= card.damage_taken %>
+                </p>
+              <% else %>
+                <p></p>
+              <% end %>
+            </div>
             <div class="effects">
               <% unless card.effects.empty? %>
                 <% card.effects.each do |effect| %>
-                  <div class="effect <%= effect.curse ? "curse" : "boost" %>">
+                  <div class="effect <%= effect.curse ? "curse" : "boost" %>" data-title="<%= effect.name %> <%= effect.curse ? "-" : "+" %> <%= effect.intensity %>">
                     <p></p>
                   </div>
                 <% end %>
@@ -132,10 +195,23 @@
       <div class="players-cards">
         <% @bcs_opponent.each do |card| %>
           <div class="player-card <%= @card_to_play == card ? "card-playing" : nil %>">
+            <div class="damage-taken">
+              <% if card.damage_taken < 0 %>
+                <p class="dmg-taken">
+                  <%= card.damage_taken %>
+                </p>
+              <% elsif card.damage_taken > 0 %>
+                <p class="heal-taken">
+                  +<%= card.damage_taken %>
+                </p>
+              <% else %>
+                <p></p>
+              <% end %>
+            </div>
             <div class="effects">
               <% unless card.effects.empty? %>
                 <% card.effects.each do |effect| %>
-                  <div class="effect <%= effect.curse ? "curse" : "boost" %>">
+                  <div class="effect <%= effect.curse ? "curse" : "boost" %>" data-title="<%= effect.name %> <%= effect.curse ? "-" : "+" %> <%= effect.intensity %>">
                     <p></p>
                   </div>
                 <% end %>
@@ -169,10 +245,23 @@
         <% @bcs_player.each do |card| %>
 
           <div class="player-card">
+            <div class="damage-taken">
+              <% if card.damage_taken < 0 %>
+                <p class="dmg-taken">
+                  <%= card.damage_taken %>
+                </p>
+              <% elsif card.damage_taken > 0 %>
+                <p class="heal-taken">
+                  +<%= card.damage_taken %>
+                </p>
+              <% else %>
+                <p></p>
+              <% end %>
+            </div>
             <div class="effects">
               <% unless card.effects.empty? %>
                 <% card.effects.each do |effect| %>
-                  <div class="effect <%= effect.curse ? "curse" : "boost" %>">
+                  <div class="effect <%= effect.curse ? "curse" : "boost" %>" data-title="<%= effect.name %> <%= effect.curse ? "-" : "+" %> <%= effect.intensity %>">
                     <p></p>
                   </div>
                 <% end %>

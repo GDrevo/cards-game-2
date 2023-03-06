@@ -95,9 +95,9 @@ class ChallengesController < ApplicationController
     healer_names = ["High Priest", "Battle Medic"]
     tank_names = ["Juggernaut", "Warden"]
 
-    hit_points_attacker = (40..80).to_a
-    hit_points_healer = (35..75).to_a
-    hit_points_tank = (50..90).to_a
+    hit_points_attacker = (40..70).to_a
+    hit_points_healer = (35..60).to_a
+    hit_points_tank = (50..78).to_a
 
     skillset_attacker = (1..3).to_a
     skillset_healer = (12..13).to_a
