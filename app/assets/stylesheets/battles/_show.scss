@@ -2,9 +2,16 @@
   text-align: center;
 }
 
+.battle-container {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .players-cards {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   flex-wrap: wrap;
   padding: 20px;
@@ -46,11 +53,11 @@
 .player-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   // background-color: rgb(20, 20, 20);
   color: rgb(194, 194, 194);
-  padding: 20px;
-  width: 180px;
+  padding: 0 30px;
+  width: 200px;
   height: 250px;
   text-align: center;
   // box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.384);
@@ -98,6 +105,31 @@
   height: 20px;
   margin: 2px;
   border-radius: 5px;
+  position: relative;
+  cursor: help;
+}
+
+.effect::before {
+  content: attr(data-title);
+  position: absolute;
+  top: -50px;
+  left: 0;
+  padding: 10px;
+  background-color: $dark-black;
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s ease-out;
+  z-index: 1;
+}
+
+.effect:hover::before {
+  visibility: visible;
+  opacity: 1;
 }
 
 .curse {
@@ -113,13 +145,13 @@
   gap: 10px;
   align-items: center;
   justify-content: center;
-  height: 10vh;
+  height: 8vh;
 }
 
 .skill-card {
   border-radius: 5px;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   padding: 20px;
   img {
     width: 100%;
@@ -169,18 +201,21 @@
 .card-hit-points {
   background-color: rgb(42, 255, 42);
   height: 5px;
+  min-height: 5px;
   border: 1px solid rgb(194, 194, 194);
 }
 
 .card-hit-points-low {
   background-color: red;
   height: 5px;
+  min-height: 5px;
   border: 1px solid rgb(194, 194, 194);
 }
 
 .card-counter {
   background-color: yellow;
   height: 5px;
+  min-height: 5px;
   border: 1px solid rgb(194, 194, 194);
 }
 
@@ -191,4 +226,31 @@
 .blocked {
   pointer-events: none;
   background-color: $light-black;
+}
+
+.damage-taken {
+  position: relative;
+  top: 0;
+  left: 0;
+  font-size: 30px;
+  font-weight: bold;
+  animation: damageAnimation 3s ease-out forwards;
+}
+
+@keyframes damageAnimation {
+  from { opacity: 1; transform: translateY(+100px); height: 50px; }
+  to { opacity: 0; transform: translateY(-100px); height: 0px; }
+}
+
+.dmg-taken {
+  color: $red;
+}
+
+.heal-taken {
+  color: $green;
+}
+
+.unclickable {
+  pointer-events: none;
+  opacity: 0.5;
 }

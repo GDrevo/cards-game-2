@@ -12,11 +12,11 @@ class Card < ApplicationRecord
     current_xp = self.experience
     self.experience += xp
     self.level += 1
-    new_hp = hit_points + ((7.0 / 100) * hit_points).round
-    new_armor = armor + ((self.level - 1) / 100.0).round
-    new_power = power + ((8.0 / 100) * power).round
-    new_speed = speed + ((self.level - 1) / 100.0).round
-    new_next_level = next_level + (next_level / 10.0).round
+    new_hp = hit_points + (0.07 * hit_points).round
+    new_armor = armor + (armor * 0.02).round
+    new_power = power + (0.08 * power).round
+    new_speed = speed + (speed * 0.03).round
+    new_next_level = next_level + (next_level * 0.1).round
     new_experience = xp - next_level + current_xp
     self.hit_points = new_hp
     self.armor = new_armor
@@ -24,7 +24,7 @@ class Card < ApplicationRecord
     self.speed = new_speed
     self.next_level = new_next_level
     self.experience = new_experience
-    new_experience_given = experience_given + ((8 / 100.0) * experience_given).round
+    new_experience_given = experience_given + (0.08 * experience_given).round
     self.experience_given = new_experience_given
     self.war_power = new_power * new_speed
     save
@@ -58,15 +58,15 @@ class Card < ApplicationRecord
     wp = power * speed
     case prestige
     when 1
-      wp = (wp * 0.75).round
-    when 2
       wp = (wp * 0.9).round
-    when 3
+    when 2
       nil
-    when 4
+    when 3
       wp = (wp * 1.1).round
-    when 5
+    when 4
       wp = (wp * 1.25).round
+    when 5
+      wp = (wp * 1.5).round
     end
     self.war_power = wp
   end

@@ -25,7 +25,7 @@ def card_creator(computer, name, level, hit_points, attributes, skillset_num)
     end
     new_armor = attributes[0]
     repetitions.times do
-      new_armor = (new_armor + (new_armor * 0.05).round)
+      new_armor = (new_armor + (new_armor * 0.02).round)
     end
     new_power = attributes[1]
     repetitions.times do

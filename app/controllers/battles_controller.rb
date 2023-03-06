@@ -26,16 +26,19 @@ class BattlesController < ApplicationController
 
   def show
     @battle = Battle.find(params[:id].to_i)
+
     bcs_player = @battle.bt_player.battle_cards.select { |card| card.dead == false }
     bcs_opponent = @battle.bt_computer.battle_cards.select { |card| card.dead == false }
     @bcs_player = bcs_player.sort_by { |obj| obj.card.name }
     @bcs_opponent = bcs_opponent.sort_by { |obj| obj.card.name }
     if bcs_opponent.any? { |bc| bc.effects.any? { |effect| effect.effect_type == "taunt" } }
+      @taunt_present = true
       @targetable_bcs_opponent = @bcs_opponent.select do |bc|
         bc.effects.any? { |effect| effect.effect_type == "taunt" }
       end
     else
       @targetable_bcs_opponent = @bcs_opponent
+      @taunt_present = false
     end
     if !@bcs_player.all?(&:dead) && !@bcs_opponent.all?(&:dead)
       @card_to_play = play_turn(@bcs_player, @bcs_opponent)
@@ -61,6 +64,11 @@ class BattlesController < ApplicationController
     alive_bcs_player = bcs_player.select { |card| card.dead == false }
     bcs_computer = battle.bt_computer.battle_cards
     alive_bcs_computer = bcs_computer.select { |card| card.dead == false }
+    all_bcs = bcs_player + bcs_computer
+    all_bcs.each do |bc|
+      bc.damage_taken = 0
+      bc.save
+    end
     skill = Skill.find(params[:skill])
     attacker = skill.card
     bc_attacker = (bcs_player.select { |bc| bc.card == attacker }).first
@@ -79,6 +87,7 @@ class BattlesController < ApplicationController
     card_to_play.counter = 0
     card_to_play.save
     session.delete(:card_to_play_id)
+
     redirect_to battle_path(battle)
   end
 
@@ -88,6 +97,11 @@ class BattlesController < ApplicationController
     alive_bcs_player = bcs_player.select { |card| card.dead == false }
     bcs_computer = battle.bt_computer.battle_cards
     alive_bcs_computer = bcs_computer.select { |card| card.dead == false }
+    all_bcs = bcs_player + bcs_computer
+    all_bcs.each do |bc|
+      bc.damage_taken = 0
+      bc.save
+    end
     # 1. Get the skills the card_to_play can use, compute a simple logic to decide which to use
 
     card_to_play = BattleCard.find(session[:card_to_play_id])
@@ -294,8 +308,11 @@ class BattlesController < ApplicationController
       if skill.name.include?("Attack")
         targets = bcs_defender
         targets.each do |target_multi|
+          target_multi.damage_taken = 0
           target_multi.armor > 95 ? target_multi.armor = 95 : nil
-          damage_multi = damage * (100 - target_multi.armor) / 100
+          damage_multi = (damage * (100 - target_multi.armor) / 100).round
+          target_multi.damage_taken = 0 - damage_multi
+
           target_multi.hit_points -= damage_multi
           target_multi.dead = true if target_multi.hit_points <= 0
           target_multi.save
@@ -303,21 +320,30 @@ class BattlesController < ApplicationController
       elsif skill.name.include?("Heal")
         targets = bcs_attacker
         targets.each do |target_multi|
+          target_multi.damage_taken = 0
           target_multi.hit_points += (damage / 1.25).round
+          target_multi.damage_taken = (damage / 1.25).round
+
           target_multi.hit_points > target_multi.max_hp ? target_multi.hit_points = target_multi.max_hp : nil
+
           target_multi.save
         end
       end
     elsif skill.target_type.include?("Single")
       if skill.name.include?("Attack")
+        target.damage_taken = 0
         target.armor > 95 ? target.armor = 95 : nil
-        damage_attack = damage * (100 - target.armor) / 100
+        damage_attack = (damage * (100 - target.armor) / 100).round
         target.hit_points -= damage_attack
+        target.damage_taken = 0 - damage_attack
         target.dead = true if target.hit_points <= 0
+
         target.save
       elsif skill.name.include?("Heal")
+        target.damage_taken = 0
         target.hit_points += (damage / 1.25).round
         target.hit_points > target.max_hp ? target.hit_points = target.max_hp : nil
+        target.damage_taken = (damage / 1.25).round
         target.save
       end
     end
@@ -355,30 +381,30 @@ class BattlesController < ApplicationController
       prestige = card.prestige
       case prestige
       when 1
-        hit_points = (card.hit_points * 0.75).round
-        armor = (card.armor * 0.75).round
-        power = (card.power * 0.75).round
-        speed = (card.speed * 0.75).round
-      when 2
         hit_points = (card.hit_points * 0.9).round
         armor = (card.armor * 0.9).round
         power = (card.power * 0.9).round
         speed = (card.speed * 0.9).round
-      when 3
+      when 2
         hit_points = card.hit_points
         armor = card.armor
         power = card.power
         speed = card.speed
+      when 3
+        hit_points = (card.hit_points * 1.1)
+        armor = (card.armor * 1.1)
+        power = (card.power * 1.1)
+        speed = (card.speed * 1.1)
       when 4
-        hit_points = (card.hit_points * 1.1).round
-        armor = (card.armor * 1.1).round
-        power = (card.power * 1.1).round
-        speed = (card.speed * 1.1).round
-      when 5
         hit_points = (card.hit_points * 1.25).round
         armor = (card.armor * 1.25).round
         power = (card.power * 1.25).round
         speed = (card.speed * 1.25).round
+      when 5
+        hit_points = (card.hit_points * 1.5).round
+        armor = (card.armor * 1.5).round
+        power = (card.power * 1.5).round
+        speed = (card.speed * 1.5).round
       end
       BattleCard.create(hit_points:, armor:, power:, speed:, card:, battle_team:, max_hp: hit_points)
     end

@@ -8,6 +8,7 @@ class CreateBattleCards < ActiveRecord::Migration[7.0]
       t.integer :power
       t.integer :speed
       t.integer :max_hp
+      t.integer :damage_taken, default: 0
       t.references :card, null: false, foreign_key: true
       t.references :battle_team, null: false, foreign_key: true
 

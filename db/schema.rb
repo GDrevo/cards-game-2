@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_155832) do
     t.integer "power"
     t.integer "speed"
     t.integer "max_hp"
+    t.integer "damage_taken", default: 0
     t.bigint "card_id", null: false
     t.bigint "battle_team_id", null: false
     t.datetime "created_at", null: false
