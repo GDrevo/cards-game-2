@@ -6,6 +6,7 @@ class CreateBattles < ActiveRecord::Migration[7.0]
       t.references :challenge, null: false, foreign_key: true
       t.references :bt_computer, null: false
       t.references :bt_player, null: false
+      t.integer :turn_number, default: 1
 
       t.timestamps
     end

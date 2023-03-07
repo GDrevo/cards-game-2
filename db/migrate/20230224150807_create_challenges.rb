@@ -9,6 +9,8 @@ class CreateChallenges < ActiveRecord::Migration[7.0]
       t.integer :reward
       t.references :player, null: false
       t.references :computer, null: false
+      t.string :requirement, default: "none"
+      t.string :epic_card, default: "none"
 
       t.timestamps
     end

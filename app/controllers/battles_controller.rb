@@ -26,6 +26,9 @@ class BattlesController < ApplicationController
 
   def show
     @battle = Battle.find(params[:id].to_i)
+    current_turn = @battle.turn_number
+    current_turn == 1 ? cookies[:last_turn] = 1 : nil
+    # 25
 
     bcs_player = @battle.bt_player.battle_cards.select { |card| card.dead == false }
     bcs_opponent = @battle.bt_computer.battle_cards.select { |card| card.dead == false }
@@ -40,9 +43,18 @@ class BattlesController < ApplicationController
       @targetable_bcs_opponent = @bcs_opponent
       @taunt_present = false
     end
+    # raise
+    card_to_play = play_turn(@bcs_player, @bcs_opponent)
+    if current_turn > cookies[:last_turn].to_i
+      card_to_play.card.skills.each do |skill|
+        skill.counter += 1
+        skill.save
+        cookies[:last_turn] = current_turn
+      end
+    end
+    @card_to_play = card_to_play
+    session[:card_to_play_id] = @card_to_play.id
     if !@bcs_player.all?(&:dead) && !@bcs_opponent.all?(&:dead)
-      @card_to_play = play_turn(@bcs_player, @bcs_opponent)
-      session[:card_to_play_id] = @card_to_play.id
       skills = @card_to_play.card.skills.select { |skill| skill.counter >= skill.reload_time }
       @skills = skills.sort_by(&:id)
     end
@@ -87,6 +99,8 @@ class BattlesController < ApplicationController
     card_to_play.counter = 0
     card_to_play.save
     session.delete(:card_to_play_id)
+    battle.turn_number += 1
+    battle.save
 
     redirect_to battle_path(battle)
   end
@@ -128,6 +142,9 @@ class BattlesController < ApplicationController
     card_to_play.counter = 0
     card_to_play.save
     session.delete(:card_to_play_id)
+    battle.turn_number += 1
+    battle.save
+
     redirect_to battle_path(battle)
   end
 
@@ -195,15 +212,16 @@ class BattlesController < ApplicationController
     if player == battle.player
       # Give shards before changing challenge status in order to check if first time challenge accomplished and give a bonus shard
       challenge = battle.challenge
-      @shard_card = give_shards(player, battle.challenge)
-      player.coins += battle.challenge.reward
+      @shard_card = give_shards(player, challenge)
+      player.coins += challenge.reward
       player.save
       # Set challenge as done, unlock the next one
-      battle.challenge.done = true
-      battle.challenge.save
-      next_challenge = battle.challenge.next(battle.challenge.category)
+      challenge.done = true unless challenge.category.include?("epic") || challenge.category.include?("elite")
+      challenge.save
+      next_challenge = challenge.next(challenge.category)
       next_challenge.unlocked = true if next_challenge
       next_challenge.save if next_challenge
+      manage_strong_challenge if challenge.category.include?("epic") || challenge.category.include?("elite")
       # Give the shards to player_cards and add the coins to player.coins
       player_bcs = battle.bt_player.battle_cards.select { |bc| bc.dead == false }
       computer_bcs = battle.bt_computer.battle_cards
@@ -216,6 +234,17 @@ class BattlesController < ApplicationController
       calculate_experience(player_bcs, computer_bcs)
       redirect_to challenges_path(side: battle.challenge.category)
     end
+  end
+
+  def manage_strong_challenge(challenge)
+    return if challenge.done
+
+    card_name = challenge.epic_card
+    card = challenge.player.cards.select { |c| c.name == card_name }
+    card.prestige_up unless card.prestige == 5
+    card.save
+    challenge.done = true
+    challenge.save
   end
 
   def give_shards(player, challenge)
@@ -362,10 +391,10 @@ class BattlesController < ApplicationController
     all_cards.sort_by!(&:counter)
     all_cards.reverse!
     card = all_cards.find { |battle_card| battle_card.counter >= 100 }
-    card.card.skills.each do |skill|
-      skill.counter += 1
-      skill.save
-    end
+    # card.card.skills.each do |skill|
+    #   skill.counter += 1
+    #   skill.save
+    # end
     card
   end
 

@@ -19,204 +19,204 @@ class User < ApplicationRecord
   def create_cards(player)
     # Attributes Attackers
     attr_weak_slow = {
-      hit_points: 50,
+      hit_points: 100,
       card_type: "attacker",
-      armor: 15,
-      power: 12,
+      armor: 10,
+      power: 16,
       speed: 8,
       player:
     }
     attr_weak_normal = {
-      hit_points: 50,
+      hit_points: 100,
       card_type: "attacker",
-      armor: 15,
-      power: 10,
-      speed: 10,
+      armor: 10,
+      power: 15,
+      speed: 9,
       player:
     }
     attr_weak_quick = {
-      hit_points: 50,
+      hit_points: 100,
       card_type: "attacker",
-      armor: 15,
-      power: 8,
-      speed: 12,
+      armor: 10,
+      power: 14,
+      speed: 10,
       player:
     }
     attr_normal_slow = {
-      hit_points: 60,
+      hit_points: 110,
       card_type: "attacker",
-      armor: 20,
-      power: 17,
-      speed: 13,
+      armor: 12,
+      power: 19,
+      speed: 10,
       player:,
       experience_given: 40
     }
     attr_normal_normal = {
-      hit_points: 60,
+      hit_points: 110,
       card_type: "attacker",
-      armor: 20,
-      power: 15,
-      speed: 15,
+      armor: 12,
+      power: 18,
+      speed: 11,
       player:,
       experience_given: 40
     }
     attr_normal_quick = {
-      hit_points: 60,
+      hit_points: 110,
       card_type: "attacker",
-      armor: 20,
-      power: 13,
-      speed: 17,
+      armor: 12,
+      power: 17,
+      speed: 12,
       player:,
       experience_given: 40
     }
     attr_strong_slow = {
-      hit_points: 70,
+      hit_points: 120,
       card_type: "attacker",
-      armor: 23,
-      power: 20,
-      speed: 16,
+      armor: 14,
+      power: 22,
+      speed: 12,
       player:,
       experience_given: 50
     }
     attr_strong_normal = {
-      hit_points: 70,
+      hit_points: 120,
       card_type: "attacker",
-      armor: 23,
-      power: 18,
-      speed: 18,
+      armor: 14,
+      power: 21,
+      speed: 13,
       player:,
       experience_given: 50
     }
     attr_strong_quick = {
-      hit_points: 70,
+      hit_points: 120,
       card_type: "attacker",
-      armor: 23,
-      power: 16,
-      speed: 20,
+      armor: 14,
+      power: 20,
+      speed: 14,
       player:,
       experience_given: 50
     }
     attr_elite_slow = {
-      hit_points: 75,
+      hit_points: 125,
       card_type: "attacker",
-      armor: 25,
-      power: 22,
-      speed: 18,
+      armor: 14,
+      power: 24,
+      speed: 14,
       player:,
       experience_given: 60
     }
     attr_elite_quick = {
-      hit_points: 75,
+      hit_points: 125,
       card_type: "attacker",
-      armor: 25,
-      power: 18,
-      speed: 22,
+      armor: 14,
+      power: 23,
+      speed: 15,
       player:,
       experience_given: 60
     }
     # Attributes Healers
     weak_heal_s = {
-      hit_points: 45,
+      hit_points: 90,
       card_type: "healer",
-      armor: 10,
-      power: 12,
+      armor: 8,
+      power: 10,
       speed: 8,
       player:
     }
     weak_heal_q = {
-      hit_points: 45,
+      hit_points: 90,
       card_type: "healer",
-      armor: 10,
-      power: 11,
-      speed: 9,
+      armor: 8,
+      power: 9,
+      speed: 10,
       player:
     }
     normal_heal_s = {
-      hit_points: 55,
+      hit_points: 100,
       card_type: "healer",
-      armor: 12,
-      power: 17,
-      speed: 13,
+      armor: 10,
+      power: 12,
+      speed: 10,
       player:,
       experience_given: 40
     }
     normal_heal_q = {
-      hit_points: 55,
+      hit_points: 100,
       card_type: "healer",
-      armor: 12,
-      power: 16,
-      speed: 14,
+      armor: 10,
+      power: 11,
+      speed: 12,
       player:,
       experience_given: 40
     }
     strong_heal_s = {
-      hit_points: 65,
+      hit_points: 110,
       card_type: "healer",
-      armor: 15,
-      power: 20,
-      speed: 16,
+      armor: 12,
+      power: 14,
+      speed: 12,
       player:,
       experience_given: 50
     }
     strong_heal_q = {
-      hit_points: 65,
+      hit_points: 110,
       card_type: "healer",
-      armor: 15,
-      power: 16,
-      speed: 20,
+      armor: 12,
+      power: 13,
+      speed: 14,
       player:,
       experience_given: 50
     }
     # Attributes Tanks
     weak_tank_s = {
-      hit_points: 60,
+      hit_points: 125,
       card_type: "tank",
-      armor: 20,
+      armor: 14,
       power: 5,
       speed: 8,
       player:
     }
     weak_tank_q = {
-      hit_points: 60,
+      hit_points: 125,
       card_type: "tank",
-      armor: 20,
+      armor: 14,
       power: 4,
       speed: 9,
       player:
     }
     normal_tank_s = {
-      hit_points: 70,
+      hit_points: 135,
       card_type: "tank",
-      armor: 22,
-      power: 8,
+      armor: 16,
+      power: 7,
       speed: 10,
       player:,
       experience_given: 40
     }
     normal_tank_q = {
-      hit_points: 70,
+      hit_points: 135,
       card_type: "tank",
-      armor: 22,
-      power: 7,
+      armor: 16,
+      power: 6,
       speed: 11,
       player:,
       experience_given: 40
     }
     strong_tank_s = {
-      hit_points: 80,
+      hit_points: 145,
       card_type: "tank",
-      armor: 25,
-      power: 12,
-      speed: 13,
+      armor: 18,
+      power: 9,
+      speed: 12,
       player:,
       experience_given: 50
     }
     strong_tank_q = {
-      hit_points: 80,
+      hit_points: 145,
       card_type: "tank",
-      armor: 25,
-      power: 11,
-      speed: 14,
+      armor: 18,
+      power: 8,
+      speed: 13,
       player:,
       experience_given: 50
     }
@@ -333,6 +333,10 @@ class User < ApplicationRecord
     attr_dark_one = { category: "dark", player:, reward: 5, shards: "normal weak" }
     attr_dark_two = { category: "dark", player:, reward: 10, shards: "normal normal" }
 
+    attr_epic = { category: "epic", player:, unlocked: false, done: false }
+
+    attr_elite = { category: "elite", player:, unlocked: false, done: false }
+
     Challenge.create(
       [
         # LIGHT CHALLENGES
@@ -437,7 +441,82 @@ class User < ApplicationRecord
         { computer: Player.where(code: "dark 47").first, rank: 47 }.merge(attr_dark_two),
         { computer: Player.where(code: "dark 48").first, rank: 48 }.merge(attr_dark_two),
         { computer: Player.where(code: "dark 49").first, rank: 49 }.merge(attr_dark_two),
-        { computer: Player.where(code: "dark 50").first, rank: 50 }.merge(attr_dark_two)
+        { computer: Player.where(code: "dark 50").first, rank: 50 }.merge(attr_dark_two),
+
+        # EPIC CHALLENGES
+        # HUMAN
+        # PALADIN
+        { computer: Player.where(code: "epic Paladin 1").first, rank: 1, requirement: "Swordsman,Axeman,Spearman,Shieldbearer,Brute", epic_card: "Paladin" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Paladin 2").first, rank: 2, requirement: "Swordsman,Axeman,Spearman,Shieldbearer,Brute", epic_card: "Paladin" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Paladin 3").first, rank: 3, requirement: "Swordsman,Axeman,Spearman,Shieldbearer,Brute", epic_card: "Paladin" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Paladin 4").first, rank: 4, requirement: "Swordsman,Axeman,Spearman,Shieldbearer,Brute", epic_card: "Paladin" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Paladin 5").first, rank: 5, requirement: "Swordsman,Axeman,Spearman,Shieldbearer,Brute", epic_card: "Paladin" }.merge(attr_epic),
+        # BERSERKER
+        { computer: Player.where(code: "epic Berserker 1").first, rank: 1, requirement: "Cavalry,Mage Apprentice,Marksman,Priestess,Cleric", epic_card: "Berserker" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Berserker 2").first, rank: 2, requirement: "Cavalry,Mage Apprentice,Marksman,Priestess,Cleric", epic_card: "Berserker" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Berserker 3").first, rank: 3, requirement: "Cavalry,Mage Apprentice,Marksman,Priestess,Cleric", epic_card: "Berserker" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Berserker 4").first, rank: 4, requirement: "Cavalry,Mage Apprentice,Marksman,Priestess,Cleric", epic_card: "Berserker" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Berserker 5").first, rank: 5, requirement: "Cavalry,Mage Apprentice,Marksman,Priestess,Cleric", epic_card: "Berserker" }.merge(attr_epic),
+        # KNIGHT
+        { computer: Player.where(code: "epic Knight 1").first, rank: 1, requirement: "Swordsman,Alchemist,Herbalist,Guardian,Crossbowman", epic_card: "Knight" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Knight 2").first, rank: 2, requirement: "Swordsman,Alchemist,Herbalist,Guardian,Crossbowman", epic_card: "Knight" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Knight 3").first, rank: 3, requirement: "Swordsman,Alchemist,Herbalist,Guardian,Crossbowman", epic_card: "Knight" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Knight 4").first, rank: 4, requirement: "Swordsman,Alchemist,Herbalist,Guardian,Crossbowman", epic_card: "Knight" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Knight 5").first, rank: 5, requirement: "Swordsman,Alchemist,Herbalist,Guardian,Crossbowman", epic_card: "Knight" }.merge(attr_epic),
+        # MAGE
+        { computer: Player.where(code: "epic Mage 1").first, rank: 1, requirement: "Squire,Footman,Archer,Guardian,Crusader", epic_card: "Mage" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Mage 2").first, rank: 2, requirement: "Squire,Footman,Archer,Guardian,Crusader", epic_card: "Mage" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Mage 3").first, rank: 3, requirement: "Squire,Footman,Archer,Guardian,Crusader", epic_card: "Mage" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Mage 4").first, rank: 4, requirement: "Squire,Footman,Archer,Guardian,Crusader", epic_card: "Mage" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Mage 5").first, rank: 5, requirement: "Squire,Footman,Archer,Guardian,Crusader", epic_card: "Mage" }.merge(attr_epic),
+        # CAPTAIN
+        { computer: Player.where(code: "epic Captain 1").first, rank: 1, requirement: "Acolyte,Druid,Crusader,Commander,Cleric", epic_card: "Captain" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Captain 2").first, rank: 2, requirement: "Acolyte,Druid,Crusader,Commander,Cleric", epic_card: "Captain" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Captain 3").first, rank: 3, requirement: "Acolyte,Druid,Crusader,Commander,Cleric", epic_card: "Captain" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Captain 4").first, rank: 4, requirement: "Acolyte,Druid,Crusader,Commander,Cleric", epic_card: "Captain" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Captain 5").first, rank: 5, requirement: "Acolyte,Druid,Crusader,Commander,Cleric", epic_card: "Captain" }.merge(attr_epic),
+        # COMMANDER
+        { computer: Player.where(code: "epic Commander 1").first, rank: 1, requirement: "Militia,Scout,Alchemist,Herbalist,Shieldbearer", epic_card: "Commander" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Commander 2").first, rank: 2, requirement: "Militia,Scout,Alchemist,Herbalist,Shieldbearer", epic_card: "Commander" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Commander 3").first, rank: 3, requirement: "Militia,Scout,Alchemist,Herbalist,Shieldbearer", epic_card: "Commander" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Commander 4").first, rank: 4, requirement: "Militia,Scout,Alchemist,Herbalist,Shieldbearer", epic_card: "Commander" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Commander 5").first, rank: 5, requirement: "Militia,Scout,Alchemist,Herbalist,Shieldbearer", epic_card: "Commander" }.merge(attr_epic),
+        # HIGH PRIEST
+        { computer: Player.where(code: "epic High Priest 1").first, rank: 1, requirement: "Brute,Guardian,Swordsman,Marksman,Cleric", epic_card: "High Priest" }.merge(attr_epic),
+        { computer: Player.where(code: "epic High Priest 2").first, rank: 2, requirement: "Brute,Guardian,Swordsman,Marksman,Cleric", epic_card: "High Priest" }.merge(attr_epic),
+        { computer: Player.where(code: "epic High Priest 3").first, rank: 3, requirement: "Brute,Guardian,Swordsman,Marksman,Cleric", epic_card: "High Priest" }.merge(attr_epic),
+        { computer: Player.where(code: "epic High Priest 4").first, rank: 4, requirement: "Brute,Guardian,Swordsman,Marksman,Cleric", epic_card: "High Priest" }.merge(attr_epic),
+        { computer: Player.where(code: "epic High Priest 5").first, rank: 5, requirement: "Brute,Guardian,Swordsman,Marksman,Cleric", epic_card: "High Priest" }.merge(attr_epic),
+        # BATTLE MEDIC
+        { computer: Player.where(code: "epic Battle Medic 1").first, rank: 1, requirement: "Axeman,Mage Apprentice,Priestess,Priest,Medic", epic_card: "Battle Medic" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Battle Medic 2").first, rank: 2, requirement: "Axeman,Mage Apprentice,Priestess,Priest,Medic", epic_card: "Battle Medic" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Battle Medic 3").first, rank: 3, requirement: "Axeman,Mage Apprentice,Priestess,Priest,Medic", epic_card: "Battle Medic" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Battle Medic 4").first, rank: 4, requirement: "Axeman,Mage Apprentice,Priestess,Priest,Medic", epic_card: "Battle Medic" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Battle Medic 5").first, rank: 5, requirement: "Axeman,Mage Apprentice,Priestess,Priest,Medic", epic_card: "Battle Medic" }.merge(attr_epic),
+        # JUGGERNAUT
+        { computer: Player.where(code: "epic Juggernaut 1").first, rank: 1, requirement: "Shieldbearer,Brute,Guardian,Druid,Cavalry", epic_card: "Juggernaut" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Juggernaut 2").first, rank: 2, requirement: "Shieldbearer,Brute,Guardian,Druid,Cavalry", epic_card: "Juggernaut" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Juggernaut 3").first, rank: 3, requirement: "Shieldbearer,Brute,Guardian,Druid,Cavalry", epic_card: "Juggernaut" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Juggernaut 4").first, rank: 4, requirement: "Shieldbearer,Brute,Guardian,Druid,Cavalry", epic_card: "Juggernaut" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Juggernaut 5").first, rank: 5, requirement: "Shieldbearer,Brute,Guardian,Druid,Cavalry", epic_card: "Juggernaut" }.merge(attr_epic),
+        # WARDEN
+        { computer: Player.where(code: "epic Warden 1").first, rank: 1, requirement: "Archer,Medic,Spearman,Alchemist,Crusader", epic_card: "Warden" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Warden 2").first, rank: 2, requirement: "Archer,Medic,Spearman,Alchemist,Crusader", epic_card: "Warden" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Warden 3").first, rank: 3, requirement: "Archer,Medic,Spearman,Alchemist,Crusader", epic_card: "Warden" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Warden 4").first, rank: 4, requirement: "Archer,Medic,Spearman,Alchemist,Crusader", epic_card: "Warden" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Warden 5").first, rank: 5, requirement: "Archer,Medic,Spearman,Alchemist,Crusader", epic_card: "Warden" }.merge(attr_epic),
+        # KING
+        { computer: Player.where(code: "epic King 1").first, rank: 1, requirement: "Paladin,Berserker,Knight,High Priest,Juggernaut", epic_card: "King" }.merge(attr_elite),
+        { computer: Player.where(code: "epic King 2").first, rank: 2, requirement: "Paladin,Berserker,Knight,High Priest,Juggernaut", epic_card: "King" }.merge(attr_elite),
+        { computer: Player.where(code: "epic King 3").first, rank: 3, requirement: "Paladin,Berserker,Knight,High Priest,Juggernaut", epic_card: "King" }.merge(attr_elite),
+        { computer: Player.where(code: "epic King 4").first, rank: 4, requirement: "Paladin,Berserker,Knight,High Priest,Juggernaut", epic_card: "King" }.merge(attr_elite),
+        { computer: Player.where(code: "epic King 5").first, rank: 5, requirement: "Paladin,Berserker,Knight,High Priest,Juggernaut", epic_card: "King" }.merge(attr_elite),
+        # QUEEN
+        { computer: Player.where(code: "epic Queen 1").first, rank: 1, requirement: "Mage,Captain,Commander,Battle Medic,Warden", epic_card: "Queen" }.merge(attr_elite),
+        { computer: Player.where(code: "epic Queen 2").first, rank: 2, requirement: "Mage,Captain,Commander,Battle Medic,Warden", epic_card: "Queen" }.merge(attr_elite),
+        { computer: Player.where(code: "epic Queen 3").first, rank: 3, requirement: "Mage,Captain,Commander,Battle Medic,Warden", epic_card: "Queen" }.merge(attr_elite),
+        { computer: Player.where(code: "epic Queen 4").first, rank: 4, requirement: "Mage,Captain,Commander,Battle Medic,Warden", epic_card: "Queen" }.merge(attr_elite),
+        { computer: Player.where(code: "epic Queen 5").first, rank: 5, requirement: "Mage,Captain,Commander,Battle Medic,Warden", epic_card: "Queen" }.merge(attr_elite)
       ]
     )
   end
