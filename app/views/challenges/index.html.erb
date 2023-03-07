@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-        <% chlgs.each do |challenge| %>
+        <% chlgs.sort_by(&:rank).each do |challenge| %>
           <% if challenge.unlocked %>
             <%= link_to challenge_path(challenge) do %>
               <div class="challenge-card">
