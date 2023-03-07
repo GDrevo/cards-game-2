@@ -14,9 +14,10 @@ class Player < ApplicationRecord
   end
 
   def check_challenge_unlock
-    all_challenges = challenges.where(category.include?("epic")).or(challenges.where(category.include?("elite")))
-    challenges_to_check = all_challenges.where(unlocked: false)
-
+    epic_challenges = player_challenges.where(category: "epic")
+    elite_challenges = player_challenges.where(category: "elite")
+    all_challenges = epic_challenges + elite_challenges
+    challenges_to_check = all_challenges.select { |challenge| challenge.unlocked == false }
     challenges_to_check.each do |challenge|
       # challenge.requirement = "Paladin,Berserker,Cleric,Priest,Captain"
       prestige = challenge.rank
@@ -24,7 +25,8 @@ class Player < ApplicationRecord
       req_cards = []
       req.each do |card_name|
         card_checked = cards.where(name: card_name).first
-        req_cards << card_checked.prestige >= prestige ? card_checked : next
+        # card_checked.prestige.to_i == 0 ? next : nil
+        card_checked.prestige < prestige ? next : req_cards << card_checked
       end
       req.size == req_cards.size && challenge.unlocked = true
       req.size == req_cards.size && challenge.save
