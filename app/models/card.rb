@@ -2,9 +2,11 @@ class Card < ApplicationRecord
   belongs_to :player
   has_many :skills
   has_many :battle_cards
+  has_one_attached :photo
 
   after_create :create_skills
   before_save :calculate_war_power
+  before_save :attach_photo
 
   def level_up(xp)
     return if level == 50
@@ -15,7 +17,7 @@ class Card < ApplicationRecord
     new_hp = hit_points + (0.07 * hit_points).round
     new_armor = armor + (armor * 0.02).round
     new_power = power + (0.08 * power).round
-    new_speed = speed + (speed * 0.03).round
+    new_speed = speed + (speed * 0.02).round
     new_next_level = next_level + (next_level * 0.1).round
     new_experience = xp - next_level + current_xp
     self.hit_points = new_hp
@@ -26,30 +28,31 @@ class Card < ApplicationRecord
     self.experience = new_experience
     new_experience_given = experience_given + (0.08 * experience_given).round
     self.experience_given = new_experience_given
-    self.war_power = new_power * new_speed
     save
   end
 
   def prestige_up
+    shards == next_prestige ? shards_stock = 0 : shards_stock = shards - next_prestige
     case prestige
     when 0
       self.unlocked = true
       self.prestige = 1
-      self.next_prestige = 25
+      self.next_prestige = 10
     when 1
       self.prestige = 2
-      self.next_prestige = 50
+      self.next_prestige = 25
     when 2
       self.prestige = 3
-      self.next_prestige = 75
+      self.next_prestige = 50
     when 3
       self.prestige = 4
-      self.next_prestige = 100
+      self.next_prestige = 75
     when 4
       self.prestige = 5
     end
-    self.shards = 0
+    self.shards = shards_stock
     save
+    player.check_challenge_unlock
   end
 
   private
@@ -57,16 +60,14 @@ class Card < ApplicationRecord
   def calculate_war_power
     wp = power * speed
     case prestige
-    when 1
-      wp = (wp * 0.9).round
     when 2
-      nil
+      wp = (power + 25) * (speed + 1)
     when 3
-      wp = (wp * 1.1).round
+      wp = (power + 75) * (speed + 2)
     when 4
-      wp = (wp * 1.25).round
+      wp = (power + 150) * (speed + 3)
     when 5
-      wp = (wp * 1.5).round
+      wp = (power + 250) * (speed + 5)
     end
     self.war_power = wp
   end
@@ -735,6 +736,19 @@ class Card < ApplicationRecord
       skillset_21.each do |skill|
         Skill.create(skill)
       end
+    end
+  end
+
+  def attach_photo
+    return if photo.attached?
+
+    case side
+    when "light"
+      photo.attach(io: File.open('app/assets/images/knight.png'), filename: 'knight.png', content_type: "image/png")
+    when "dark"
+      photo.attach(io: File.open('app/assets/images/deathpriest.png'), filename: 'deathpriest.png', content_type: "image/png")
+    else
+      photo.attach(io: File.open('app/assets/images/undead.png'), filename: 'undead.png', content_type: "image/png")
     end
   end
 end

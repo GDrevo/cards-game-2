@@ -87,3 +87,24 @@
     text-align: center;
   }
 }
+
+.epic-challenges {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: space-evenly;
+  h2 {
+    width: 25%;
+  }
+}
+
+.modal-content {
+  background-color: $dark-blue;
+  text-align: center;
+  padding: 20px;
+  border-radius: 5px;
+  h3 {
+    padding: 20px;
+    color: $light-blue;
+  }
+}

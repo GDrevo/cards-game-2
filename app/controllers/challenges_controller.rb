@@ -3,7 +3,6 @@ class ChallengesController < ApplicationController
     user = current_user
     player = user.player
     daily_challenges = player.player_challenges.where(category: "daily")
-    # raise
     if daily_challenges.empty?
       create_daily_challenges(daily_challenges, player)
     end
@@ -13,10 +12,45 @@ class ChallengesController < ApplicationController
     @challenges = player.player_challenges.where(unlocked: true)
     @challenges_locked = player.player_challenges.where(unlocked: false)
     if params[:side].present?
-      @challenges = @challenges.where(category: params[:side])
-      @challenges = @challenges.sort_by(&:rank)
-      @challenges_locked = @challenges_locked.where(category: params[:side])
-      @challenges_locked = @challenges_locked.sort_by(&:rank)
+      if params[:side] == "epic"
+        all_challenges = player.player_challenges.where(category: params[:side])
+        paladin_challenges = all_challenges.where(epic_card: "Paladin")
+        berserker_challenges = all_challenges.where(epic_card: "Berserker")
+        knight_challenges = all_challenges.where(epic_card: "Knight")
+        mage_challenges = all_challenges.where(epic_card: "Mage")
+        captain_challenges = all_challenges.where(epic_card: "Captain")
+        commander_challenges = all_challenges.where(epic_card: "Commander")
+        highpriest_challenges = all_challenges.where(epic_card: "High Priest")
+        battlemedic_challenges = all_challenges.where(epic_card: "Battle Medic")
+        juggernaut_challenges = all_challenges.where(epic_card: "Juggernaut")
+        warden_challenges = all_challenges.where(epic_card: "Warden")
+        @all_challenges = [
+          paladin_challenges,
+          berserker_challenges,
+          knight_challenges,
+          mage_challenges,
+          captain_challenges,
+          commander_challenges,
+          highpriest_challenges,
+          battlemedic_challenges,
+          juggernaut_challenges,
+          warden_challenges
+        ]
+      elsif params[:side] == "elite"
+        all_challenges = player.player_challenges.where(category: params[:side])
+        king_challenges = all_challenges.where(epic_card: "King")
+        queen_challenges = all_challenges.where(epic_card: "Queen")
+        @all_challenges = [
+          king_challenges,
+          queen_challenges
+        ]
+      else
+        @challenges = @challenges.where(category: params[:side])
+        @challenges = @challenges.sort_by(&:rank)
+        @challenges_locked = @challenges_locked.where(category: params[:side])
+        @challenges_locked = @challenges_locked.sort_by(&:rank)
+      end
+      # raise
     end
   end
 
