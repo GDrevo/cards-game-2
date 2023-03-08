@@ -441,9 +441,9 @@ class BattlesController < ApplicationController
   end
 
   def decision_skill(card, bcs_player, bcs_computer)
-    skills = card.card.skills
-    heals = card.card.skills.select { |skill| skill.name.include?("Heal") }
-    attacks = card.card.skills.select { |skill| skill.name.include?("Attack") }
+    skills = card.card.skills.select { |skill| skill.counter >= skill.reload_time }
+    heals = skills.select { |skill| skill.name.include?("Heal") }
+    attacks = skills.select { |skill| skill.name.include?("Attack") }
     allies_alive = bcs_computer.where(dead: false).size
     ennemies_alive = bcs_player.where(dead: false).size
     allies_injured = (bcs_computer.select { |battle_card| battle_card.hit_points.between?(1, 80 * battle_card.max_hp / 100) }).size

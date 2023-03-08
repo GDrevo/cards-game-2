@@ -33,7 +33,7 @@ def card_creator(computer, name, level, hit_points, attributes, skillset_num)
     end
     new_speed = attributes[2]
     repetitions.times do
-      new_speed = (new_speed + (new_speed * 0.05).round)
+      new_speed = (new_speed + (new_speed * 0.02).round)
     end
     new_xp_given = attributes[3]
     repetitions.times do

@@ -225,11 +225,11 @@ class User < ApplicationRecord
       [
         # HUMAN ATTACKER CARDS
         # WEAK
-        { name: "Squire", side: "light", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 25, skillset: 1 }.merge(attr_weak_slow),
-        { name: "Crossbowman", side: "light", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 25, skillset: 2 }.merge(attr_weak_slow),
-        { name: "Militia", side: "light", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 25, skillset: 1 }.merge(attr_weak_normal),
-        { name: "Footman", side: "light", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 25, skillset: 2 }.merge(attr_weak_normal),
-        { name: "Archer", side: "light", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 25, skillset: 1 }.merge(attr_weak_quick),
+        { name: "Squire", side: "light", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 5, skillset: 1 }.merge(attr_weak_slow),
+        { name: "Crossbowman", side: "light", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 5, skillset: 2 }.merge(attr_weak_slow),
+        { name: "Militia", side: "light", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 5, skillset: 1 }.merge(attr_weak_normal),
+        { name: "Footman", side: "light", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 5, skillset: 2 }.merge(attr_weak_normal),
+        { name: "Archer", side: "light", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 5, skillset: 1 }.merge(attr_weak_quick),
         { name: "Scout", side: "light", cat: "normal weak", skillset: 2 }.merge(attr_weak_quick),
         # NORMAL
         { name: "Swordsman", side: "light", cat: "normal normal", skillset: 1 }.merge(attr_normal_slow),
@@ -275,11 +275,11 @@ class User < ApplicationRecord
 
         # UNDEAD ATTACKER CARDS
         # WEAK
-        { name: "Skeleton Warrior", side: "dark", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 25, skillset: 1 }.merge(attr_weak_slow),
-        { name: "Zombie", side: "dark", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 25, skillset: 2 }.merge(attr_weak_slow),
-        { name: "Rotting Corpse", side: "dark", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 25, skillset: 1 }.merge(attr_weak_normal),
-        { name: "Wraith", side: "dark", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 25, skillset: 2 }.merge(attr_weak_normal),
-        { name: "Skeletal Archer", side: "dark", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 25, skillset: 1}.merge(attr_weak_quick),
+        { name: "Skeleton Warrior", side: "dark", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 5, skillset: 1 }.merge(attr_weak_slow),
+        { name: "Zombie", side: "dark", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 5, skillset: 2 }.merge(attr_weak_slow),
+        { name: "Rotting Corpse", side: "dark", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 5, skillset: 1 }.merge(attr_weak_normal),
+        { name: "Wraith", side: "dark", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 5, skillset: 2 }.merge(attr_weak_normal),
+        { name: "Skeletal Archer", side: "dark", cat: "normal weak", unlocked: true, prestige: 1, next_prestige: 5, skillset: 1}.merge(attr_weak_quick),
         { name: "Ghoul", side: "dark", cat: "normal weak", skillset: 2 }.merge(attr_weak_quick),
         # NORMAL
         { name: "Death Knight", side: "dark", cat: "normal normal", skillset: 1 }.merge(attr_normal_slow),

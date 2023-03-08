@@ -37,16 +37,16 @@ class Card < ApplicationRecord
     when 0
       self.unlocked = true
       self.prestige = 1
-      self.next_prestige = 10
+      self.next_prestige = 5
     when 1
       self.prestige = 2
-      self.next_prestige = 25
+      self.next_prestige = 10
     when 2
       self.prestige = 3
-      self.next_prestige = 50
+      self.next_prestige = 25
     when 3
       self.prestige = 4
-      self.next_prestige = 75
+      self.next_prestige = 50
     when 4
       self.prestige = 5
     end
@@ -742,13 +742,28 @@ class Card < ApplicationRecord
   def attach_photo
     return if photo.attached?
 
-    case side
-    when "light"
-      photo.attach(io: File.open('app/assets/images/knight.png'), filename: 'knight.png', content_type: "image/png")
-    when "dark"
-      photo.attach(io: File.open('app/assets/images/deathpriest.png'), filename: 'deathpriest.png', content_type: "image/png")
+    case name
+    when "Berserker"
+      photo.attach(io: File.open('app/assets/images/berserker.png'), filename: 'berserker.png', content_type: "image/png")
+    when "Paladin"
+      photo.attach(io: File.open('app/assets/images/paladin.png'), filename: 'paladin.png', content_type: "image/png")
+    when "Crypt Sentinel"
+      photo.attach(io: File.open('app/assets/images/crypt sentinel.png'), filename: 'crypt sentinel.png', content_type: "image/png")
+    when "Death Priest"
+      photo.attach(io: File.open('app/assets/images/death priest.png'), filename: 'death priest.png', content_type: "image/png")
+    when "Skeleton Warrior"
+      photo.attach(io: File.open('app/assets/images/skeleton warrior.png'), filename: 'skeleton warrior.png', content_type: "image/png")
+    when "Zombie Brute"
+      photo.attach(io: File.open('app/assets/images/zombie brute.png'), filename: 'zombie brute.png', content_type: "image/png")
     else
-      photo.attach(io: File.open('app/assets/images/undead.png'), filename: 'undead.png', content_type: "image/png")
+      case side
+      when "light"
+        photo.attach(io: File.open('app/assets/images/paladin.png'), filename: 'paladin.png', content_type: "image/png")
+      when "dark"
+        photo.attach(io: File.open('app/assets/images/death priest.png'), filename: 'death priest.png', content_type: "image/png")
+      else
+        photo.attach(io: File.open('app/assets/images/zombie brute.png'), filename: 'zombie brute.png', content_type: "image/png")
+      end
     end
   end
 end
