@@ -27,27 +27,19 @@ class OffersController < ApplicationController
 
   def create_new_offers(player)
     player.offers.empty? ? nil : player.offers.destroy_all
-    10.times do
+    20.times do
       random = rand(1..100)
-      if random > 95
-        cards = Card.where(cat: "epic")
-        card = cards.sample
-        # # 5% 2 shards strong
-        Offer.create(player:, price: 200, shard_card: card.name, shard_number: 2)
-      elsif random > 90
-        # # 5% 1 shard strong
-        cards = Card.where(cat: "epic")
-        card = cards.sample
-        Offer.create(player:, price: 100, shard_card: card.name, shard_number: 1)
-      elsif random > 85
+      if random > 85
         # # 5% 5 shards normal
         cards = Card.where(cat: "daily normal")
         card = cards.sample
+        # raise
         Offer.create(player:, price: 250, shard_card: card.name, shard_number: 5)
       elsif random > 60
         # # 25% 2 shards normal
         cards = Card.where(cat: "normal normal")
         card = cards.sample
+        # raise
         Offer.create(player:, price: 100, shard_card: card.name, shard_number: 2)
       elsif random > 50
         # # 10% 10 shards weak

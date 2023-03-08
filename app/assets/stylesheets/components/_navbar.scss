@@ -5,10 +5,10 @@
   top: 0;
   background-color: $dark-blue;
   a {
-    color: white;
+    color: white !important;
   }
   a:hover {
-    color: $light-blue;
+    color: $light-blue !important;
   }
 }
 
@@ -22,7 +22,7 @@
 }
 
 .coins-icon {
-  width: 30px;
+  width: 20px;
 }
 
 .navbar-lewagon .navbar-collapse {
