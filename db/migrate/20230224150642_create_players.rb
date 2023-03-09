@@ -5,6 +5,7 @@ class CreatePlayers < ActiveRecord::Migration[7.0]
       t.references :user, foreign_key: true
       t.string :code
       t.integer :coins, default: 0
+      t.integer :rank
 
       t.timestamps
     end
