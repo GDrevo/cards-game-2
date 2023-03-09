@@ -31,27 +31,28 @@ class OffersController < ApplicationController
       random = rand(1..100)
       if random > 85
         # # 5% 5 shards normal
-        cards = Card.where(cat: "daily normal")
+        cards = player.cards.where(cat: "daily normal")
         card = cards.sample
         # raise
         Offer.create(player:, price: 250, shard_card: card.name, shard_number: 5)
       elsif random > 60
         # # 25% 2 shards normal
-        cards = Card.where(cat: "normal normal")
+        cards = player.cards.where(cat: "normal normal")
         card = cards.sample
         # raise
         Offer.create(player:, price: 100, shard_card: card.name, shard_number: 2)
       elsif random > 50
         # # 10% 10 shards weak
-        cards = Card.where(cat: "daily weak")
+        cards = player.cards.where(cat: "daily weak")
         card = cards.sample
         Offer.create(player:, price: 250, shard_card: card.name, shard_number: 10)
       else
         # # 50% 5 shards weak
-        cards = Card.where(cat: "normal weak")
+        cards = player.cards.where(cat: "normal weak")
         card = cards.sample
         Offer.create(player:, price: 125, shard_card: card.name, shard_number: 5)
       end
     end
+    redirect_to offers_path
   end
 end

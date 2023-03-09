@@ -5,8 +5,8 @@ class Card < ApplicationRecord
   has_one_attached :photo
 
   after_create :create_skills
+  after_create :attach_photo
   before_save :calculate_war_power
-  before_save :attach_photo
 
   def level_up(xp)
     return if level == 50
@@ -743,6 +743,12 @@ class Card < ApplicationRecord
     return if photo.attached?
 
     case name
+    when "Guardian"
+      photo.attach(io: File.open('app/assets/images/guardian.png'), filename: 'guardian.png', content_type: "image/png")
+    when "Commander"
+      photo.attach(io: File.open('app/assets/images/commander.png'), filename: 'commander.png', content_type: "image/png")
+    when "Death Weaver"
+      photo.attach(io: File.open('app/assets/images/death weaver.png'), filename: 'death weaver.png', content_type: "image/png")
     when "Berserker"
       photo.attach(io: File.open('app/assets/images/berserker.png'), filename: 'berserker.png', content_type: "image/png")
     when "Paladin"
@@ -765,5 +771,6 @@ class Card < ApplicationRecord
         photo.attach(io: File.open('app/assets/images/zombie brute.png'), filename: 'zombie brute.png', content_type: "image/png")
       end
     end
+    save
   end
 end
