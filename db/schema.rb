@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_07_143640) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_09_195003) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -157,6 +157,56 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_143640) do
     t.index ["user_id"], name: "index_players_on_user_id"
   end
 
+  create_table "pvp_battle_cards", force: :cascade do |t|
+    t.boolean "dead", default: false
+    t.integer "counter", default: 0
+    t.integer "hit_points"
+    t.integer "armor"
+    t.integer "power"
+    t.integer "speed"
+    t.integer "max_hp"
+    t.integer "damage_taken", default: 0
+    t.bigint "card_id", null: false
+    t.bigint "pvp_battle_team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_pvp_battle_cards_on_card_id"
+    t.index ["pvp_battle_team_id"], name: "index_pvp_battle_cards_on_pvp_battle_team_id"
+  end
+
+  create_table "pvp_battle_teams", force: :cascade do |t|
+    t.bigint "player_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_pvp_battle_teams_on_player_id"
+  end
+
+  create_table "pvp_battles", force: :cascade do |t|
+    t.string "result"
+    t.bigint "player_id", null: false
+    t.bigint "bt_opponent_id", null: false
+    t.bigint "bt_player_id", null: false
+    t.integer "turn_number", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bt_opponent_id"], name: "index_pvp_battles_on_bt_opponent_id"
+    t.index ["bt_player_id"], name: "index_pvp_battles_on_bt_player_id"
+    t.index ["player_id"], name: "index_pvp_battles_on_player_id"
+  end
+
+  create_table "pvp_effects", force: :cascade do |t|
+    t.string "name"
+    t.integer "duration", default: 1
+    t.integer "counter", default: 0
+    t.string "effect_type"
+    t.integer "intensity", default: 0
+    t.string "curse", default: "f"
+    t.bigint "pvp_battle_card_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pvp_battle_card_id"], name: "index_pvp_effects_on_pvp_battle_card_id"
+  end
+
   create_table "skills", force: :cascade do |t|
     t.string "name"
     t.integer "level", default: 1
@@ -203,5 +253,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_143640) do
   add_foreign_key "effects", "battle_cards"
   add_foreign_key "offers", "players"
   add_foreign_key "players", "users"
+  add_foreign_key "pvp_battle_cards", "cards"
+  add_foreign_key "pvp_battle_cards", "pvp_battle_teams"
+  add_foreign_key "pvp_battle_teams", "players"
+  add_foreign_key "pvp_battles", "players"
+  add_foreign_key "pvp_battles", "pvp_battle_teams", column: "bt_opponent_id"
+  add_foreign_key "pvp_battles", "pvp_battle_teams", column: "bt_player_id"
+  add_foreign_key "pvp_effects", "pvp_battle_cards"
   add_foreign_key "skills", "cards"
 end

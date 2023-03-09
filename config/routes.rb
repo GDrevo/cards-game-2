@@ -15,4 +15,9 @@ Rails.application.routes.draw do
   resources :offers, only: %i[index] do
     patch :buy, on: :member
   end
+  resources :pvp_battle_teams, only: %i[index]
+  resources :pvp_battles, only: %i[new create show] do
+    patch :play_card, on: :member
+    patch :simulate_turn, on: :member
+  end
 end

@@ -63,6 +63,189 @@ def card_creator(computer, name, level, hit_points, attributes, skillset_num)
 end
 
 # ==============================================================================
+# == PVP BATTLE TEAMS ==========================================================
+# ==============================================================================
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 1, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 1, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 1, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 1, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 1, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 1, code: 1)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 5, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 5, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 5, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 5, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 5, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 2, code: 2)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 10, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 10, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 10, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 10, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 10, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 3, code: 3)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 10, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 10, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 10, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 10, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 10, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 4, code: 4)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 15, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 15, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 15, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 15, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 15, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 5, code: 5)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 25, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 25, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 25, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 25, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 25, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 6, code: 6)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 35, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 35, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 35, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 35, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 35, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 7, code: 7)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 45, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 45, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 45, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 45, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 45, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 8, code: 8)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 50, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 50, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 50, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 50, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 9, code: 9)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 50, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 50, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 50, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 50, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 10, code: 10)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 50, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 50, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 50, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 50, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 11, code: 11)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 50, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 50, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 50, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 50, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 12, code: 12)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 50, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 50, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 50, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 50, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 13, code: 13)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 50, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 50, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 50, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 50, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 14, code: 14)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+computer = Player.create(name: "Computer")
+card_1 = card_creator(computer, "Crypt Sentinel", 50, 135, [16, 7, 10, 40, "tank", "dark"], 19)
+card_2 = card_creator(computer, "Death Priest", 50, 100, [10, 12, 10, 40, "healer", "dark"], 13)
+card_3 = card_creator(computer, "Death Weaver", 50, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
+card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_5 = card_creator(computer, "Skeleton Warrior", 50, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 15, code: 15)
+cards = [card_1, card_2, card_3, card_4, card_5]
+cards.each do |card|
+  PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
+end
+
+# ==============================================================================
 # == LIGHT CHALLENGES =============================================== 1 to 10 ==
 # ==============================================================================
 computer = Player.create(name: "Computer", code: "light 1")
