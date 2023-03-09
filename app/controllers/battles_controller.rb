@@ -28,7 +28,6 @@ class BattlesController < ApplicationController
     @battle = Battle.find(params[:id].to_i)
     current_turn = @battle.turn_number
     current_turn == 1 ? cookies[:last_turn] = 1 : nil
-    # 25
 
     bcs_player = @battle.bt_player.battle_cards.select { |card| card.dead == false }
     bcs_opponent = @battle.bt_computer.battle_cards.select { |card| card.dead == false }
@@ -43,7 +42,6 @@ class BattlesController < ApplicationController
       @targetable_bcs_opponent = @bcs_opponent
       @taunt_present = false
     end
-    # raise
     card_to_play = play_turn(@bcs_player, @bcs_opponent)
     if current_turn > cookies[:last_turn].to_i
       card_to_play.card.skills.each do |skill|
@@ -64,8 +62,6 @@ class BattlesController < ApplicationController
     elsif @bcs_opponent.all?(&:dead)
       set_winner(@battle.player, @battle)
     else
-
-      # raise
       render :show
     end
   end
@@ -164,7 +160,7 @@ class BattlesController < ApplicationController
       when "same"
         bc_target.effects.where(curse: false).destroy_all unless bc_target.effects.where(curse: false).empty?
       when "ennemies"
-        bcs_target.each do |target|
+        bcs_defender.each do |target|
           target.effects.where(curse: false).destroy_all unless target.effects.where(curse: false).empty?
         end
       end
@@ -213,7 +209,7 @@ class BattlesController < ApplicationController
       # Give shards before changing challenge status in order to check if first time challenge accomplished and give a bonus shard
       challenge = battle.challenge
       @shard_card = give_shards(player, challenge)
-      player.coins += challenge.reward
+      challenge.reward.nil? ? nil : player.coins += challenge.reward
       player.save
       # Set challenge as done, unlock the next one
       challenge.done = true unless challenge.category.include?("epic") || challenge.category.include?("elite")
@@ -221,7 +217,7 @@ class BattlesController < ApplicationController
       next_challenge = challenge.next(challenge.category)
       next_challenge.unlocked = true if next_challenge
       next_challenge.save if next_challenge
-      manage_strong_challenge if challenge.category.include?("epic") || challenge.category.include?("elite")
+      manage_strong_challenge(challenge) if challenge.category.include?("epic") || challenge.category.include?("elite")
       # Give the shards to player_cards and add the coins to player.coins
       player_bcs = battle.bt_player.battle_cards.select { |bc| bc.dead == false }
       computer_bcs = battle.bt_computer.battle_cards
@@ -241,8 +237,9 @@ class BattlesController < ApplicationController
 
     card_name = challenge.epic_card
     card = challenge.player.cards.select { |c| c.name == card_name }
-    card.prestige_up unless card.prestige == 5
-    card.save
+    card.first.prestige_up unless card.first.prestige == 5
+    card.first.shards = 0
+    card.first.save
     challenge.done = true
     challenge.save
   end
@@ -256,44 +253,28 @@ class BattlesController < ApplicationController
         return if shard_card.prestige == 5
 
         challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
-        shard_card.prestige_up if shard_card.shards >= shard_card.next_prestige
       else
         cards = player.cards.where(side: "dark")
         shard_card = cards.where(cat: "normal weak").sample
         return if shard_card.prestige == 5
 
         challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
-        shard_card.prestige_up if shard_card.shards >= shard_card.next_prestige
       end
       shard_card.save
     when "normal normal"
       if challenge.category == "light"
         cards = player.cards.where(side: "light")
-        weak_shard_card = cards.where(cat: "normal weak").sample
         shard_card = cards.where(cat: "normal normal").sample
         return if shard_card.prestige == 5
 
         challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
-        shard_card.prestige_up if shard_card.shards >= shard_card.next_prestige
-        return if weak_shard_card.prestige == 5
-
-        challenge.done ? weak_shard_card.shards += 1 : weak_shard_card.shards += 2
-        weak_shard_card.prestige_up if weak_shard_card.shards >= weak_shard_card.next_prestige
       else
         cards = player.cards.where(side: "dark")
-        weak_shard_card = cards.where(cat: "normal weak").sample
         shard_card = cards.where(cat: "normal normal").sample
         return if shard_card.prestige == 5
 
         challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
-        shard_card.prestige_up if shard_card.shards >= shard_card.next_prestige
-        return if weak_shard_card.prestige == 5
-
-        challenge.done ? weak_shard_card.shards += 1 : weak_shard_card.shards += 2
-        weak_shard_card.prestige_up if weak_shard_card.shards >= weak_shard_card.next_prestige
       end
-      shard_card.save
-      weak_shard_card.save
     when "daily weak"
       cards = player.cards.where(cat: "daily weak")
       shard_card = cards.sample
@@ -302,7 +283,12 @@ class BattlesController < ApplicationController
       cards = player.cards.where(cat: "daily normal")
       shard_card = cards.sample
       challenge.done ? shard_card.shards += 1 : shard_card.shards += 2
+    else
+      shard_name = challenge.epic_card
+      shard_card = player.cards.where(name: shard_name).first
     end
+    shard_card.prestige_up if shard_card.shards >= shard_card.next_prestige
+    shard_card.save
     shard_card
   end
 

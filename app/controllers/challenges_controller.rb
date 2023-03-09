@@ -83,7 +83,7 @@ class ChallengesController < ApplicationController
       end
       new_armor = attributes[0]
       repetitions.times do
-        new_armor = (new_armor + (new_armor * 0.05).round)
+        new_armor = (new_armor + (new_armor * 0.02).round)
       end
       new_power = attributes[1]
       repetitions.times do
@@ -91,7 +91,7 @@ class ChallengesController < ApplicationController
       end
       new_speed = attributes[2]
       repetitions.times do
-        new_speed = (new_speed + (new_speed * 0.05).round)
+        new_speed = (new_speed + (new_speed * 0.02).round)
       end
       new_xp_given = attributes[3]
       repetitions.times do
@@ -129,25 +129,25 @@ class ChallengesController < ApplicationController
     healer_names = ["High Priest", "Battle Medic"]
     tank_names = ["Juggernaut", "Warden"]
 
-    hit_points_attacker = (40..70).to_a
-    hit_points_healer = (35..60).to_a
-    hit_points_tank = (50..78).to_a
+    hit_points_attacker = (100..120).to_a
+    hit_points_healer = (90..110).to_a
+    hit_points_tank = (125..145).to_a
 
     skillset_attacker = (1..3).to_a
     skillset_healer = (12..13).to_a
     skillset_tank = (18..19).to_a
 
-    armor_attacker = (15..23).to_a
-    armor_healer = (10..15).to_a
-    armor_tank = (20..25).to_a
+    armor_attacker = (10..14).to_a
+    armor_healer = (8..12).to_a
+    armor_tank = (14..18).to_a
 
-    power_attacker = (10..18).to_a
-    power_healer = (11..18).to_a
-    power_tank = (4..12).to_a
+    power_attacker = (14..18).to_a
+    power_healer = (9..13).to_a
+    power_tank = (4..8).to_a
 
-    speed_attacker = (8..14).to_a
-    speed_healer = (9..13).to_a
-    speed_tank = (7..10).to_a
+    speed_attacker = (8..12).to_a
+    speed_healer = (8..12).to_a
+    speed_tank = (8..12).to_a
 
     code.each do |code_nb|
       computer = Player.create(name: "Computer", code: "daily #{code_nb}")

@@ -37,7 +37,7 @@
               <div class="card-hit-points-low" style="width: <%= (card.hit_points / card.max_hp.to_f).round(2) * 100 %>%;"></div>
             <% end %>
             <div class="card-counter" style="width: <%= card.counter > 100 ? 100 : card.counter %>%;"></div>
-            <%= image_tag @card.photo %>
+            <%= image_tag card.card.photo %>
             <h3><%= card.card.name %></h3>
             <h5>lvl <%= card.card.level %></h5>
             <input type="hidden" class="target-input" value="<%= card.id %>">
