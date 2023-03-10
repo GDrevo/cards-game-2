@@ -23,16 +23,16 @@ class PvpBattleTeamsController < ApplicationController
       @third_opponent = find_opponent(1, 1)
     when 5..19
       @first_opponent = find_opponent(rank - 1, rank - 1)
-      @second_opponent = find_opponent(3, 3)
-      @third_opponent = find_opponent(2, 2)
+      @second_opponent = find_opponent(rank - 2, rank - 2)
+      @third_opponent = find_opponent(rank - 4, rank - 3)
     when 20..99
       @first_opponent = find_opponent(rank - 1, rank - 1)
-      @second_opponent = find_opponent(rank - 2, rank - 5)
-      @third_opponent = find_opponent(rank - 6, rank - 15)
+      @second_opponent = find_opponent(rank - 5, rank - 2)
+      @third_opponent = find_opponent(rank - 16, rank - 6)
     else
-      @first_opponent = find_opponent(rank - 1, rank - 10)
-      @second_opponent = find_opponent(rank - 11, rank - 15)
-      @third_opponent = find_opponent(rank - 16, rank - 25)
+      @first_opponent = find_opponent(rank - 10, rank - 1)
+      @second_opponent = find_opponent(rank - 15, rank - 11)
+      @third_opponent = find_opponent(rank - 25, rank - 16)
     end
   end
 
