@@ -65,95 +65,95 @@ end
 # ==============================================================================
 # == PVP BATTLE TEAMS ==========================================================
 # ==============================================================================
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 15)
 card_1 = card_creator(computer, "Crypt Sentinel", 1, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 1, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 1, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 1, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 1, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 1, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
-pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 1, code: 1)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 15, code: 1)
 cards = [card_1, card_2, card_3, card_4, card_5]
 cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
 end
 
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 14)
 card_1 = card_creator(computer, "Crypt Sentinel", 5, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 5, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 5, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 5, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 5, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 5, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
-pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 2, code: 2)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 14, code: 2)
 cards = [card_1, card_2, card_3, card_4, card_5]
 cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
 end
 
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 13)
 card_1 = card_creator(computer, "Crypt Sentinel", 10, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 10, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 10, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 10, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 10, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 10, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
-pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 3, code: 3)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 13, code: 3)
 cards = [card_1, card_2, card_3, card_4, card_5]
 cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
 end
 
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 12)
 card_1 = card_creator(computer, "Crypt Sentinel", 10, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 10, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 10, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 10, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 10, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 10, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
-pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 4, code: 4)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 12, code: 4)
 cards = [card_1, card_2, card_3, card_4, card_5]
 cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
 end
 
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 11)
 card_1 = card_creator(computer, "Crypt Sentinel", 15, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 15, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 15, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 15, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 15, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 15, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
-pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 5, code: 5)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 11, code: 5)
 cards = [card_1, card_2, card_3, card_4, card_5]
 cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
 end
 
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 10)
 card_1 = card_creator(computer, "Crypt Sentinel", 25, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 25, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 25, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 25, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 25, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 25, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
-pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 6, code: 6)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 10, code: 6)
 cards = [card_1, card_2, card_3, card_4, card_5]
 cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
 end
 
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 9)
 card_1 = card_creator(computer, "Crypt Sentinel", 35, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 35, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 35, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 35, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 35, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 35, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
-pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 7, code: 7)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 9, code: 7)
 cards = [card_1, card_2, card_3, card_4, card_5]
 cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
 end
 
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 8)
 card_1 = card_creator(computer, "Crypt Sentinel", 45, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 45, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 45, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 45, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 45, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 45, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
 pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 8, code: 8)
 cards = [card_1, card_2, card_3, card_4, card_5]
@@ -161,85 +161,85 @@ cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
 end
 
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 7)
 card_1 = card_creator(computer, "Crypt Sentinel", 50, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 50, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 50, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 50, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
-pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 9, code: 9)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 7, code: 9)
 cards = [card_1, card_2, card_3, card_4, card_5]
 cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
 end
 
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 6)
 card_1 = card_creator(computer, "Crypt Sentinel", 50, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 50, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 50, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 50, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
-pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 10, code: 10)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 6, code: 10)
 cards = [card_1, card_2, card_3, card_4, card_5]
 cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
 end
 
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 5)
 card_1 = card_creator(computer, "Crypt Sentinel", 50, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 50, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 50, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 50, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
-pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 11, code: 11)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 5, code: 11)
 cards = [card_1, card_2, card_3, card_4, card_5]
 cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
 end
 
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 4)
 card_1 = card_creator(computer, "Crypt Sentinel", 50, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 50, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 50, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 50, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
-pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 12, code: 12)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 4, code: 12)
 cards = [card_1, card_2, card_3, card_4, card_5]
 cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
 end
 
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 3)
 card_1 = card_creator(computer, "Crypt Sentinel", 50, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 50, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 50, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 50, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
-pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 13, code: 13)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 3, code: 13)
 cards = [card_1, card_2, card_3, card_4, card_5]
 cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
 end
 
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 2)
 card_1 = card_creator(computer, "Crypt Sentinel", 50, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 50, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 50, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 50, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
-pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 14, code: 14)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 2, code: 14)
 cards = [card_1, card_2, card_3, card_4, card_5]
 cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
 end
 
-computer = Player.create(name: "Computer")
+computer = Player.create(name: "Computer", rank: 1)
 card_1 = card_creator(computer, "Crypt Sentinel", 50, 135, [16, 7, 10, 40, "tank", "dark"], 19)
 card_2 = card_creator(computer, "Death Priest", 50, 100, [10, 12, 10, 40, "healer", "dark"], 13)
 card_3 = card_creator(computer, "Death Weaver", 50, 120, [14, 22, 12, 50, "attacker", "dark"], 5)
-card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 12)
+card_4 = card_creator(computer, "Zombie Brute", 50, 125, [14, 5, 8, 30, "tank", "dark"], 18)
 card_5 = card_creator(computer, "Skeleton Warrior", 50, 100, [10, 16, 8, 30, "attacker", "dark"], 2)
-pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 15, code: 15)
+pvp_battle_team = PvpBattleTeam.create(player: computer, rank: 1, code: 15)
 cards = [card_1, card_2, card_3, card_4, card_5]
 cards.each do |card|
   PvpBattleCard.create(card:, pvp_battle_team:, hit_points: card.hit_points, armor: card.armor, power: card.power, speed: card.speed, max_hp: card.hit_points)
@@ -613,70 +613,70 @@ card_creator(computer, "Mummy", 50, 110, [12, 19, 10, 40, "attacker", "dark"], 3
 # ==============================================================================
 # == DARK CHALLENGES =============================================== 1 to 10 ==
 # ==============================================================================
-computer = Player.create(name: "Computer", code: "light 1")
+computer = Player.create(name: "Computer", code: "dark 1")
 card_creator(computer, "Squire", 1, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 1, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 1, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 1, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 1, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 2")
+computer = Player.create(name: "Computer", code: "dark 2")
 card_creator(computer, "Squire", 2, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 2, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 2, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 2, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 2, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 3")
+computer = Player.create(name: "Computer", code: "dark 3")
 card_creator(computer, "Squire", 3, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 3, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 3, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 3, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 3, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 4")
+computer = Player.create(name: "Computer", code: "dark 4")
 card_creator(computer, "Squire", 4, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 4, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 4, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 4, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 4, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 5")
+computer = Player.create(name: "Computer", code: "dark 5")
 card_creator(computer, "Squire", 5, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 5, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 5, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 5, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 5, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 6")
+computer = Player.create(name: "Computer", code: "dark 6")
 card_creator(computer, "Squire", 6, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 6, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 6, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 6, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 6, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 7")
+computer = Player.create(name: "Computer", code: "dark 7")
 card_creator(computer, "Squire", 7, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 7, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 7, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 7, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 7, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 8")
+computer = Player.create(name: "Computer", code: "dark 8")
 card_creator(computer, "Squire", 8, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 8, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 8, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 8, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 8, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 9")
+computer = Player.create(name: "Computer", code: "dark 9")
 card_creator(computer, "Squire", 9, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 9, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 9, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 9, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 9, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 10")
+computer = Player.create(name: "Computer", code: "dark 10")
 card_creator(computer, "Squire", 10, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 10, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 10, 100, [10, 16, 8, 30, "attacker", "light"], 1)
@@ -686,70 +686,70 @@ card_creator(computer, "Cavalry", 10, 110, [12, 19, 10, 40, "attacker", "light"]
 # ==============================================================================
 # == DARK CHALLENGES ============================================== 11 to 20 ==
 # ==============================================================================
-computer = Player.create(name: "Computer", code: "light 11")
+computer = Player.create(name: "Computer", code: "dark 11")
 card_creator(computer, "Swordsman", 11, 110, [12, 19, 10, 40, "attacker", "light"], 3)
 card_creator(computer, "Archer", 11, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 11, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 11, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 11, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 12")
+computer = Player.create(name: "Computer", code: "dark 12")
 card_creator(computer, "Squire", 12, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 12, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 12, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Cleric", 12, 100, [12, 17, 13, 40, "healer", "light"], 13)
 card_creator(computer, "Herbalist", 12, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 13")
+computer = Player.create(name: "Computer", code: "dark 13")
 card_creator(computer, "Squire", 13, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 13, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Axeman", 13, 110, [12, 18, 11, 40, "attacker", "light"], 3)
 card_creator(computer, "Priest", 13, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 13, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 14")
+computer = Player.create(name: "Computer", code: "dark 14")
 card_creator(computer, "Squire", 14, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Marksman", 14, 110, [12, 17, 12, 40, "attacker", "light"], 3)
 card_creator(computer, "Crossbowman", 14, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 14, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 14, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 15")
+computer = Player.create(name: "Computer", code: "dark 15")
 card_creator(computer, "Squire", 15, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 15, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 15, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 15, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 15, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 16")
+computer = Player.create(name: "Computer", code: "dark 16")
 card_creator(computer, "Squire", 16, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 16, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 16, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 16, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 16, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 17")
+computer = Player.create(name: "Computer", code: "dark 17")
 card_creator(computer, "Squire", 17, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 17, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 17, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 17, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 17, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 18")
+computer = Player.create(name: "Computer", code: "dark 18")
 card_creator(computer, "Squire", 18, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 18, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 18, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 18, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 18, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 19")
+computer = Player.create(name: "Computer", code: "dark 19")
 card_creator(computer, "Squire", 19, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 19, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 19, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 19, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 19, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 20")
+computer = Player.create(name: "Computer", code: "dark 20")
 card_creator(computer, "Squire", 20, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 20, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 20, 100, [10, 16, 8, 30, "attacker", "light"], 1)
@@ -759,70 +759,70 @@ card_creator(computer, "Cavalry", 20, 110, [12, 19, 10, 40, "attacker", "light"]
 # ==============================================================================
 # == DARK CHALLENGES ============================================== 21 to 30 ==
 # ==============================================================================
-computer = Player.create(name: "Computer", code: "light 21")
+computer = Player.create(name: "Computer", code: "dark 21")
 card_creator(computer, "Squire", 21, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 21, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 21, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 21, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 21, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 22")
+computer = Player.create(name: "Computer", code: "dark 22")
 card_creator(computer, "Squire", 22, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 22, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 22, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 22, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 22, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 23")
+computer = Player.create(name: "Computer", code: "dark 23")
 card_creator(computer, "Squire", 23, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 23, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 23, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 23, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 23, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 24")
+computer = Player.create(name: "Computer", code: "dark 24")
 card_creator(computer, "Squire", 24, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 24, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 24, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 24, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 24, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 25")
+computer = Player.create(name: "Computer", code: "dark 25")
 card_creator(computer, "Squire", 25, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 25, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 25, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 25, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 25, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 26")
+computer = Player.create(name: "Computer", code: "dark 26")
 card_creator(computer, "Squire", 26, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 26, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 26, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 26, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 26, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 27")
+computer = Player.create(name: "Computer", code: "dark 27")
 card_creator(computer, "Squire", 27, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 27, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 27, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 27, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 27, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 28")
+computer = Player.create(name: "Computer", code: "dark 28")
 card_creator(computer, "Squire", 28, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 28, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 28, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 28, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 28, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 29")
+computer = Player.create(name: "Computer", code: "dark 29")
 card_creator(computer, "Squire", 29, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 29, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 29, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 29, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 29, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 30")
+computer = Player.create(name: "Computer", code: "dark 30")
 card_creator(computer, "Squire", 30, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 30, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 30, 100, [10, 16, 8, 30, "attacker", "light"], 1)
@@ -832,70 +832,70 @@ card_creator(computer, "Cavalry", 30, 110, [12, 19, 10, 40, "attacker", "light"]
 # ==============================================================================
 # == DARK CHALLENGES ============================================== 31 to 40 ==
 # ==============================================================================
-computer = Player.create(name: "Computer", code: "light 31")
+computer = Player.create(name: "Computer", code: "dark 31")
 card_creator(computer, "Swordsman", 31, 110, [12, 19, 10, 40, "attacker", "light"], 3)
 card_creator(computer, "Archer", 31, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 31, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 31, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 31, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 32")
+computer = Player.create(name: "Computer", code: "dark 32")
 card_creator(computer, "Squire", 32, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 32, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 32, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Cleric", 32, 100, [12, 17, 13, 40, "healer", "light"], 13)
 card_creator(computer, "Herbalist", 32, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 33")
+computer = Player.create(name: "Computer", code: "dark 33")
 card_creator(computer, "Squire", 33, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 33, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Axeman", 33, 110, [12, 18, 11, 40, "attacker", "light"], 3)
 card_creator(computer, "Priest", 33, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 33, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 34")
+computer = Player.create(name: "Computer", code: "dark 34")
 card_creator(computer, "Squire", 34, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Marksman", 34, 110, [12, 17, 12, 40, "attacker", "light"], 3)
 card_creator(computer, "Crossbowman", 34, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 34, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 34, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 35")
+computer = Player.create(name: "Computer", code: "dark 35")
 card_creator(computer, "Squire", 35, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 35, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 35, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 35, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 35, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 36")
+computer = Player.create(name: "Computer", code: "dark 36")
 card_creator(computer, "Squire", 36, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 36, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 36, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 36, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 36, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 37")
+computer = Player.create(name: "Computer", code: "dark 37")
 card_creator(computer, "Squire", 37, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 37, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 37, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 37, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 37, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 38")
+computer = Player.create(name: "Computer", code: "dark 38")
 card_creator(computer, "Squire", 38, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 38, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 38, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 38, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 38, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 39")
+computer = Player.create(name: "Computer", code: "dark 39")
 card_creator(computer, "Squire", 39, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 39, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 39, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 39, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 39, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 40")
+computer = Player.create(name: "Computer", code: "dark 40")
 card_creator(computer, "Squire", 40, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 40, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 40, 100, [10, 16, 8, 30, "attacker", "light"], 1)
@@ -905,70 +905,70 @@ card_creator(computer, "Cavalry", 40, 110, [12, 19, 10, 40, "attacker", "light"]
 # ==============================================================================
 # == DARK CHALLENGES ============================================== 41 to 50 ==
 # ==============================================================================
-computer = Player.create(name: "Computer", code: "light 41")
+computer = Player.create(name: "Computer", code: "dark 41")
 card_creator(computer, "Swordsman", 41, 110, [12, 19, 10, 40, "attacker", "light"], 3)
 card_creator(computer, "Archer", 41, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 41, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 41, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 41, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 42")
+computer = Player.create(name: "Computer", code: "dark 42")
 card_creator(computer, "Squire", 42, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 42, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 42, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Cleric", 42, 100, [12, 17, 13, 40, "healer", "light"], 13)
 card_creator(computer, "Herbalist", 42, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 43")
+computer = Player.create(name: "Computer", code: "dark 43")
 card_creator(computer, "Squire", 43, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 43, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Axeman", 43, 110, [12, 18, 11, 40, "attacker", "light"], 3)
 card_creator(computer, "Priest", 43, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 43, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 44")
+computer = Player.create(name: "Computer", code: "dark 44")
 card_creator(computer, "Squire", 44, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Marksman", 44, 110, [12, 17, 12, 40, "attacker", "light"], 3)
 card_creator(computer, "Crossbowman", 44, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 44, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 44, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 45")
+computer = Player.create(name: "Computer", code: "dark 45")
 card_creator(computer, "Squire", 45, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 45, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 45, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 45, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 45, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 46")
+computer = Player.create(name: "Computer", code: "dark 46")
 card_creator(computer, "Squire", 46, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 46, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 46, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 46, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 46, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 47")
+computer = Player.create(name: "Computer", code: "dark 47")
 card_creator(computer, "Squire", 47, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 47, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 47, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 47, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 47, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 48")
+computer = Player.create(name: "Computer", code: "dark 48")
 card_creator(computer, "Squire", 48, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 48, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 48, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 48, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 48, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 49")
+computer = Player.create(name: "Computer", code: "dark 49")
 card_creator(computer, "Squire", 49, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 49, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 49, 100, [10, 16, 8, 30, "attacker", "light"], 1)
 card_creator(computer, "Priest", 49, 90, [8, 10, 8, 30, "healer", "light"], 12)
 card_creator(computer, "Herbalist", 49, 90, [8, 9, 10, 30, "healer", "light"], 12)
 
-computer = Player.create(name: "Computer", code: "light 50")
+computer = Player.create(name: "Computer", code: "dark 50")
 card_creator(computer, "Squire", 50, 100, [10, 15, 9, 30, "attacker", "light"], 1)
 card_creator(computer, "Archer", 50, 100, [10, 14, 10, 30, "attacker", "light"], 1)
 card_creator(computer, "Crossbowman", 50, 100, [10, 16, 8, 30, "attacker", "light"], 1)

@@ -376,12 +376,7 @@ class BattlesController < ApplicationController
     end
     all_cards.sort_by!(&:counter)
     all_cards.reverse!
-    card = all_cards.find { |battle_card| battle_card.counter >= 100 }
-    # card.card.skills.each do |skill|
-    #   skill.counter += 1
-    #   skill.save
-    # end
-    card
+    all_cards.find { |battle_card| battle_card.counter >= 100 }
   end
 
   def manage_skill_countdown(skill)

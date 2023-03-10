@@ -1,0 +1,104 @@
+<div class="challenge-show-container" data-controller="user-cards">
+  <h2>Cards selection</h2>
+  <div class="cards-selection">
+    <% @players_cards.each do |card| %>
+      <div class="cards-selection-card" data-user-cards-target="card" data-action="click->user-cards#selectCard" data-card-id="<%= card.id %>">
+        <h5><%= card.name %></h5>
+        <p>lvl <%= card.level %></p>
+
+        <% case card.prestige %>
+        <% when 1 %>
+          <div class="card-stars">
+            <%= image_tag "star" %>
+          </div>
+        <% when 2 %>
+          <div class="card-stars">
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+          </div>
+        <% when 3 %>
+          <div class="card-stars">
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+          </div>
+        <% when 4 %>
+          <div class="card-stars">
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+          </div>
+        <% when 5 %>
+          <div class="card-stars">
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+          </div>
+        <% end %>
+
+      </div>
+    <% end %>
+  </div>
+  <br>
+  <br>
+  <div class="battle-creation">
+    <h4>Opponent's Team</h4>
+    <div class="battle-creation-comp">
+      <% @bt_computer.each do |card| %>
+      <div class="cards-selection-card">
+        <h5><%= card.card.name %></h5>
+        <p>lvl <%= card.card.level %></p>
+
+        <% case card.card.prestige %>
+        <% when 1 %>
+          <div class="card-stars">
+            <%= image_tag "star" %>
+          </div>
+        <% when 2 %>
+          <div class="card-stars">
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+          </div>
+        <% when 3 %>
+          <div class="card-stars">
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+          </div>
+        <% when 4 %>
+          <div class="card-stars">
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+          </div>
+        <% when 5 %>
+          <div class="card-stars">
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+            <%= image_tag "star" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+    <br>
+    <br>
+    <div class="battle-creation-play">
+      <div class="players-selection">
+      </div>
+    </div>
+      <%= button_to pvp_battles_path, disabled: true, data: { user_cards_target: "playButton", card_ids: "" } do %>
+        <input type="hidden" name="opponent_bt_id" value="<%= @opponent_bt.id %>"/>
+
+        <div class="selected-card-ids" data-user-cards-target="submission">
+        </div>
+        <h2>PLAY</h2>
+      <% end %>
+  </div>
+</div>

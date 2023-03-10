@@ -749,6 +749,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/commander.png'), filename: 'commander.png', content_type: "image/png")
     when "Death Weaver"
       photo.attach(io: File.open('app/assets/images/death weaver.png'), filename: 'death weaver.png', content_type: "image/png")
+    when "Banshee"
+      photo.attach(io: File.open('app/assets/images/banshee.png'), filename: 'banshee.png', content_type: "image/png")
     when "Berserker"
       photo.attach(io: File.open('app/assets/images/berserker.png'), filename: 'berserker.png', content_type: "image/png")
     when "Paladin"
