@@ -1,0 +1,43 @@
+<div class="pvp-container">
+  <%= link_to new_pvp_battle_path(opponent_id: @first_opponent.id) do %>
+    <div class="pvp-opponent">
+      <%= @first_opponent.player.name %>
+      <div class="pvp-bcs">
+        <% @first_opponent.pvp_battle_cards.each_with_index do |bc, index| %>
+          <div class="pvp-bc pvp-bc-<%= index + 1 %>">
+            <%= image_tag bc.card.photo %>
+            <p>lvl <%= bc.card.level %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= link_to new_pvp_battle_path(opponent_id: @second_opponent.id) do %>
+    <div class="pvp-opponent">
+      <%= @second_opponent.player.name %>
+      <div class="pvp-bcs">
+        <% @second_opponent.pvp_battle_cards.each_with_index do |bc, index| %>
+          <div class="pvp-bc pvp-bc-<%= index + 1 %>">
+            <%= image_tag bc.card.photo %>
+            <p>lvl <%= bc.card.level %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= link_to new_pvp_battle_path(opponent_id: @third_opponent.id) do %>
+    <div class="pvp-opponent">
+      <%= @third_opponent.player.name %>
+      <div class="pvp-bcs">
+        <% @third_opponent.pvp_battle_cards.each_with_index do |bc, index| %>
+          <div class="pvp-bc pvp-bc-<%= index + 1 %>">
+            <%= image_tag bc.card.photo %>
+            <p>lvl <%= bc.card.level %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

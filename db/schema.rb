@@ -152,6 +152,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_195003) do
     t.bigint "user_id"
     t.string "code"
     t.integer "coins", default: 0
+    t.integer "rank"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_players_on_user_id"
@@ -176,6 +177,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_195003) do
 
   create_table "pvp_battle_teams", force: :cascade do |t|
     t.bigint "player_id", null: false
+    t.integer "code"
+    t.integer "rank"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["player_id"], name: "index_pvp_battle_teams_on_player_id"
