@@ -15,6 +15,7 @@ class PvpBattlesController < ApplicationController
     player = current_user.player
     bt_player = create_bt(player_cards)
     bt_player.pvp_battle_cards.each do |battle_card|
+      battle_card.damage_taken = 0
       battle_card.pvp_effects.destroy_all
       battle_card.card.skills.each do |skill|
         skill.counter = skill.reload_time
