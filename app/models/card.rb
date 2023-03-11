@@ -745,12 +745,16 @@ class Card < ApplicationRecord
     case name
     when "Guardian"
       photo.attach(io: File.open('app/assets/images/guardian.png'), filename: 'guardian.png', content_type: "image/png")
+    when "Crusader"
+      photo.attach(io: File.open('app/assets/images/crusader.png'), filename: 'crusader.png', content_type: "image/png")
     when "Commander"
       photo.attach(io: File.open('app/assets/images/commander.png'), filename: 'commander.png', content_type: "image/png")
     when "Death Weaver"
       photo.attach(io: File.open('app/assets/images/death weaver.png'), filename: 'death weaver.png', content_type: "image/png")
     when "Banshee"
       photo.attach(io: File.open('app/assets/images/banshee.png'), filename: 'banshee.png', content_type: "image/png")
+    when "Mummy"
+      photo.attach(io: File.open('app/assets/images/mummy.png'), filename: 'mummy.png', content_type: "image/png")
     when "Berserker"
       photo.attach(io: File.open('app/assets/images/berserker.png'), filename: 'berserker.png', content_type: "image/png")
     when "Paladin"
