@@ -745,6 +745,8 @@ class Card < ApplicationRecord
     case name
     when "Guardian"
       photo.attach(io: File.open('app/assets/images/guardian.png'), filename: 'guardian.png', content_type: "image/png")
+    when "Axeman"
+      photo.attach(io: File.open('app/assets/images/axeman.png'), filename: 'axeman.png', content_type: "image/png")
     when "Crusader"
       photo.attach(io: File.open('app/assets/images/crusader.png'), filename: 'crusader.png', content_type: "image/png")
     when "Commander"
@@ -767,6 +769,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/skeleton warrior.png'), filename: 'skeleton warrior.png', content_type: "image/png")
     when "Zombie Brute"
       photo.attach(io: File.open('app/assets/images/zombie brute.png'), filename: 'zombie brute.png', content_type: "image/png")
+    when "Grave Lord"
+      photo.attach(io: File.open('app/assets/images/grave lord.png'), filename: 'grave lord.png', content_type: "image/png")
     else
       case side
       when "light"
