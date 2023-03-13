@@ -753,6 +753,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/commander.png'), filename: 'commander.png', content_type: "image/png")
     when "Death Weaver"
       photo.attach(io: File.open('app/assets/images/death weaver.png'), filename: 'death weaver.png', content_type: "image/png")
+    when "Death Knight"
+      photo.attach(io: File.open('app/assets/images/death knight.png'), filename: 'death knight.png', content_type: "image/png")
     when "Banshee"
       photo.attach(io: File.open('app/assets/images/banshee.png'), filename: 'banshee.png', content_type: "image/png")
     when "Mummy"
@@ -763,6 +765,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/paladin.png'), filename: 'paladin.png', content_type: "image/png")
     when "Crypt Sentinel"
       photo.attach(io: File.open('app/assets/images/crypt sentinel.png'), filename: 'crypt sentinel.png', content_type: "image/png")
+    when "Bone Weaver"
+      photo.attach(io: File.open('app/assets/images/bone weaver.png'), filename: 'bone weaver.png', content_type: "image/png")
     when "Death Priest"
       photo.attach(io: File.open('app/assets/images/death priest.png'), filename: 'death priest.png', content_type: "image/png")
     when "Skeleton Warrior"

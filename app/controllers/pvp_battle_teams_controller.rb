@@ -1,11 +1,5 @@
 class PvpBattleTeamsController < ApplicationController
   def index
-    # Display 3 pvp_battle_teams to play against
-    # When the player clicks on one, it triggers pvp_battles#new
-    # where the player can choose his pvp_battle_team
-    # then it creates the pvp_battle
-    # If player wins the battle, his rank is set to his opponent's rank and vice versa
-    # The pvp_battle_team is saved with the new player.rank and all other pvp_battle_teams from this player are deleted
     rank = current_user.player.rank
     rank ||= 1000
     case rank
