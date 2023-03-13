@@ -162,6 +162,10 @@ class PvpBattlesController < ApplicationController
     redirect_to pvp_battle_path(battle)
   end
 
+  def rewards
+    @rank = params[:new_rank]
+  end
+
   private
 
   def create_bt(cards)
@@ -365,6 +369,9 @@ class PvpBattlesController < ApplicationController
       prev_rank ||= Player.where.not(rank: 0).sort_by(&:rank).last.rank + 1
       player.rank = opponent_bt.player.rank
       player.save
+      player_bt = player.pvp_battle_teams.last
+      player_bt.rank = player.rank
+      player_bt.save
       opponent_bt.rank = prev_rank
       opponent_bt.save
       opponent_bt.player.rank = prev_rank
@@ -375,10 +382,11 @@ class PvpBattlesController < ApplicationController
         bc.hit_points = bc.max_hp
         bc.dead = false
         bc.damage_taken = 0
+        bc.counter = 0
         bc.save
       end
-      raise
       # redirect to a pvp_rewards page to show promotion
+      redirect_to rewards_pvp_battle_path(pvp_battle_id: battle.id, prev_rank:, new_rank: player.rank)
     else
       # redirect to a pvp_rewards page to show FAILED
     end

@@ -19,7 +19,6 @@ class OffersController < ApplicationController
     offer.save
     offer.player.coins -= offer.price
     offer.player.save
-    # raise
     redirect_to offers_path
   end
 
@@ -27,19 +26,17 @@ class OffersController < ApplicationController
 
   def create_new_offers(player)
     player.offers.empty? ? nil : player.offers.destroy_all
-    20.times do
+    30.times do
       random = rand(1..100)
       if random > 85
         # # 5% 5 shards normal
         cards = player.cards.where(cat: "daily normal")
         card = cards.sample
-        # raise
         Offer.create(player:, price: 250, shard_card: card.name, shard_number: 5)
       elsif random > 60
         # # 25% 2 shards normal
         cards = player.cards.where(cat: "normal normal")
         card = cards.sample
-        # raise
         Offer.create(player:, price: 100, shard_card: card.name, shard_number: 2)
       elsif random > 50
         # # 10% 10 shards weak

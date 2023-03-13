@@ -1,27 +1,38 @@
-<h1>CHALLENGES</h1>
-<%= link_to(controller: 'challenges', action: 'index', side: 'light') do %>
-  <h2>LIGHT SIDE</h2>
-<% end %>
-<%= link_to(controller: 'challenges', action: 'index', side: 'dark') do %>
-  <h2>DARK SIDE</h2>
-<% end %>
-<%= link_to(controller: 'challenges', action: 'index', side: 'daily') do %>
-  <h2>DAILY CHALLENGES</h2>
-<% end %>
-<%= link_to(controller: 'challenges', action: 'index', side: 'epic') do %>
-  <h2>EPIC CHALLENGES</h2>
-<% end %>
-<%= link_to(controller: 'challenges', action: 'index', side: 'elite') do %>
-  <h2>ELITE CHALLENGES</h2>
-<% end %>
-<br>
-<%= link_to(controller: 'pvp_battle_teams', action: 'index') do %>
-  <h2>Player Vs Player</h2>
-<% end %>
-<br>
-<%= link_to cards_path do %>
-  <h2>MY CARDS</h2>
-<% end %>
-<%= link_to offers_path do %>
-  <h2>OFFERS</h2>
-<% end %>
+<div class="home-container">
+  <div class="home-part">
+    <%= link_to(controller: 'challenges', action: 'index', side: 'light') do %>
+      <div class="home-challenge-link">
+      <%= image_tag "light" %>
+        <p>Human Challenges</p>
+      </div>
+    <% end %>
+    <%= link_to(controller: 'challenges', action: 'index', side: 'dark') do %>
+      <div class="home-challenge-link">
+      <%= image_tag "dark" %>
+        <p>Undead Challenges</p>
+      </div>
+    <% end %>
+  </div>
+  <div class="home-part">
+    <%= link_to(controller: 'challenges', action: 'index', side: 'daily') do %>
+      <div class="home-challenge-link">
+      <%= image_tag "daily" %>
+        <p>Daily Challenges</p>
+      </div>
+    <% end %>
+  </div>
+  <div class="home-part">
+    <%= link_to(controller: 'challenges', action: 'index', side: 'epic') do %>
+      <div class="home-challenge-link">
+      <%= image_tag "epic" %>
+        <p>Epic Challenges</p>
+      </div>
+    <% end %>
+    <%= link_to(controller: 'challenges', action: 'index', side: 'elite') do %>
+      <div class="home-challenge-link">
+      <%= image_tag "elite" %>
+        <p>Elite Challenges</p>
+      </div>
+    <% end %>
+  </div>
+</div>
