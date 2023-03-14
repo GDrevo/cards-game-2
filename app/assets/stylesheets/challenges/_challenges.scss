@@ -42,22 +42,22 @@
 .challenges-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   width: 80%;
   margin: 0 auto;
   margin-top: 50px;
-  height: 80vh;
   a {
     text-decoration: none;
-    height: 100px;
+    height: 75px;
+    margin: 10px;
   }
 }
 
 .challenge-card {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: $light-gray;
+  width: 75px;
+  height: 75px;
+  border-radius: 20px;
+  background-color: $dark-blue;
+  color: $lighter-black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,18 +69,19 @@
 }
 
 .challenge-card:hover {
-  background-color: $light-blue;
+  background-color: $blue;
   color: white;
 }
 
 .locked-challenge-card {
   background-color: $lighter-black;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 10px;
   h2 {
     margin: 0;
     width: 100px;
