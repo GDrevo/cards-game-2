@@ -1,4 +1,6 @@
 class PvpBattleTeamsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     rank = current_user.player.rank
     rank ||= 1000

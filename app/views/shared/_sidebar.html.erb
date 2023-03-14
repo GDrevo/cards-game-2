@@ -1,26 +1,28 @@
 <div class="sidebar">
-  <div class="sidebar-item">
-    <%= link_to root_path do %>
-      <%= image_tag "home" %>
-      <p>Home</p>
-    <% end %>
-  </div>
-  <div class="sidebar-item">
-    <%= link_to(controller: 'pvp_battle_teams', action: 'index') do %>
-      <%= image_tag "pvp" %>
-      <p>PvP</p>
-    <% end %>
-  </div>
-  <div class="sidebar-item">
-    <%= link_to cards_path do %>
-      <%= image_tag "mycards" %>
-      <p>Army</p>
-    <% end %>
-  </div>
-  <div class="sidebar-item-last">
-    <%= link_to offers_path do %>
-      <%= image_tag "chest" %>
-      <p>Offers</p>
-    <% end %>
-  </div>
+  <% if user_signed_in? %>
+    <div class="sidebar-item">
+      <%= link_to root_path do %>
+        <%= image_tag "home" %>
+        <p>Home</p>
+      <% end %>
+    </div>
+    <div class="sidebar-item">
+      <%= link_to(controller: 'pvp_battle_teams', action: 'index') do %>
+        <%= image_tag "pvp" %>
+        <p>PvP</p>
+      <% end %>
+    </div>
+    <div class="sidebar-item">
+      <%= link_to cards_path do %>
+        <%= image_tag "mycards" %>
+        <p>Army</p>
+      <% end %>
+    </div>
+    <div class="sidebar-item-last">
+      <%= link_to offers_path do %>
+        <%= image_tag "chest" %>
+        <p>Offers</p>
+      <% end %>
+    </div>
+  <% end %>
 </div>

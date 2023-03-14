@@ -10,9 +10,15 @@
     <% else %>
       <div class="my-offer-card">
         <% if offer.player.coins < offer.price %>
-          <h5 class="price too-high"><%= offer.price %> coins</h5>
+          <div class="offers-coins">
+            <h5 class="price too-high"><%= offer.price %></h5>
+            <%= image_tag "coins" %>
+          </div>
         <% else %>
-          <h5 class="price"><%= offer.price %> coins</h5>
+          <div class="offers-coins">
+            <h5 class="price"><%= offer.price %></h5>
+            <%= image_tag "coins" %>
+          </div>
         <% end %>
         <h5><%= offer.shard_card %></h5>
         <h5><%= offer.shard_number %></h5>
