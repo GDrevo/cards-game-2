@@ -2,17 +2,45 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
 }
 
 .my-offer-card {
-  background-color: black;
-  color: white;
+  background-color: $dark-blue;
+  color: $lighter-black;
   padding: 20px;
-  border-radius: 5px;
-  height: 200px;
+  border-radius: 20px;
+  height: 150px;
   width: 200px;
   text-align: center;
+  box-shadow: 0px 0px 3px 0px $lighter-black;
+  input {
+    border-radius: 10px;
+    font-weight: bold;
+    border: 0;
+    padding: 5px 10px;
+    box-shadow: 0px 0px 2px 0px $lighter-black;
+    background-color: $dark-blue;
+    color: white;
+  }
+  input:hover {
+    background-color: $darker-black;
+    box-shadow: 0px 0px 2px 0px $lighter-black;
+  }
+}
+
+.offers-coins {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  img {
+    width: 20px;
+  }
+  h5 {
+    margin: 0;
+    margin-right: 5px;
+  }
 }
 
 .price {
