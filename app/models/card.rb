@@ -763,6 +763,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/berserker.png'), filename: 'berserker.png', content_type: "image/png")
     when "Paladin"
       photo.attach(io: File.open('app/assets/images/paladin.png'), filename: 'paladin.png', content_type: "image/png")
+    when "King"
+      photo.attach(io: File.open('app/assets/images/king.png'), filename: 'king.png', content_type: "image/png")
     when "Crypt Sentinel"
       photo.attach(io: File.open('app/assets/images/crypt sentinel.png'), filename: 'crypt sentinel.png', content_type: "image/png")
     when "Bone Weaver"
@@ -773,6 +775,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/skeleton warrior.png'), filename: 'skeleton warrior.png', content_type: "image/png")
     when "Zombie Brute"
       photo.attach(io: File.open('app/assets/images/zombie brute.png'), filename: 'zombie brute.png', content_type: "image/png")
+    when "Bone Dragon"
+      photo.attach(io: File.open('app/assets/images/bone dragon.png'), filename: 'bone dragon.png', content_type: "image/png")
     when "Grave Lord"
       photo.attach(io: File.open('app/assets/images/grave lord.png'), filename: 'grave lord.png', content_type: "image/png")
     else
