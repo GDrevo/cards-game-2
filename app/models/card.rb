@@ -753,6 +753,10 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/commander.png'), filename: 'commander.png', content_type: "image/png")
     when "Death Weaver"
       photo.attach(io: File.open('app/assets/images/death weaver.png'), filename: 'death weaver.png', content_type: "image/png")
+    when "Mage Apprentice"
+      photo.attach(io: File.open('app/assets/images/mage apprentice.png'), filename: 'mage apprentice.png', content_type: "image/png")
+    when "Marksman"
+      photo.attach(io: File.open('app/assets/images/marksman.png'), filename: 'marksman.png', content_type: "image/png")
     when "Death Knight"
       photo.attach(io: File.open('app/assets/images/death knight.png'), filename: 'death knight.png', content_type: "image/png")
     when "Banshee"
@@ -779,6 +783,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/bone dragon.png'), filename: 'bone dragon.png', content_type: "image/png")
     when "Grave Lord"
       photo.attach(io: File.open('app/assets/images/grave lord.png'), filename: 'grave lord.png', content_type: "image/png")
+    when "Lich King"
+      photo.attach(io: File.open('app/assets/images/lich king.png'), filename: 'lich king.png', content_type: "image/png")
     else
       case side
       when "light"
