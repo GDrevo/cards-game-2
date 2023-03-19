@@ -747,6 +747,10 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/guardian.png'), filename: 'guardian.png', content_type: "image/png")
     when "Axeman"
       photo.attach(io: File.open('app/assets/images/axeman.png'), filename: 'axeman.png', content_type: "image/png")
+    when "Shieldbearer"
+      photo.attach(io: File.open('app/assets/images/shieldbearer.png'), filename: 'shieldbearer.png', content_type: "image/png")
+    when "Herbalist"
+      photo.attach(io: File.open('app/assets/images/herbalist.png'), filename: 'herbalist.png', content_type: "image/png")
     when "Crusader"
       photo.attach(io: File.open('app/assets/images/crusader.png'), filename: 'crusader.png', content_type: "image/png")
     when "Commander"
@@ -769,10 +773,14 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/paladin.png'), filename: 'paladin.png', content_type: "image/png")
     when "King"
       photo.attach(io: File.open('app/assets/images/king.png'), filename: 'king.png', content_type: "image/png")
+    when "Necromancer"
+      photo.attach(io: File.open('app/assets/images/necromancer.png'), filename: 'necromancer.png', content_type: "image/png")
     when "Crypt Sentinel"
       photo.attach(io: File.open('app/assets/images/crypt sentinel.png'), filename: 'crypt sentinel.png', content_type: "image/png")
     when "Bone Weaver"
       photo.attach(io: File.open('app/assets/images/bone weaver.png'), filename: 'bone weaver.png', content_type: "image/png")
+    when "Spectral Guardian"
+      photo.attach(io: File.open('app/assets/images/spectral guardian.png'), filename: 'spectral guardian.png', content_type: "image/png")
     when "Death Priest"
       photo.attach(io: File.open('app/assets/images/death priest.png'), filename: 'death priest.png', content_type: "image/png")
     when "Skeleton Warrior"
