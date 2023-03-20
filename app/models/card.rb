@@ -767,6 +767,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/banshee.png'), filename: 'banshee.png', content_type: "image/png")
     when "Mummy"
       photo.attach(io: File.open('app/assets/images/mummy.png'), filename: 'mummy.png', content_type: "image/png")
+    when "Mummy Guardian"
+      photo.attach(io: File.open('app/assets/images/mummy guardian.png'), filename: 'mummy guardian.png', content_type: "image/png")
     when "Berserker"
       photo.attach(io: File.open('app/assets/images/berserker.png'), filename: 'berserker.png', content_type: "image/png")
     when "Paladin"
