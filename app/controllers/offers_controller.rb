@@ -28,12 +28,12 @@ class OffersController < ApplicationController
     player.offers.empty? ? nil : player.offers.destroy_all
     30.times do
       random = rand(1..100)
-      if random > 85
+      if random > 90
         # # 5% 5 shards normal
         cards = player.cards.where(cat: "daily normal")
         card = cards.sample
         Offer.create(player:, price: 250, shard_card: card.name, shard_number: 5)
-      elsif random > 60
+      elsif random > 10
         # # 25% 2 shards normal
         cards = player.cards.where(cat: "normal normal")
         card = cards.sample
