@@ -761,6 +761,10 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/mage apprentice.png'), filename: 'mage apprentice.png', content_type: "image/png")
     when "Marksman"
       photo.attach(io: File.open('app/assets/images/marksman.png'), filename: 'marksman.png', content_type: "image/png")
+    when "Swordsman"
+      photo.attach(io: File.open('app/assets/images/swordsman.png'), filename: 'swordsman.png', content_type: "image/png")
+    when "Spearman"
+      photo.attach(io: File.open('app/assets/images/spearman.png'), filename: 'spearman.png', content_type: "image/png")
     when "Death Knight"
       photo.attach(io: File.open('app/assets/images/death knight.png'), filename: 'death knight.png', content_type: "image/png")
     when "Banshee"
@@ -777,6 +781,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/king.png'), filename: 'king.png', content_type: "image/png")
     when "Necromancer"
       photo.attach(io: File.open('app/assets/images/necromancer.png'), filename: 'necromancer.png', content_type: "image/png")
+    when "Necromancer Acolyte"
+      photo.attach(io: File.open('app/assets/images/necromancer acolyte.png'), filename: 'necromancer acolyte.png', content_type: "image/png")
     when "Crypt Sentinel"
       photo.attach(io: File.open('app/assets/images/crypt sentinel.png'), filename: 'crypt sentinel.png', content_type: "image/png")
     when "Bone Weaver"
@@ -787,6 +793,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/death priest.png'), filename: 'death priest.png', content_type: "image/png")
     when "Skeleton Warrior"
       photo.attach(io: File.open('app/assets/images/skeleton warrior.png'), filename: 'skeleton warrior.png', content_type: "image/png")
+    when "Skeletal Archer"
+      photo.attach(io: File.open('app/assets/images/skeletal archer.png'), filename: 'skeletal archer.png', content_type: "image/png")
     when "Zombie Brute"
       photo.attach(io: File.open('app/assets/images/zombie brute.png'), filename: 'zombie brute.png', content_type: "image/png")
     when "Bone Dragon"
