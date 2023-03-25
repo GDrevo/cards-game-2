@@ -743,8 +743,14 @@ class Card < ApplicationRecord
     return if photo.attached?
 
     case name
+    when "Footman"
+      photo.attach(io: File.open('app/assets/images/footman.png'), filename: 'footman.png', content_type: "image/png")
     when "Guardian"
       photo.attach(io: File.open('app/assets/images/guardian.png'), filename: 'guardian.png', content_type: "image/png")
+    when "Captain"
+      photo.attach(io: File.open('app/assets/images/captain.png'), filename: 'captain.png', content_type: "image/png")
+    when "Crossbowman"
+      photo.attach(io: File.open('app/assets/images/crossbowman.png'), filename: 'crossbowman.png', content_type: "image/png")
     when "Axeman"
       photo.attach(io: File.open('app/assets/images/axeman.png'), filename: 'axeman.png', content_type: "image/png")
     when "Shieldbearer"
@@ -793,6 +799,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/death priest.png'), filename: 'death priest.png', content_type: "image/png")
     when "Skeleton Warrior"
       photo.attach(io: File.open('app/assets/images/skeleton warrior.png'), filename: 'skeleton warrior.png', content_type: "image/png")
+    when "Rotting Corpse"
+      photo.attach(io: File.open('app/assets/images/rotting corpse.png'), filename: 'rotting corpse.png', content_type: "image/png")
     when "Skeletal Archer"
       photo.attach(io: File.open('app/assets/images/skeletal archer.png'), filename: 'skeletal archer.png', content_type: "image/png")
     when "Zombie Brute"
