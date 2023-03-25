@@ -24,7 +24,19 @@ class ChallengesController < ApplicationController
         battlemedic_challenges = all_challenges.where(epic_card: "Battle Medic")
         juggernaut_challenges = all_challenges.where(epic_card: "Juggernaut")
         warden_challenges = all_challenges.where(epic_card: "Warden")
-        @all_challenges = [
+
+        revenant_challenges = all_challenges.where(epic_card: "Revenant")
+        death_weaver_challenges = all_challenges.where(epic_card: "Death Weaver")
+        bone_golem_challenges = all_challenges.where(epic_card: "Bone Golem")
+        wight_challenges = all_challenges.where(epic_card: "Wight")
+        necrophage_challenges = all_challenges.where(epic_card: "Necrophage")
+        bone_dragon_challenges = all_challenges.where(epic_card: "Bone Dragon")
+        lich_healer_challenges = all_challenges.where(epic_card: "Lich Healer")
+        crypt_keeper_challenges = all_challenges.where(epic_card: "Crypt Keeper")
+        wight_juggernaut_challenges = all_challenges.where(epic_card: "Wight Juggernaut")
+        spectral_guardian_challenges = all_challenges.where(epic_card: "Spectral Guardian")
+
+        @human_challenges = [
           paladin_challenges,
           berserker_challenges,
           knight_challenges,
@@ -35,6 +47,18 @@ class ChallengesController < ApplicationController
           battlemedic_challenges,
           juggernaut_challenges,
           warden_challenges
+        ]
+        @undead_challenges = [
+          revenant_challenges,
+          death_weaver_challenges,
+          bone_golem_challenges,
+          wight_challenges,
+          necrophage_challenges,
+          bone_dragon_challenges,
+          lich_healer_challenges,
+          crypt_keeper_challenges,
+          wight_juggernaut_challenges,
+          spectral_guardian_challenges
         ]
       elsif params[:side] == "elite"
         all_challenges = player.player_challenges.where(category: params[:side])
@@ -50,7 +74,6 @@ class ChallengesController < ApplicationController
         @challenges_locked = @challenges_locked.where(category: params[:side])
         @challenges_locked = @challenges_locked.sort_by(&:rank)
       end
-      # raise
     end
   end
 

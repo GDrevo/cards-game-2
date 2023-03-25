@@ -101,6 +101,7 @@
   justify-content: space-evenly;
   h2 {
     width: 25%;
+    min-width: 140px;
   }
 }
 
@@ -113,4 +114,38 @@
     padding: 20px;
     color: $light-blue;
   }
+}
+
+.challenges-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  img {
+    width: 10px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  h4 {
+    margin: 0;
+  }
+}
+
+.epic-human-challenges {
+  width: 50%;
+  padding: 20px;
+}
+
+.epic-undead-challenges {
+  width: 50%;
+  padding: 20px;
+}
+
+.epic-title {
+  text-align: center;
+  margin: 0 100px;
+  border-bottom: 1px solid $light-black;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  font-size: 30px !important;
 }
