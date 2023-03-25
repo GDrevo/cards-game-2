@@ -23,12 +23,12 @@
           <% if challenge.unlocked %>
             <%= link_to challenge_path(challenge) do %>
               <div class="challenge-card">
-                <h2><%= challenge.rank %></h2>
+                <h4><%= challenge.rank %></h4>
               </div>
             <% end %>
           <% else %>
             <div class="locked-challenge-card">
-              <h2><%= challenge.rank %></h2>
+              <h4><%= challenge.rank %></h4>
             </div>
           <% end %>
         <% end %>

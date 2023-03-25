@@ -64,9 +64,13 @@ class ChallengesController < ApplicationController
         all_challenges = player.player_challenges.where(category: params[:side])
         king_challenges = all_challenges.where(epic_card: "King")
         queen_challenges = all_challenges.where(epic_card: "Queen")
+        lich_king_challenges = all_challenges.where(epic_card: "Lich King")
+        grave_lord_challenges = all_challenges.where(epic_card: "Grave Lord")
         @all_challenges = [
           king_challenges,
-          queen_challenges
+          lich_king_challenges,
+          queen_challenges,
+          grave_lord_challenges
         ]
       else
         @challenges = @challenges.where(category: params[:side])
