@@ -745,6 +745,16 @@ class Card < ApplicationRecord
     case name
     when "Footman"
       photo.attach(io: File.open('app/assets/images/footman.png'), filename: 'footman.png', content_type: "image/png")
+    when "Archer"
+      photo.attach(io: File.open('app/assets/images/archer.png'), filename: 'archer.png', content_type: "image/png")
+    when "Brute"
+      photo.attach(io: File.open('app/assets/images/brute.png'), filename: 'brute.png', content_type: "image/png")
+    when "Cavalry"
+      photo.attach(io: File.open('app/assets/images/cavalry.png'), filename: 'cavalry.png', content_type: "image/png")
+    when "Cleric"
+      photo.attach(io: File.open('app/assets/images/cleric.png'), filename: 'cleric.png', content_type: "image/png")
+    when "High Priest"
+      photo.attach(io: File.open('app/assets/images/high priest.png'), filename: 'high priest.png', content_type: "image/png")
     when "Guardian"
       photo.attach(io: File.open('app/assets/images/guardian.png'), filename: 'guardian.png', content_type: "image/png")
     when "Captain"
