@@ -753,6 +753,14 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/cavalry.png'), filename: 'cavalry.png', content_type: "image/png")
     when "Cleric"
       photo.attach(io: File.open('app/assets/images/cleric.png'), filename: 'cleric.png', content_type: "image/png")
+    when "Druid"
+      photo.attach(io: File.open('app/assets/images/druid.png'), filename: 'druid.png', content_type: "image/png")
+    when "Juggernaut"
+      photo.attach(io: File.open('app/assets/images/juggernaut.png'), filename: 'juggernaut.png', content_type: "image/png")
+    when "Knight"
+      photo.attach(io: File.open('app/assets/images/knight.png'), filename: 'knight.png', content_type: "image/png")
+    when "Squire"
+      photo.attach(io: File.open('app/assets/images/squire.png'), filename: 'squire.png', content_type: "image/png")
     when "High Priest"
       photo.attach(io: File.open('app/assets/images/high priest.png'), filename: 'high priest.png', content_type: "image/png")
     when "Guardian"
