@@ -94,9 +94,14 @@
   box-shadow: 0px 0px 3px 0px rgb(106, 106, 134);
 }
 
-.c-s-s-p-up {
+.c-s-s-p-up-outer {
   height: 60%;
   padding: 20px;
+}
+
+.c-s-s-p-up-inner {
+  border-bottom: 1px solid $light-black;
+  height: 100%;
 }
 
 .c-s-s-p-down {

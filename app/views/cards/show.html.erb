@@ -29,12 +29,14 @@
     </div>
   </div>
   <div class="cards-show-stats-part">
-    <div class="c-s-s-p-up">
-      <h3>STATS :</h3>
-      <p>hit points : <%= @card.hit_points %></p>
-      <p>armor : <%= @card.armor %></p>
-      <p>power : <%= @card.power %></p>
-      <p>speed : <%= @card.speed %></p>
+    <div class="c-s-s-p-up-outer">
+      <div class="c-s-s-p-up-inner">
+        <h3>STATS :</h3>
+        <p>hit points : <%= @card.hit_points %></p>
+        <p>armor : <%= @card.armor %></p>
+        <p>power : <%= @card.power %></p>
+        <p>speed : <%= @card.speed %></p>
+      </div>
     </div>
     <div class="c-s-s-p-down">
       <p>Gear lvl : <%= @card.gear_set.level %></p>
