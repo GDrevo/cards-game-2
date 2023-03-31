@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_09_195003) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_30_160200) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -136,6 +136,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_195003) do
     t.index ["battle_card_id"], name: "index_effects_on_battle_card_id"
   end
 
+  create_table "gear_sets", force: :cascade do |t|
+    t.integer "level", default: 0
+    t.boolean "full", default: false
+    t.bigint "card_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_gear_sets_on_card_id"
+  end
+
+  create_table "gears", force: :cascade do |t|
+    t.integer "level"
+    t.string "gear_type"
+    t.integer "bonus_armor", default: 0
+    t.integer "bonus_power", default: 0
+    t.integer "bonus_speed", default: 0
+    t.integer "coins_value"
+    t.boolean "used", default: false
+    t.bigint "player_id"
+    t.bigint "gear_set_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gear_set_id"], name: "index_gears_on_gear_set_id"
+    t.index ["player_id"], name: "index_gears_on_player_id"
+  end
+
   create_table "offers", force: :cascade do |t|
     t.boolean "bought", default: false
     t.integer "price"
@@ -255,6 +280,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_195003) do
   add_foreign_key "challenges", "players"
   add_foreign_key "challenges", "players", column: "computer_id"
   add_foreign_key "effects", "battle_cards"
+  add_foreign_key "gear_sets", "cards"
+  add_foreign_key "gears", "gear_sets"
+  add_foreign_key "gears", "players"
   add_foreign_key "offers", "players"
   add_foreign_key "players", "users"
   add_foreign_key "pvp_battle_cards", "cards"
