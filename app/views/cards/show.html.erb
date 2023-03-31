@@ -1,21 +1,43 @@
 <div class="cards-show-container">
   <div class="cards-show-unit-part">
     <div class="c-s-u-p-left">
+      <div class="c-s-u-p-l-up">
+        <h3>WEAPON</h3>
+        <%= image_tag "add gear.png" %>
+      </div>
+      <div class="c-s-u-p-l-down">
 
+      </div>
     </div>
     <div class="c-s-u-p-center">
       <div class="c-s-u-p-c-up">
-
+        <%= image_tag @card.photo %>
       </div>
       <div class="c-s-u-p-c-down">
-
+        <h3>ARTIFACT</h3>
+        <%= image_tag "add gear.png" %>
       </div>
     </div>
     <div class="c-s-u-p-right">
+      <div class="c-s-u-p-r-up">
+        <h3>ARMOR</h3>
+        <%= image_tag "add gear.png" %>
+      </div>
+      <div class="c-s-u-p-r-down">
 
+      </div>
     </div>
   </div>
   <div class="cards-show-stats-part">
-
+    <div class="c-s-s-p-up">
+      <h3>STATS :</h3>
+      <p>hit points : <%= @card.hit_points %></p>
+      <p>armor : <%= @card.armor %></p>
+      <p>power : <%= @card.power %></p>
+      <p>speed : <%= @card.speed %></p>
+    </div>
+    <div class="c-s-s-p-down">
+      <p>Gear lvl : <%= @card.gear_set.level %></p>
+    </div>
   </div>
 </div>
