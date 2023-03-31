@@ -2,10 +2,12 @@ class Card < ApplicationRecord
   belongs_to :player
   has_many :skills
   has_many :battle_cards
+  has_one :gear_set
   has_one_attached :photo
 
   after_create :create_skills
   after_create :attach_photo
+  after_create :create_gear_set
   before_save :calculate_war_power
 
   def level_up(xp)
@@ -737,6 +739,10 @@ class Card < ApplicationRecord
         Skill.create(skill)
       end
     end
+  end
+
+  def create_gear_set
+    GearSet.create(card: self)
   end
 
   def attach_photo
