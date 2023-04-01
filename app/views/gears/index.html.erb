@@ -5,6 +5,14 @@
     </div>
     <div class="g-l-p-down">
       <h2>Usable Gear</h2>
+      <div class="gears-list">
+        <% @gears.each do |gear| %>
+          <div class="g-l-p-d-gear-card">
+            <%# NEED TO ADD PHOTOS TO GEAR FIRST %>
+            <%#= gear.photo %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="g-right-part">
