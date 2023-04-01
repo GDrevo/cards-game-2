@@ -17,13 +17,17 @@
       </div>
       <div class="c-s-u-p-c-down">
         <h3>ARTIFACT</h3>
-        <%= image_tag "add gear.png" %>
+        <%= link_to gears_path(gear_type: "artifact #{@card.gear_set.level}") do %>
+          <%= image_tag "add gear.png" %>
+        <% end %>
       </div>
     </div>
     <div class="c-s-u-p-right">
       <div class="c-s-u-p-r-up">
         <h3>ARMOR</h3>
-        <%= image_tag "add gear.png" %>
+        <%= link_to gears_path(gear_type: "armor #{@card.gear_set.level}") do %>
+          <%= image_tag "add gear.png" %>
+        <% end %>
       </div>
       <div class="c-s-u-p-r-down">
 
