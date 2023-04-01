@@ -8,6 +8,7 @@ class Player < ApplicationRecord
   has_many :battles
   has_many :pvp_battles
   has_many :offers
+  has_many :gears
 
   def unlock(card_name)
     card = cards.where(name: card_name).first

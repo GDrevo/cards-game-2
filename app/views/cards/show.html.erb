@@ -3,7 +3,9 @@
     <div class="c-s-u-p-left">
       <div class="c-s-u-p-l-up">
         <h3>WEAPON</h3>
-        <%= image_tag "add gear.png" %>
+        <%= link_to gears_path(gear_type: "weapon #{@card.gear_set.level}") do %>
+          <%= image_tag "add gear.png" %>
+        <% end %>
       </div>
       <div class="c-s-u-p-l-down">
 

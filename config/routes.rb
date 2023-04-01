@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'gears/index'
   get 'players/show'
   devise_for :users
   root to: "pages#home"
@@ -23,4 +24,5 @@ Rails.application.routes.draw do
     patch :simulate_turn, on: :member
   end
   resources :players, only: %i[show]
+  resources :gears, only: %i[index]
 end
