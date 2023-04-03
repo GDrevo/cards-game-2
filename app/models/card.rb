@@ -807,6 +807,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/crypt keeper.png'), filename: 'crypt keeper.png', content_type: "image/png")
     when "Berserker"
       photo.attach(io: File.open('app/assets/images/berserker.png'), filename: 'berserker.png', content_type: "image/png")
+    when "Priestess"
+      photo.attach(io: File.open('app/assets/images/priestess.png'), filename: 'priestess.png', content_type: "image/png")
     when "Paladin"
       photo.attach(io: File.open('app/assets/images/paladin.png'), filename: 'paladin.png', content_type: "image/png")
     when "King"
@@ -833,6 +835,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/zombie brute.png'), filename: 'zombie brute.png', content_type: "image/png")
     when "Bone Dragon"
       photo.attach(io: File.open('app/assets/images/bone dragon.png'), filename: 'bone dragon.png', content_type: "image/png")
+    when "Wight Juggernaut"
+      photo.attach(io: File.open('app/assets/images/wight juggernaut.png'), filename: 'wight juggernaut.png', content_type: "image/png")
     when "Grave Lord"
       photo.attach(io: File.open('app/assets/images/grave lord.png'), filename: 'grave lord.png', content_type: "image/png")
     when "Lich King"
