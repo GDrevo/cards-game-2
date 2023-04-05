@@ -14,14 +14,24 @@
 
 .g-l-p-up {
  width: 40%;
- background-color: lightsalmon;
  height: 40%;
  padding: 20px;
 }
 
+.gear-photo {
+  background-color: $dark-blue;
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 3px 0px rgb(106, 106, 134);
+}
+
 .g-l-p-down {
  width: 100%;
- background-color: lightseagreen;
  height: 60%;
  padding: 20px;
 }
