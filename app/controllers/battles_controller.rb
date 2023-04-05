@@ -221,6 +221,9 @@ class BattlesController < ApplicationController
       # Give the shards to player_cards and add the coins to player.coins
       player_bcs = battle.bt_player.battle_cards.select { |bc| bc.dead == false }
       computer_bcs = battle.bt_computer.battle_cards
+      # Give gear to winner
+      gear_attribution(player)
+
       # Calculate XP gained and divide it between the cards that aren't dead
       @experience = calculate_experience(player_bcs, computer_bcs)
       redirect_to rewards_battle_path(battle_id: battle.id, experience_gained: @experience, shard_card: @shard_card.id, challenge:)
@@ -230,6 +233,85 @@ class BattlesController < ApplicationController
       calculate_experience(player_bcs, computer_bcs)
       redirect_to challenges_path(side: battle.challenge.category)
     end
+  end
+
+  def gear_attribution(player)
+    random_number = rand(1..50)
+    if random_number == 50
+      create_gear(player, "weapon 2")
+    elsif random_number == 49
+      create_gear(player, "armor 2")
+    elsif random_number == 48
+      create_gear(player, "artifact 2")
+    elsif random_number >= 45
+      create_gear(player, "weapon 1")
+    elsif random_number >= 42
+      create_gear(player, "armor 1")
+    elsif random_number >= 39
+      create_gear(player, "artifact 1")
+    elsif random_number >= 29
+      create_gear(player, "weapon 0")
+    elsif random_number >= 19
+      create_gear(player, "armor 0")
+    elsif random_number >= 9
+      create_gear(player, "artifact 0")
+    end
+  end
+
+  def create_gear(player, gear_type)
+    case gear_type
+    when "weapon 2"
+      bonus_armor = 0
+      bonus_power = rand(100..250)
+      bonus_speed = 0
+      coins_value = 50
+    when "weapon 1"
+      bonus_armor = 0
+      bonus_power = rand(20..50)
+      bonus_speed = 0
+      coins_value = 15
+    when "weapon 0"
+      bonus_armor = 0
+      bonus_power = rand(10..25)
+      bonus_speed = 0
+      coins_value = 5
+    when "armor 2"
+      bonus_armor = rand(5..10)
+      bonus_power = 0
+      bonus_speed = 0
+      coins_value = 50
+    when "armor 1"
+      bonus_armor = rand(3..5)
+      bonus_power = 0
+      bonus_speed = 0
+      coins_value = 15
+    when "armor 0"
+      bonus_armor = rand(1..2)
+      bonus_power = 0
+      bonus_speed = 0
+      coins_value = 5
+    when "artifact 2"
+      bonus_armor = 0
+      bonus_power = 0
+      bonus_speed = rand(3..10)
+      coins_value = 50
+    when "artifact 1"
+      bonus_armor = 0
+      bonus_power = 0
+      bonus_speed = rand(1..5)
+      coins_value = 15
+    when "artifact 0"
+      bonus_armor = 0
+      bonus_power = 0
+      bonus_speed = rand(1..3)
+      coins_value = 5
+    else
+      bonus_armor = 0
+      bonus_power = 0
+      bonus_speed = 0
+      coins_value = 5
+    end
+    Gear.create(player:, level: gear_type[-1], gear_type:, bonus_armor:, bonus_power:, bonus_speed:, coins_value:)
   end
 
   def manage_strong_challenge(challenge)
