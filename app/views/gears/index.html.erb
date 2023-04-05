@@ -2,6 +2,12 @@
   <div class="g-left-part">
     <div class="g-l-p-up">
       <h2>Currently Used</h2>
+      <% if @used_gear.nil? %>
+        <div class="gear-photo">
+          <%= image_tag @gear_photo %>
+        </div>
+      <% else %>
+      <% end %>
     </div>
     <div class="g-l-p-down">
       <h2>Usable Gear</h2>
