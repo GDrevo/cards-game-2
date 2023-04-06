@@ -3,6 +3,7 @@ class GearSet < ApplicationRecord
   has_many :gears
 
   before_save :calculate_bonus
+  before_save :check_full
 
   private
 
@@ -21,5 +22,16 @@ class GearSet < ApplicationRecord
     self.bonus_armor = armor
     self.bonus_power = power
     self.bonus_speed = speed
+  end
+
+  def check_full
+    case level
+    when 0
+      gears.size == 3 ? self.full = true : nil
+    when 1
+      gears.size == 6 ? self.full = true : nil
+    when 2
+      gears.size == 9 ? self.full = true : nil
+    end
   end
 end

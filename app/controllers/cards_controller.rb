@@ -24,4 +24,12 @@ class CardsController < ApplicationController
     @b_power = b_power
     @b_speed = b_speed
   end
+
+  def lvl_up_gear
+    card = Card.find(params[:id])
+    card.gear_set.level += 1
+    card.gear_set.full = false
+    card.gear_set.save
+    redirect_to card_path(card)
+  end
 end

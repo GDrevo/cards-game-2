@@ -150,6 +150,7 @@ class BattlesController < ApplicationController
     @shard_card = Card.find(@shard_card_id)
     challenge_id = params[:challenge].to_i
     @challenge = Challenge.find(challenge_id)
+    @gear = Gear.find(params[:gear_id])
   end
 
   private
@@ -222,11 +223,11 @@ class BattlesController < ApplicationController
       player_bcs = battle.bt_player.battle_cards.select { |bc| bc.dead == false }
       computer_bcs = battle.bt_computer.battle_cards
       # Give gear to winner
-      gear_attribution(player)
+      gear_id = gear_attribution(player)
 
       # Calculate XP gained and divide it between the cards that aren't dead
       @experience = calculate_experience(player_bcs, computer_bcs)
-      redirect_to rewards_battle_path(battle_id: battle.id, experience_gained: @experience, shard_card: @shard_card.id, challenge:)
+      redirect_to rewards_battle_path(battle_id: battle.id, experience_gained: @experience, shard_card: @shard_card.id, challenge:, gear_id:)
     else
       player_bcs = battle.bt_player.battle_cards
       computer_bcs = battle.bt_computer.battle_cards.select { |bc| bc.dead == true }
@@ -238,24 +239,25 @@ class BattlesController < ApplicationController
   def gear_attribution(player)
     random_number = rand(1..50)
     if random_number == 50
-      create_gear(player, "weapon 2")
+      gear = create_gear(player, "weapon 2")
     elsif random_number == 49
-      create_gear(player, "armor 2")
+      gear = create_gear(player, "armor 2")
     elsif random_number == 48
-      create_gear(player, "artifact 2")
-    elsif random_number >= 45
-      create_gear(player, "weapon 1")
+      gear = create_gear(player, "artifact 2")
+    elsif random_number >= 46
+      gear = create_gear(player, "weapon 1")
+    elsif random_number >= 44
+      gear = create_gear(player, "armor 1")
     elsif random_number >= 42
-      create_gear(player, "armor 1")
-    elsif random_number >= 39
-      create_gear(player, "artifact 1")
-    elsif random_number >= 29
-      create_gear(player, "weapon 0")
-    elsif random_number >= 19
-      create_gear(player, "armor 0")
-    elsif random_number >= 9
-      create_gear(player, "artifact 0")
+      gear = create_gear(player, "artifact 1")
+    elsif random_number >= 28
+      gear = create_gear(player, "weapon 0")
+    elsif random_number >= 14
+      gear = create_gear(player, "armor 0")
+    else
+      gear = create_gear(player, "artifact 0")
     end
+    gear.id
   end
 
   def create_gear(player, gear_type)
@@ -390,7 +392,7 @@ class BattlesController < ApplicationController
   def calculate_damage(attacker, target, skill, bcs_attacker, bcs_defender)
     return if skill.strength.nil?
 
-    damage = attacker.card.power
+    damage = attacker.power
     if skill.strength.include?("Light")
       damage = (damage * 0.75).round
     elsif skill.strength.include?("Powerful")
@@ -468,30 +470,30 @@ class BattlesController < ApplicationController
       prestige = card.prestige
       case prestige
       when 1
-        hit_points = (card.hit_points * 0.9).round
-        armor = (card.armor * 0.9).round
-        power = (card.power * 0.9).round
-        speed = (card.speed * 0.9).round
+        hit_points = (card.hit_points * 0.9).round + card.gear_set.bonus_hp
+        armor = (card.armor * 0.9).round + card.gear_set.bonus_armor
+        power = (card.power * 0.9).round + card.gear_set.bonus_power
+        speed = (card.speed * 0.9).round + card.gear_set.bonus_speed
       when 2
-        hit_points = card.hit_points
-        armor = card.armor
-        power = card.power
-        speed = card.speed
+        hit_points = card.hit_points + card.gear_set.bonus_hp
+        armor = card.armor + card.gear_set.bonus_armor
+        power = card.power + card.gear_set.bonus_power
+        speed = card.speed + card.gear_set.bonus_speed
       when 3
-        hit_points = (card.hit_points * 1.1)
-        armor = (card.armor * 1.1)
-        power = (card.power * 1.1)
-        speed = (card.speed * 1.1)
+        hit_points = (card.hit_points * 1.1).round + card.gear_set.bonus_hp
+        armor = (card.armor * 1.1).round + card.gear_set.bonus_armor
+        power = (card.power * 1.1).round + card.gear_set.bonus_power
+        speed = (card.speed * 1.1).round + card.gear_set.bonus_speed
       when 4
-        hit_points = (card.hit_points * 1.25).round
-        armor = (card.armor * 1.25).round
-        power = (card.power * 1.25).round
-        speed = (card.speed * 1.25).round
+        hit_points = (card.hit_points * 1.25).round + card.gear_set.bonus_hp
+        armor = (card.armor * 1.25).round + card.gear_set.bonus_armor
+        power = (card.power * 1.25).round + card.gear_set.bonus_power
+        speed = (card.speed * 1.25).round + card.gear_set.bonus_speed
       when 5
-        hit_points = (card.hit_points * 1.5).round
-        armor = (card.armor * 1.5).round
-        power = (card.power * 1.5).round
-        speed = (card.speed * 1.5).round
+        hit_points = (card.hit_points * 1.5).round + card.gear_set.bonus_hp
+        armor = (card.armor * 1.5).round + card.gear_set.bonus_armor
+        power = (card.power * 1.5).round + card.gear_set.bonus_power
+        speed = (card.speed * 1.5).round + card.gear_set.bonus_speed
       end
       BattleCard.create(hit_points:, armor:, power:, speed:, card:, battle_team:, max_hp: hit_points)
     end

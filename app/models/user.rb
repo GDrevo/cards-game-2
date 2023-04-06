@@ -577,11 +577,11 @@ class User < ApplicationRecord
         { computer: Player.where(code: "epic Wight Juggernaut 4").first, rank: 4, requirement: "Skeleton Shieldbearer,Zombie Brute,Crypt Sentinel,Bone Weaver,Mummy", epic_card: "Wight Juggernaut" }.merge(attr_epic),
         { computer: Player.where(code: "epic Wight Juggernaut 5").first, rank: 5, requirement: "Skeleton Shieldbearer,Zombie Brute,Crypt Sentinel,Bone Weaver,Mummy", epic_card: "Wight Juggernaut" }.merge(attr_epic),
         # Spectral Guardian
-        { computer: Player.where(code: "epic Spectral Guardian 1").first, rank: 1, requirement: "Ghoul,Graveyard Wisp,Banshee,Death Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
-        { computer: Player.where(code: "epic Spectral Guardian 2").first, rank: 2, requirement: "Ghoul,Graveyard Wisp,Banshee,Death Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
-        { computer: Player.where(code: "epic Spectral Guardian 3").first, rank: 3, requirement: "Ghoul,Graveyard Wisp,Banshee,Death Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
-        { computer: Player.where(code: "epic Spectral Guardian 4").first, rank: 4, requirement: "Ghoul,Graveyard Wisp,Banshee,Death Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
-        { computer: Player.where(code: "epic Spectral Guardian 5").first, rank: 5, requirement: "Ghoul,Graveyard Wisp,Banshee,Death Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Spectral Guardian 1").first, rank: 1, requirement: "Ghoul,Graveyard Wisp,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Spectral Guardian 2").first, rank: 2, requirement: "Ghoul,Graveyard Wisp,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Spectral Guardian 3").first, rank: 3, requirement: "Ghoul,Graveyard Wisp,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Spectral Guardian 4").first, rank: 4, requirement: "Ghoul,Graveyard Wisp,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Spectral Guardian 5").first, rank: 5, requirement: "Ghoul,Graveyard Wisp,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
         # Lich King
         { computer: Player.where(code: "epic Lich King 1").first, rank: 1, requirement: "Revenant,Death Weaver,Bone Golem,Lich Healer,Wight Juggernaut", epic_card: "Lich King" }.merge(attr_elite),
         { computer: Player.where(code: "epic Lich King 2").first, rank: 2, requirement: "Revenant,Death Weaver,Bone Golem,Lich Healer,Wight Juggernaut", epic_card: "Lich King" }.merge(attr_elite),

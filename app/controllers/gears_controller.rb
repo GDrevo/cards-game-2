@@ -1,8 +1,9 @@
 class GearsController < ApplicationController
   def index
     params[:gear_type] && gear_type = params[:gear_type]
+    params[:card_id] && card = Card.find(params[:card_id])
     gear_type && @gears = current_user.player.gears.where(gear_type:).where(used: false)
-    @gears && used_gear = current_user.player.gears.where(gear_type:).where(used: true)
+    @gears && used_gear = card.gear_set.gears.where(gear_type:).where(used: true)
     used_gear && used_gear.empty? ? @used_gear = nil : @used_gear = used_gear.first
     if params[:gear_type].starts_with?("weapon")
       @gear_photo = "weapon"
