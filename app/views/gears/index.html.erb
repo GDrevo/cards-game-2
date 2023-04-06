@@ -17,6 +17,7 @@
       <div class="gears-list">
         <% @gears.each do |gear| %>
           <div class="g-l-p-d-gear-card" data-action="click->gear-selection#selectGear"
+          data-hp-bonus=<%= gear.bonus_hp %>
           data-armor-bonus=<%= gear.bonus_armor %>
           data-power-bonus=<%= gear.bonus_power %>
           data-speed-bonus=<%= gear.bonus_speed %>
@@ -32,7 +33,7 @@
     <h2>Details</h2>
     <div class="g-r-p-up">
       <h5>Currently Used</h5>
-      <p>Hit Points : <%#= @used_gear ? @used_gear.first.bonus_hp : 0 %></p>
+      <p>Hit Points : <span data-gear-selection-target="chp"><%= @used_gear ? @used_gear.bonus_hp : 0 %></span></p>
       <p>Armor : <span data-gear-selection-target="carmor"><%= @used_gear ? @used_gear.bonus_armor : 0 %></span></p>
       <p>Power : <span data-gear-selection-target="cpower"><%= @used_gear ? @used_gear.bonus_power : 0 %></span></p>
       <p>Speed : <span data-gear-selection-target="cspeed"><%= @used_gear ? @used_gear.bonus_speed : 0 %></span></p>

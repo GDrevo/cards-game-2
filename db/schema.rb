@@ -138,6 +138,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_160200) do
 
   create_table "gear_sets", force: :cascade do |t|
     t.integer "level", default: 0
+    t.integer "bonus_hp", default: 0
+    t.integer "bonus_armor", default: 0
+    t.integer "bonus_power", default: 0
+    t.integer "bonus_speed", default: 0
     t.boolean "full", default: false
     t.bigint "card_id", null: false
     t.datetime "created_at", null: false
@@ -148,6 +152,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_160200) do
   create_table "gears", force: :cascade do |t|
     t.integer "level"
     t.string "gear_type"
+    t.integer "bonus_hp", default: 0
     t.integer "bonus_armor", default: 0
     t.integer "bonus_power", default: 0
     t.integer "bonus_speed", default: 0
