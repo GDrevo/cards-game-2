@@ -9,5 +9,19 @@ class CardsController < ApplicationController
 
   def show
     @card = Card.find(params[:id])
+    b_hp = 0
+    b_armor = 0
+    b_power = 0
+    b_speed = 0
+    @card.gear_set.gears.each do |gear|
+      b_hp += gear.bonus_hp
+      b_armor += gear.bonus_armor
+      b_power += gear.bonus_power
+      b_speed += gear.bonus_speed
+    end
+    @b_hp = b_hp
+    @b_armor = b_armor
+    @b_power = b_power
+    @b_speed = b_speed
   end
 end

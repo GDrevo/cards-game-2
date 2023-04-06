@@ -27,7 +27,7 @@ class GearsController < ApplicationController
     new_gear.used = true
     new_gear.gear_set = card.gear_set
     new_gear.save
-    # ADD BEFORE_SAVE IN THE GEARSET MODEL IN ORDER TO CALCULATE BONUSES
+    card.gear_set.save
     redirect_to card_path(card)
   end
 end
