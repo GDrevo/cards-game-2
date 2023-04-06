@@ -46,6 +46,13 @@
     </div>
     <div class="c-s-s-p-down">
       <p>Gear lvl : <%= @card.gear_set.level %></p>
+      <% if @card.gear_set.full %>
+        <div class="lvl_up_gear_container">
+          <%= form_with(url: lvl_up_gear_card_path(@card), method: :patch, class: "lvl_up_gear_button") do |f| %>
+            <%= f.submit "UPGRADE" %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

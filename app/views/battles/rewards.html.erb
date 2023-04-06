@@ -1,7 +1,18 @@
 <div class="rewards-container">
   <h1>REWARDS</h1>
-  <h5>Total XP Gained: <%= @xp_gained %></h5>
-  <h5>Shard Gained: <%= @shard_card.name %></h5>
+  <h5>XP : <%= @xp_gained %></h5>
+  <h5>Shard : <%= @shard_card.name %></h5>
+  <% if @gear %>
+    <h5>Gear :</h5>
+    <div class="reward-gear">
+      <%= image_tag @gear.photo %>
+    </div>
+    <p>GEAR LVL : <%= @gear.level %></p>
+    <p>HP : <%= @gear.bonus_hp %></p>
+    <p>ARMOR : <%= @gear.bonus_armor %></p>
+    <p>POWER : <%= @gear.bonus_power %></p>
+    <p>SPEED : <%= @gear.bonus_speed %></p>
+  <% end %>
   <br>
   <%= link_to challenges_path(side: @challenge.category) do %>
     <h2>NEXT</h2>
