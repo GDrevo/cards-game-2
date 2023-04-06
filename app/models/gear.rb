@@ -1,5 +1,6 @@
 class Gear < ApplicationRecord
-  belongs_to :gear_set
+  belongs_to :gear_set, optional: true
+  belongs_to :player
   has_one_attached :photo
 
   after_create :attach_photo
