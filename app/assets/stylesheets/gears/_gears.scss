@@ -24,10 +24,20 @@
   margin-top: 50px;
   width: 150px;
   height: 150px;
-  object-fit: contain;
   padding: 25px;
   border-radius: 20px;
   box-shadow: 0px 0px 3px 0px rgb(106, 106, 134);
+}
+
+.gear-photo-unused {
+  background-color: $light-black;
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 150px;
+  height: 150px;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 3px 0px $lighter-black;
 }
 
 .g-l-p-down {
@@ -43,4 +53,23 @@
   padding: 20px;
   border-radius: 20px;
   box-shadow: 0px 0px 3px 0px rgb(106, 106, 134);
+}
+
+.gears-list {
+  display: flex;
+  overflow: auto;
+  height: 90%;
+}
+
+.g-l-p-d-gear-card {
+  background-color: $dark-blue;
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 3px 0px rgb(106, 106, 134);
+  img {
+    width: 100%;
+  }
 }

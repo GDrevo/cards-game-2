@@ -5,11 +5,12 @@ class GearsController < ApplicationController
     @gears && used_gear = @gears.where(used: true)
     used_gear && used_gear.empty? ? @used_gear = nil : @used_gear = used_gear
     if params[:gear_type].starts_with?("weapon")
-      @gear_photo = "weapon-gear 0"
+      @gear_photo = "weapon"
     elsif params[:gear_type].starts_with?("armor")
-      @gear_photo = "armor-gear 0"
+      @gear_photo = "armor"
     else
-      @gear_photo = "artifact-gear 0"
+      @gear_photo = "artifact"
     end
+    # raise
   end
 end

@@ -305,11 +305,6 @@ class BattlesController < ApplicationController
       bonus_power = 0
       bonus_speed = rand(1..3)
       coins_value = 5
-    else
-      bonus_armor = 0
-      bonus_power = 0
-      bonus_speed = 0
-      coins_value = 5
     end
     Gear.create(player:, level: gear_type[-1], gear_type:, bonus_armor:, bonus_power:, bonus_speed:, coins_value:)
   end

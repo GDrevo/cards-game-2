@@ -3,10 +3,13 @@
     <div class="g-l-p-up">
       <h2>Currently Used</h2>
       <% if @used_gear.nil? %>
-        <div class="gear-photo">
+        <div class="gear-photo-unused">
           <%= image_tag @gear_photo %>
         </div>
       <% else %>
+        <div class="gear-photo">
+          <%= image_tag @used_gear.photo %>
+        </div>
       <% end %>
     </div>
     <div class="g-l-p-down">
@@ -15,7 +18,7 @@
         <% @gears.each do |gear| %>
           <div class="g-l-p-d-gear-card">
             <%# NEED TO ADD PHOTOS TO GEAR FIRST %>
-            <%#= gear.photo %>
+            <%= image_tag gear.photo %>
           </div>
         <% end %>
       </div>
@@ -23,5 +26,22 @@
   </div>
   <div class="g-right-part">
     <h2>Details</h2>
+    <div class="g-r-p-up">
+      <h5>Currently Used</h5>
+      <p>Hit Points : <%#= @used_gear && @used_gear.first.bonus_hp %></p>
+      <p>Armor : <%= @used_gear && @used_gear.first.bonus_armor %></p>
+      <p>Power : <%= @used_gear && @used_gear.first.bonus_power %></p>
+      <p>Speed : <%= @used_gear && @used_gear.first.bonus_speed %></p>
+    </div>
+    <div class="g-r-p-down">
+      <h5>Selected</h5>
+      <p>Hit Points :</p>
+      <p>Armor :</p>
+      <p>Power :</p>
+      <p>Speed :</p>
+    </div>
+    <div class="g-r-p-button">
+      <h3>CONFIRM</h3>
+    </div>
   </div>
 </div>
