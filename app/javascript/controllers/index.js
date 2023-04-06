@@ -7,6 +7,9 @@ import { application } from "./application"
 import ComputerCardsController from "./computer_cards_controller"
 application.register("computer-cards", ComputerCardsController)
 
+import GearSelectionController from "./gear_selection_controller"
+application.register("gear-selection", GearSelectionController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

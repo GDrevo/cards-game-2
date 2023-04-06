@@ -24,5 +24,7 @@ Rails.application.routes.draw do
     patch :simulate_turn, on: :member
   end
   resources :players, only: %i[show]
-  resources :gears, only: %i[index]
+  resources :gears, only: %i[index] do
+    patch :modify_used_gear, on: :member
+  end
 end

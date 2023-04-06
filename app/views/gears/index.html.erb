@@ -1,4 +1,4 @@
-<div class="gears-container">
+<div class="gears-container" data-controller="gear-selection">
   <div class="g-left-part">
     <div class="g-l-p-up">
       <h2>Currently Used</h2>
@@ -16,8 +16,12 @@
       <h2>Usable Gear</h2>
       <div class="gears-list">
         <% @gears.each do |gear| %>
-          <div class="g-l-p-d-gear-card">
-            <%# NEED TO ADD PHOTOS TO GEAR FIRST %>
+          <div class="g-l-p-d-gear-card" data-action="click->gear-selection#selectGear"
+          data-armor-bonus=<%= gear.bonus_armor %>
+          data-power-bonus=<%= gear.bonus_power %>
+          data-speed-bonus=<%= gear.bonus_speed %>
+          data-id=<%= gear.id %>
+          >
             <%= image_tag gear.photo %>
           </div>
         <% end %>
@@ -28,20 +32,25 @@
     <h2>Details</h2>
     <div class="g-r-p-up">
       <h5>Currently Used</h5>
-      <p>Hit Points : <%#= @used_gear && @used_gear.first.bonus_hp %></p>
-      <p>Armor : <%= @used_gear && @used_gear.first.bonus_armor %></p>
-      <p>Power : <%= @used_gear && @used_gear.first.bonus_power %></p>
-      <p>Speed : <%= @used_gear && @used_gear.first.bonus_speed %></p>
+      <p>Hit Points : <%#= @used_gear ? @used_gear.first.bonus_hp : 0 %></p>
+      <p>Armor : <span data-gear-selection-target="carmor"><%= @used_gear ? @used_gear.bonus_armor : 0 %></span></p>
+      <p>Power : <span data-gear-selection-target="cpower"><%= @used_gear ? @used_gear.bonus_power : 0 %></span></p>
+      <p>Speed : <span data-gear-selection-target="cspeed"><%= @used_gear ? @used_gear.bonus_speed : 0 %></span></p>
     </div>
     <div class="g-r-p-down">
       <h5>Selected</h5>
-      <p>Hit Points :</p>
-      <p>Armor :</p>
-      <p>Power :</p>
-      <p>Speed :</p>
+      <p data-gear-selection-target="nhp">Hit Points :</p>
+      <p data-gear-selection-target="narmor">Armor :</p>
+      <p data-gear-selection-target="npower">Power :</p>
+      <p data-gear-selection-target="nspeed">Speed :</p>
     </div>
     <div class="g-r-p-button">
-      <h3>CONFIRM</h3>
+      <%= form_with(url: modify_used_gear_gear_path(@used_gear || 0), method: :patch, class: "confirm-gear-button") do |f| %>
+        <%= f.hidden_field :card_id, value: @card.id %>
+        <%= f.hidden_field :cgear_id, value: @used_gear && @used_gear.id %>
+        <%= f.hidden_field :ngear_id, data: { gear_selection_target: "ngearid" } %>
+        <%= f.submit "CONFIRM" %>
+      <% end %>
     </div>
   </div>
 </div>
