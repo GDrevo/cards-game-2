@@ -3,6 +3,7 @@ class CreateGears < ActiveRecord::Migration[7.0]
     create_table :gears do |t|
       t.integer :level
       t.string :gear_type
+      t.integer :bonus_hp, default: 0
       t.integer :bonus_armor, default: 0
       t.integer :bonus_power, default: 0
       t.integer :bonus_speed, default: 0

@@ -3,7 +3,7 @@
     <div class="c-s-u-p-left">
       <div class="c-s-u-p-l-up">
         <h3>WEAPON</h3>
-        <%= link_to gears_path(gear_type: "weapon #{@card.gear_set.level}") do %>
+        <%= link_to gears_path(card_id: @card.id, gear_type: "weapon #{@card.gear_set.level}") do %>
           <%= image_tag "add gear.png" %>
         <% end %>
       </div>
@@ -17,7 +17,7 @@
       </div>
       <div class="c-s-u-p-c-down">
         <h3>ARTIFACT</h3>
-        <%= link_to gears_path(gear_type: "artifact #{@card.gear_set.level}") do %>
+        <%= link_to gears_path(card_id: @card.id, gear_type: "artifact #{@card.gear_set.level}") do %>
           <%= image_tag "add gear.png" %>
         <% end %>
       </div>
@@ -25,7 +25,7 @@
     <div class="c-s-u-p-right">
       <div class="c-s-u-p-r-up">
         <h3>ARMOR</h3>
-        <%= link_to gears_path(gear_type: "armor #{@card.gear_set.level}") do %>
+        <%= link_to gears_path(card_id: @card.id, gear_type: "armor #{@card.gear_set.level}") do %>
           <%= image_tag "add gear.png" %>
         <% end %>
       </div>
