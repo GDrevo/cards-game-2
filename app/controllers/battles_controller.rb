@@ -263,52 +263,61 @@ class BattlesController < ApplicationController
   def create_gear(player, gear_type)
     case gear_type
     when "weapon 2"
+      bonus_hp = 0
       bonus_armor = 0
       bonus_power = rand(100..250)
       bonus_speed = 0
       coins_value = 50
     when "weapon 1"
+      bonus_hp = 0
       bonus_armor = 0
-      bonus_power = rand(20..50)
+      bonus_power = rand(10..50)
       bonus_speed = 0
       coins_value = 15
     when "weapon 0"
+      bonus_hp = 0
       bonus_armor = 0
-      bonus_power = rand(10..25)
+      bonus_power = rand(1..25)
       bonus_speed = 0
       coins_value = 5
     when "armor 2"
+      bonus_hp = rand(250..500)
       bonus_armor = rand(5..10)
       bonus_power = 0
       bonus_speed = 0
       coins_value = 50
     when "armor 1"
+      bonus_hp = rand(50..150)
       bonus_armor = rand(3..5)
       bonus_power = 0
       bonus_speed = 0
       coins_value = 15
     when "armor 0"
+      bonus_hp = rand(5..50)
       bonus_armor = rand(1..2)
       bonus_power = 0
       bonus_speed = 0
       coins_value = 5
     when "artifact 2"
+      bonus_hp = rand(100..150)
       bonus_armor = 0
       bonus_power = 0
       bonus_speed = rand(3..10)
       coins_value = 50
     when "artifact 1"
+      bonus_hp = rand(10..100)
       bonus_armor = 0
       bonus_power = 0
       bonus_speed = rand(1..5)
       coins_value = 15
     when "artifact 0"
+      bonus_hp = rand(1..50)
       bonus_armor = 0
       bonus_power = 0
       bonus_speed = rand(1..3)
       coins_value = 5
     end
-    Gear.create(player:, level: gear_type[-1], gear_type:, bonus_armor:, bonus_power:, bonus_speed:, coins_value:)
+    Gear.create(player:, level: gear_type[-1], gear_type:, bonus_hp:, bonus_armor:, bonus_power:, bonus_speed:, coins_value:)
   end
 
   def manage_strong_challenge(challenge)
