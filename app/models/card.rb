@@ -769,6 +769,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/squire.png'), filename: 'squire.png', content_type: "image/png")
     when "High Priest"
       photo.attach(io: File.open('app/assets/images/high priest.png'), filename: 'high priest.png', content_type: "image/png")
+    when "Battle Medic"
+      photo.attach(io: File.open('app/assets/images/battle medic.png'), filename: 'battle medic.png', content_type: "image/png")
     when "Guardian"
       photo.attach(io: File.open('app/assets/images/guardian.png'), filename: 'guardian.png', content_type: "image/png")
     when "Captain"
@@ -805,30 +807,58 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/mummy guardian.png'), filename: 'mummy guardian.png', content_type: "image/png")
     when "Crypt Keeper"
       photo.attach(io: File.open('app/assets/images/crypt keeper.png'), filename: 'crypt keeper.png', content_type: "image/png")
+    when "Medic"
+      photo.attach(io: File.open('app/assets/images/medic.png'), filename: 'medic.png', content_type: "image/png")
     when "Berserker"
       photo.attach(io: File.open('app/assets/images/berserker.png'), filename: 'berserker.png', content_type: "image/png")
     when "Priestess"
       photo.attach(io: File.open('app/assets/images/priestess.png'), filename: 'priestess.png', content_type: "image/png")
     when "Paladin"
       photo.attach(io: File.open('app/assets/images/paladin.png'), filename: 'paladin.png', content_type: "image/png")
+    when "Priest"
+      photo.attach(io: File.open('app/assets/images/priest.png'), filename: 'priest.png', content_type: "image/png")
+    when "Alchemist"
+      photo.attach(io: File.open('app/assets/images/alchemist.png'), filename: 'alchemist.png', content_type: "image/png")
+    when "Warden"
+      photo.attach(io: File.open('app/assets/images/warden.png'), filename: 'warden.png', content_type: "image/png")
     when "King"
       photo.attach(io: File.open('app/assets/images/king.png'), filename: 'king.png', content_type: "image/png")
+    when "Queen"
+      photo.attach(io: File.open('app/assets/images/queen.png'), filename: 'queen.png', content_type: "image/png")
     when "Necromancer"
       photo.attach(io: File.open('app/assets/images/necromancer.png'), filename: 'necromancer.png', content_type: "image/png")
+    when "Plaguebearer"
+      photo.attach(io: File.open('app/assets/images/plaguebearer.png'), filename: 'plaguebearer.png', content_type: "image/png")
     when "Necromancer Acolyte"
       photo.attach(io: File.open('app/assets/images/necromancer acolyte.png'), filename: 'necromancer acolyte.png', content_type: "image/png")
     when "Crypt Sentinel"
       photo.attach(io: File.open('app/assets/images/crypt sentinel.png'), filename: 'crypt sentinel.png', content_type: "image/png")
+    when "Undead wizard"
+      photo.attach(io: File.open('app/assets/images/undead wizard.png'), filename: 'undead wizard.png', content_type: "image/png")
+    when "Plague Doctor"
+      photo.attach(io: File.open('app/assets/images/plague doctor.png'), filename: 'plague doctor.png', content_type: "image/png")
     when "Bone Weaver"
       photo.attach(io: File.open('app/assets/images/bone weaver.png'), filename: 'bone weaver.png', content_type: "image/png")
+    when "Bone Golem"
+      photo.attach(io: File.open('app/assets/images/bone golem.png'), filename: 'bone golem.png', content_type: "image/png")
     when "Spectral Guardian"
       photo.attach(io: File.open('app/assets/images/spectral guardian.png'), filename: 'spectral guardian.png', content_type: "image/png")
     when "Death Priest"
       photo.attach(io: File.open('app/assets/images/death priest.png'), filename: 'death priest.png', content_type: "image/png")
     when "Skeleton Warrior"
       photo.attach(io: File.open('app/assets/images/skeleton warrior.png'), filename: 'skeleton warrior.png', content_type: "image/png")
+    when "Skeleton Shieldbearer"
+      photo.attach(io: File.open('app/assets/images/skeleton shieldbearer.png'), filename: 'skeleton shieldbearer.png', content_type: "image/png")
     when "Rotting Corpse"
       photo.attach(io: File.open('app/assets/images/rotting corpse.png'), filename: 'rotting corpse.png', content_type: "image/png")
+    when "Lich Healer"
+      photo.attach(io: File.open('app/assets/images/lich healer.png'), filename: 'lich healer.png', content_type: "image/png")
+    when "Zombie"
+      photo.attach(io: File.open('app/assets/images/zombie.png'), filename: 'zombie.png', content_type: "image/png")
+    when "Ghoul"
+      photo.attach(io: File.open('app/assets/images/ghoul.png'), filename: 'ghoul.png', content_type: "image/png")
+    when "Wraith"
+      photo.attach(io: File.open('app/assets/images/wraith.png'), filename: 'wraith.png', content_type: "image/png")
     when "Skeletal Archer"
       photo.attach(io: File.open('app/assets/images/skeletal archer.png'), filename: 'skeletal archer.png', content_type: "image/png")
     when "Zombie Brute"
