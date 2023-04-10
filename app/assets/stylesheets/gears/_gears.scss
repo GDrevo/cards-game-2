@@ -57,9 +57,9 @@
 
 .gears-list {
   display: flex;
+  flex-wrap: wrap;
   overflow: auto;
   height: 90%;
-  flex-wrap: wrap;
 }
 
 .g-l-p-d-gear-card {
