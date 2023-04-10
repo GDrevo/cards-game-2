@@ -52,6 +52,11 @@
         <%= f.hidden_field :ngear_id, data: { gear_selection_target: "ngearid" } %>
         <%= f.submit "CONFIRM" %>
       <% end %>
+      <%= form_with(url: sell_gear_gear_path(@used_gear || 0), method: :delete, class: "sell-gear-button") do |f| %>
+        <%= f.hidden_field :card_id, value: @card.id %>
+        <%= f.hidden_field :sgear_id, data: { gear_selection_target: "sgearid" } %>
+        <%= f.submit "SELL" %>
+      <% end %>
     </div>
   </div>
 </div>

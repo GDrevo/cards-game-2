@@ -28,5 +28,6 @@ Rails.application.routes.draw do
   resources :players, only: %i[show]
   resources :gears, only: %i[index] do
     patch :modify_used_gear, on: :member
+    delete :sell_gear, on: :member
   end
 end

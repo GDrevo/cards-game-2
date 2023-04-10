@@ -31,4 +31,16 @@ class GearsController < ApplicationController
     card.gear_set.save
     redirect_to card_path(card)
   end
+
+  def sell_gear
+    card = Card.find(params[:card_id])
+    gear = Gear.find(params[:sgear_id])
+    gear_type = gear.gear_type
+    if gear
+      current_user.player.coins += gear.coins_value
+      current_user.player.save
+      gear.delete
+    end
+    redirect_to gears_path(card_id: card.id, gear_type:)
+  end
 end
