@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="gear-selection"
 export default class extends Controller {
-  static targets = ["chp", "carmor", "cpower", "cspeed", "nhp", "narmor", "npower", "nspeed", "cgearid", "ngearid"]
+  static targets = ["chp", "carmor", "cpower", "cspeed", "nhp", "narmor", "npower", "nspeed", "cgearid", "ngearid", "sgearid"]
 
   connect() {
   }
@@ -26,5 +26,6 @@ export default class extends Controller {
     this.nspeedTarget.innerText = "Speed : " + speedBonus
 
     this.ngearidTarget.value = cGearId
+    this.sgearidTarget.value = cGearId
   }
 }
