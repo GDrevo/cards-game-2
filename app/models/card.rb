@@ -755,6 +755,8 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/archer.png'), filename: 'archer.png', content_type: "image/png")
     when "Brute"
       photo.attach(io: File.open('app/assets/images/brute.png'), filename: 'brute.png', content_type: "image/png")
+    when "Acolyte"
+      photo.attach(io: File.open('app/assets/images/acolyte.png'), filename: 'acolyte.png', content_type: "image/png")
     when "Cavalry"
       photo.attach(io: File.open('app/assets/images/cavalry.png'), filename: 'cavalry.png', content_type: "image/png")
     when "Cleric"
@@ -767,6 +769,12 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/knight.png'), filename: 'knight.png', content_type: "image/png")
     when "Squire"
       photo.attach(io: File.open('app/assets/images/squire.png'), filename: 'squire.png', content_type: "image/png")
+    when "Militia"
+      photo.attach(io: File.open('app/assets/images/militia.png'), filename: 'militia.png', content_type: "image/png")
+    when "Scout"
+      photo.attach(io: File.open('app/assets/images/scout.png'), filename: 'scout.png', content_type: "image/png")
+    when "Mage"
+      photo.attach(io: File.open('app/assets/images/mage.png'), filename: 'mage.png', content_type: "image/png")
     when "High Priest"
       photo.attach(io: File.open('app/assets/images/high priest.png'), filename: 'high priest.png', content_type: "image/png")
     when "Battle Medic"
@@ -805,6 +813,20 @@ class Card < ApplicationRecord
       photo.attach(io: File.open('app/assets/images/mummy.png'), filename: 'mummy.png', content_type: "image/png")
     when "Mummy Guardian"
       photo.attach(io: File.open('app/assets/images/mummy guardian.png'), filename: 'mummy guardian.png', content_type: "image/png")
+    when "Bone Mender"
+      photo.attach(io: File.open('app/assets/images/bone mender.png'), filename: 'bone mender.png', content_type: "image/png")
+    when "Vampire"
+      photo.attach(io: File.open('app/assets/images/vampire.png'), filename: 'vampire.png', content_type: "image/png")
+    when "Specter"
+      photo.attach(io: File.open('app/assets/images/specter.png'), filename: 'specter.png', content_type: "image/png")
+    when "Lich"
+      photo.attach(io: File.open('app/assets/images/lich.png'), filename: 'lich.png', content_type: "image/png")
+    when "Revenant"
+      photo.attach(io: File.open('app/assets/images/revenant.png'), filename: 'revenant.png', content_type: "image/png")
+    when "Necrophage"
+      photo.attach(io: File.open('app/assets/images/necrophage.png'), filename: 'necrophage.png', content_type: "image/png")
+    when "Wight"
+      photo.attach(io: File.open('app/assets/images/wight.png'), filename: 'wight.png', content_type: "image/png")
     when "Crypt Keeper"
       photo.attach(io: File.open('app/assets/images/crypt keeper.png'), filename: 'crypt keeper.png', content_type: "image/png")
     when "Medic"
