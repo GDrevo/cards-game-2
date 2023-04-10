@@ -313,7 +313,7 @@ class User < ApplicationRecord
         { name: "Death Priest", side: "dark", cat: "normal normal", skillset: 13 }.merge(normal_heal_q),
         { name: "Bone Weaver", side: "dark", cat: "normal normal", skillset: 13 }.merge(normal_heal_q),
         # STRONG
-        { name: "Inferior Lich", side: "dark", cat: "epic", skillset: 14 }.merge(strong_heal_s),
+        { name: "Lich Healer", side: "dark", cat: "epic", skillset: 14 }.merge(strong_heal_s),
         { name: "Crypt Keeper", side: "dark", cat: "epic", skillset: 16 }.merge(strong_heal_q),
         # UNDEAD TANK CARDS
         # WEAK

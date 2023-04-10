@@ -78,10 +78,10 @@
       <% @undead_challenges.each_with_index do |chlgs, index| %>
         <div class="epic-challenges">
           <h2><%= chlgs.first.epic_card %></h2>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<%= index %>ModalCenter">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<%= index %>ModalSecond">
             <%= image_tag "information" %>
           </button>
-          <div class="modal fade" id="<%= index %>ModalCenter" tabindex="-1" role="dialog" aria-labelledby="<%= index %>ModalCenterTitle" aria-hidden="true">
+          <div class="modal fade" id="<%= index %>ModalSecond" tabindex="-1" role="dialog" aria-labelledby="<%= index %>ModalSecondTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
