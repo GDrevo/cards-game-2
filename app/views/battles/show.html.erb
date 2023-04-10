@@ -7,7 +7,7 @@
     <div class="players-container">
       <div class="players-cards">
         <% @bcs_opponent.each do |card| %>
-        <% if @taunt_present && !card.effect?("taunt") %>
+        <% if @taunt_present && !card.effect?("Taunt") %>
           <div class="player-card ennemy-card unclickable" data-target-id="<%= card.id %>" data-play-attack-target="ennemy">
               <div class="damage-taken">
                 <% if card.damage_taken < 0 %>
