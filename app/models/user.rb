@@ -305,7 +305,7 @@ class User < ApplicationRecord
         # WEAK
         { name: "Necromancer Acolyte", side: "dark", cat: "normal weak", skillset: 12 }.merge(weak_heal_s),
         { name: "Plaguebearer", side: "dark", cat: "normal weak", skillset: 12 }.merge(weak_heal_s),
-        { name: "Graveyard Wisp", side: "dark", cat: "normal weak", skillset: 12 }.merge(weak_heal_q),
+        { name: "Undead Wizard", side: "dark", cat: "normal weak", skillset: 12 }.merge(weak_heal_q),
         { name: "Bone Mender", side: "dark", cat: "normal weak", skillset: 12 }.merge(weak_heal_q),
         # NORMAL
         { name: "Necromancer", side: "dark", cat: "normal normal", skillset: 13 }.merge(normal_heal_s),
@@ -565,11 +565,11 @@ class User < ApplicationRecord
         { computer: Player.where(code: "epic Lich Healer 4").first, rank: 4, requirement: "Zombie Brute,Crypt Sentinel,Death Knight,Lich,Plague Doctor", epic_card: "Lich Healer" }.merge(attr_epic),
         { computer: Player.where(code: "epic Lich Healer 5").first, rank: 5, requirement: "Zombie Brute,Crypt Sentinel,Death Knight,Lich,Plague Doctor", epic_card: "Lich Healer" }.merge(attr_epic),
         # Crypt Keeper
-        { computer: Player.where(code: "epic Crypt Keeper 1").first, rank: 1, requirement: "Vampire,Specter,Necromancer,Plaguebearer,Graveyard Wisp", epic_card: "Crypt Keeper" }.merge(attr_epic),
-        { computer: Player.where(code: "epic Crypt Keeper 2").first, rank: 2, requirement: "Vampire,Specter,Necromancer,Plaguebearer,Graveyard Wisp", epic_card: "Crypt Keeper" }.merge(attr_epic),
-        { computer: Player.where(code: "epic Crypt Keeper 3").first, rank: 3, requirement: "Vampire,Specter,Necromancer,Plaguebearer,Graveyard Wisp", epic_card: "Crypt Keeper" }.merge(attr_epic),
-        { computer: Player.where(code: "epic Crypt Keeper 4").first, rank: 4, requirement: "Vampire,Specter,Necromancer,Plaguebearer,Graveyard Wisp", epic_card: "Crypt Keeper" }.merge(attr_epic),
-        { computer: Player.where(code: "epic Crypt Keeper 5").first, rank: 5, requirement: "Vampire,Specter,Necromancer,Plaguebearer,Graveyard Wisp", epic_card: "Crypt Keeper" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Crypt Keeper 1").first, rank: 1, requirement: "Vampire,Specter,Necromancer,Plaguebearer,Undead Wizard", epic_card: "Crypt Keeper" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Crypt Keeper 2").first, rank: 2, requirement: "Vampire,Specter,Necromancer,Plaguebearer,Undead Wizard", epic_card: "Crypt Keeper" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Crypt Keeper 3").first, rank: 3, requirement: "Vampire,Specter,Necromancer,Plaguebearer,Undead Wizard", epic_card: "Crypt Keeper" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Crypt Keeper 4").first, rank: 4, requirement: "Vampire,Specter,Necromancer,Plaguebearer,Undead Wizard", epic_card: "Crypt Keeper" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Crypt Keeper 5").first, rank: 5, requirement: "Vampire,Specter,Necromancer,Plaguebearer,Undead Wizard", epic_card: "Crypt Keeper" }.merge(attr_epic),
         # Wight JUGGERNAUT
         { computer: Player.where(code: "epic Wight Juggernaut 1").first, rank: 1, requirement: "Skeleton Shieldbearer,Zombie Brute,Crypt Sentinel,Bone Weaver,Mummy", epic_card: "Wight Juggernaut" }.merge(attr_epic),
         { computer: Player.where(code: "epic Wight Juggernaut 2").first, rank: 2, requirement: "Skeleton Shieldbearer,Zombie Brute,Crypt Sentinel,Bone Weaver,Mummy", epic_card: "Wight Juggernaut" }.merge(attr_epic),
@@ -577,11 +577,11 @@ class User < ApplicationRecord
         { computer: Player.where(code: "epic Wight Juggernaut 4").first, rank: 4, requirement: "Skeleton Shieldbearer,Zombie Brute,Crypt Sentinel,Bone Weaver,Mummy", epic_card: "Wight Juggernaut" }.merge(attr_epic),
         { computer: Player.where(code: "epic Wight Juggernaut 5").first, rank: 5, requirement: "Skeleton Shieldbearer,Zombie Brute,Crypt Sentinel,Bone Weaver,Mummy", epic_card: "Wight Juggernaut" }.merge(attr_epic),
         # Spectral Guardian
-        { computer: Player.where(code: "epic Spectral Guardian 1").first, rank: 1, requirement: "Ghoul,Graveyard Wisp,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
-        { computer: Player.where(code: "epic Spectral Guardian 2").first, rank: 2, requirement: "Ghoul,Graveyard Wisp,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
-        { computer: Player.where(code: "epic Spectral Guardian 3").first, rank: 3, requirement: "Ghoul,Graveyard Wisp,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
-        { computer: Player.where(code: "epic Spectral Guardian 4").first, rank: 4, requirement: "Ghoul,Graveyard Wisp,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
-        { computer: Player.where(code: "epic Spectral Guardian 5").first, rank: 5, requirement: "Ghoul,Graveyard Wisp,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Spectral Guardian 1").first, rank: 1, requirement: "Ghoul,Undead Wizard,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Spectral Guardian 2").first, rank: 2, requirement: "Ghoul,Undead Wizard,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Spectral Guardian 3").first, rank: 3, requirement: "Ghoul,Undead Wizard,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Spectral Guardian 4").first, rank: 4, requirement: "Ghoul,Undead Wizard,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
+        { computer: Player.where(code: "epic Spectral Guardian 5").first, rank: 5, requirement: "Ghoul,Undead Wizard,Banshee,Plaguebearer,Mummy Guardian", epic_card: "Spectral Guardian" }.merge(attr_epic),
         # Lich King
         { computer: Player.where(code: "epic Lich King 1").first, rank: 1, requirement: "Revenant,Death Weaver,Bone Golem,Lich Healer,Wight Juggernaut", epic_card: "Lich King" }.merge(attr_elite),
         { computer: Player.where(code: "epic Lich King 2").first, rank: 2, requirement: "Revenant,Death Weaver,Bone Golem,Lich Healer,Wight Juggernaut", epic_card: "Lich King" }.merge(attr_elite),
