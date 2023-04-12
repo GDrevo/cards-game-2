@@ -24,96 +24,96 @@ class User < ApplicationRecord
     attr_weak_slow = {
       hit_points: 100,
       card_type: "attacker",
-      armor: 10,
+      armor: 1000,
       power: 16,
-      speed: 8,
+      speed: 800,
       player:
     }
     attr_weak_normal = {
       hit_points: 100,
       card_type: "attacker",
-      armor: 10,
+      armor: 1000,
       power: 15,
-      speed: 9,
+      speed: 900,
       player:
     }
     attr_weak_quick = {
       hit_points: 100,
       card_type: "attacker",
-      armor: 10,
+      armor: 1000,
       power: 14,
-      speed: 10,
+      speed: 1000,
       player:
     }
     attr_normal_slow = {
       hit_points: 110,
       card_type: "attacker",
-      armor: 12,
+      armor: 1200,
       power: 19,
-      speed: 10,
+      speed: 1000,
       player:,
       experience_given: 40
     }
     attr_normal_normal = {
       hit_points: 110,
       card_type: "attacker",
-      armor: 12,
+      armor: 1200,
       power: 18,
-      speed: 11,
+      speed: 1100,
       player:,
       experience_given: 40
     }
     attr_normal_quick = {
       hit_points: 110,
       card_type: "attacker",
-      armor: 12,
+      armor: 1200,
       power: 17,
-      speed: 12,
+      speed: 1200,
       player:,
       experience_given: 40
     }
     attr_strong_slow = {
       hit_points: 120,
       card_type: "attacker",
-      armor: 14,
+      armor: 1400,
       power: 22,
-      speed: 12,
+      speed: 1200,
       player:,
       experience_given: 50
     }
     attr_strong_normal = {
       hit_points: 120,
       card_type: "attacker",
-      armor: 14,
+      armor: 1400,
       power: 21,
-      speed: 13,
+      speed: 1300,
       player:,
       experience_given: 50
     }
     attr_strong_quick = {
       hit_points: 120,
       card_type: "attacker",
-      armor: 14,
+      armor: 1400,
       power: 20,
-      speed: 14,
+      speed: 1400,
       player:,
       experience_given: 50
     }
     attr_elite_slow = {
       hit_points: 125,
       card_type: "attacker",
-      armor: 14,
+      armor: 1400,
       power: 24,
-      speed: 14,
+      speed: 1400,
       player:,
       experience_given: 60
     }
     attr_elite_quick = {
       hit_points: 125,
       card_type: "attacker",
-      armor: 14,
+      armor: 1400,
       power: 23,
-      speed: 15,
+      speed: 1500,
       player:,
       experience_given: 60
     }
@@ -121,52 +121,52 @@ class User < ApplicationRecord
     weak_heal_s = {
       hit_points: 90,
       card_type: "healer",
-      armor: 8,
+      armor: 800,
       power: 10,
-      speed: 8,
+      speed: 800,
       player:
     }
     weak_heal_q = {
       hit_points: 90,
       card_type: "healer",
-      armor: 8,
+      armor: 800,
       power: 9,
-      speed: 10,
+      speed: 1000,
       player:
     }
     normal_heal_s = {
       hit_points: 100,
       card_type: "healer",
-      armor: 10,
+      armor: 1000,
       power: 12,
-      speed: 10,
+      speed: 1000,
       player:,
       experience_given: 40
     }
     normal_heal_q = {
       hit_points: 100,
       card_type: "healer",
-      armor: 10,
+      armor: 1000,
       power: 11,
-      speed: 12,
+      speed: 1200,
       player:,
       experience_given: 40
     }
     strong_heal_s = {
       hit_points: 110,
       card_type: "healer",
-      armor: 12,
+      armor: 1200,
       power: 14,
-      speed: 12,
+      speed: 1200,
       player:,
       experience_given: 50
     }
     strong_heal_q = {
       hit_points: 110,
       card_type: "healer",
-      armor: 12,
+      armor: 1200,
       power: 13,
-      speed: 14,
+      speed: 1400,
       player:,
       experience_given: 50
     }
@@ -174,52 +174,52 @@ class User < ApplicationRecord
     weak_tank_s = {
       hit_points: 125,
       card_type: "tank",
-      armor: 14,
+      armor: 1400,
       power: 5,
-      speed: 8,
+      speed: 800,
       player:
     }
     weak_tank_q = {
       hit_points: 125,
       card_type: "tank",
-      armor: 14,
+      armor: 1400,
       power: 4,
-      speed: 9,
+      speed: 900,
       player:
     }
     normal_tank_s = {
       hit_points: 135,
       card_type: "tank",
-      armor: 16,
+      armor: 1600,
       power: 7,
-      speed: 10,
+      speed: 1000,
       player:,
       experience_given: 40
     }
     normal_tank_q = {
       hit_points: 135,
       card_type: "tank",
-      armor: 16,
+      armor: 1600,
       power: 6,
-      speed: 11,
+      speed: 1100,
       player:,
       experience_given: 40
     }
     strong_tank_s = {
       hit_points: 145,
       card_type: "tank",
-      armor: 18,
+      armor: 1800,
       power: 9,
-      speed: 12,
+      speed: 1200,
       player:,
       experience_given: 50
     }
     strong_tank_q = {
       hit_points: 145,
       card_type: "tank",
-      armor: 18,
+      armor: 1800,
       power: 8,
-      speed: 13,
+      speed: 1300,
       player:,
       experience_given: 50
     }

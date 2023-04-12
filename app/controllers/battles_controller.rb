@@ -150,7 +150,7 @@ class BattlesController < ApplicationController
     @shard_card = Card.find(@shard_card_id)
     challenge_id = params[:challenge].to_i
     @challenge = Challenge.find(challenge_id)
-    @gear = Gear.find(params[:gear_id])
+    params[:gear_id] ? @gear = Gear.find(params[:gear_id]) : @gear = nil
   end
 
   private
@@ -257,64 +257,67 @@ class BattlesController < ApplicationController
     else
       gear = create_gear(player, "artifact 0")
     end
-    gear.id
+    gear&.id
   end
 
   def create_gear(player, gear_type)
+    random_number = rand(0..100)
+    return if random_number > 10
+
     case gear_type
     when "weapon 2"
       bonus_hp = 0
       bonus_armor = 0
-      bonus_power = rand(100..250)
+      bonus_power = 250
       bonus_speed = 0
       coins_value = 50
     when "weapon 1"
       bonus_hp = 0
       bonus_armor = 0
-      bonus_power = rand(10..50)
+      bonus_power = 50
       bonus_speed = 0
       coins_value = 15
     when "weapon 0"
       bonus_hp = 0
       bonus_armor = 0
-      bonus_power = rand(1..25)
+      bonus_power = 25
       bonus_speed = 0
       coins_value = 5
     when "armor 2"
-      bonus_hp = rand(250..500)
-      bonus_armor = rand(5..10)
+      bonus_hp = 500
+      bonus_armor = 10
       bonus_power = 0
       bonus_speed = 0
       coins_value = 50
     when "armor 1"
-      bonus_hp = rand(50..150)
-      bonus_armor = rand(3..5)
+      bonus_hp = 150
+      bonus_armor = 5
       bonus_power = 0
       bonus_speed = 0
       coins_value = 15
     when "armor 0"
-      bonus_hp = rand(5..50)
-      bonus_armor = rand(1..2)
+      bonus_hp = 50
+      bonus_armor = 2
       bonus_power = 0
       bonus_speed = 0
       coins_value = 5
     when "artifact 2"
-      bonus_hp = rand(100..150)
+      bonus_hp = 150
       bonus_armor = 0
       bonus_power = 0
-      bonus_speed = rand(3..10)
+      bonus_speed = 10
       coins_value = 50
     when "artifact 1"
-      bonus_hp = rand(10..100)
+      bonus_hp = 100
       bonus_armor = 0
       bonus_power = 0
-      bonus_speed = rand(1..5)
+      bonus_speed = 5
       coins_value = 15
     when "artifact 0"
-      bonus_hp = rand(1..50)
+      bonus_hp = 50
       bonus_armor = 0
       bonus_power = 0
-      bonus_speed = rand(1..3)
+      bonus_speed = 3
       coins_value = 5
     end
     Gear.create(player:, level: gear_type[-1], gear_type:, bonus_hp:, bonus_armor:, bonus_power:, bonus_speed:, coins_value:)
@@ -402,18 +405,18 @@ class BattlesController < ApplicationController
     return if skill.strength.nil?
 
     damage = attacker.power
-    if skill.strength.include?("Light")
+    if skill.strength.include?("light")
       damage = (damage * 0.75).round
-    elsif skill.strength.include?("Powerful")
-      damage = (damage * 2).round
+    elsif skill.strength.include?("strong")
+      damage = (damage * 1.5).round
     end
     if skill.target_type.include?("Multi")
       if skill.name.include?("Attack")
         targets = bcs_defender
         targets.each do |target_multi|
           target_multi.damage_taken = 0
-          target_multi.armor > 95 ? target_multi.armor = 95 : nil
-          damage_multi = (damage * (100 - target_multi.armor) / 100).round
+          target_multi.armor > 9000 ? target_multi.armor = 9000 : nil
+          damage_multi = (damage * (10000 - target_multi.armor) / 10000).round
           target_multi.damage_taken = 0 - damage_multi
 
           target_multi.hit_points -= damage_multi
@@ -435,8 +438,8 @@ class BattlesController < ApplicationController
     elsif skill.target_type.include?("Single")
       if skill.name.include?("Attack")
         target.damage_taken = 0
-        target.armor > 95 ? target.armor = 95 : nil
-        damage_attack = (damage * (100 - target.armor) / 100).round
+        target.armor > 9500 ? target.armor = 9500 : nil
+        damage_attack = (damage * (10000 - target.armor) / 10000).round
         target.hit_points -= damage_attack
         target.damage_taken = 0 - damage_attack
         target.dead = true if target.hit_points <= 0
@@ -445,8 +448,10 @@ class BattlesController < ApplicationController
       elsif skill.name.include?("Heal")
         target.damage_taken = 0
         target.hit_points += (damage / 1.25).round
-        target.hit_points > target.max_hp ? target.hit_points = target.max_hp : nil
         target.damage_taken = (damage / 1.25).round
+
+        target.hit_points > target.max_hp ? target.hit_points = target.max_hp : nil
+
         target.save
       end
     end
@@ -458,7 +463,7 @@ class BattlesController < ApplicationController
 
     while all_cards.all? { |battle_card| battle_card.counter < 100 }
       all_cards.each do |battle_card|
-        battle_card.counter += battle_card.speed
+        battle_card.counter += battle_card.speed / 100
         battle_card.save
       end
     end
